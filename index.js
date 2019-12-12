@@ -1,3 +1,5 @@
+
+
 window.onload = function init(){
   header();
   wrapperDiv();
@@ -64,3 +66,13 @@ function maincontent() {
   mainContentH1.innerHTML = 'Images';
   mainContentDiv.appendChild(mainContentH1);
 };
+
+/**
+ * @param img  Image to be displayed
+ */
+function displayImage(img) {
+  let imageWrapper = document.getElementById("img-wrapper");
+  let imageElement = document.createElement("img");
+  imageElement.src = img.src;
+  imageWrapper.appendChild(imageElement);
+}
