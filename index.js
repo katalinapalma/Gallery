@@ -1,11 +1,41 @@
 
+// function that creates the div wrapper for the 3 links, we also create the 3 links and give them IDs
+function initNavigtaion() {
+    // Get the IDs from the links so we can seperate them when we click
+    imgNav = document.getElementById('h2nav1');
+    imgNav.addEventListener('click', clickNewImage);
+    newImgNav = document.getElementById('h2nav2');
+    newImgNav.addEventListener('click', clickImages);
+    galleryNav = document.getElementById('h2nav3');
+    galleryNav.addEventListener('click', clickGalleries);
+}
+
+function clickNewImage() {
+    let newTextRef = document.getElementById("maincontent-h1");
+    newTextRef.innerText = "New Image";
+}
+function clickImages() {
+    let newTextRef = document.getElementById("maincontent-h1");
+    newTextRef.innerText = "Images";
+}
+function clickGalleries() {
+   let newTextRef = document.getElementById("maincontent-h1");
+   newTextRef.innerText = "Galleries";
+}
+
+window.addEventListener('load', function() {
+    init();
+});
+
 
 window.onload = function init(){
+  
   header();
   wrapperDiv();
   sidebar();
   sidebarH2();
   maincontent();
+  initNavigtaion();
 }
 
 
@@ -45,12 +75,13 @@ function sidebar() {
 function sidebarH2() {
   let h2Text = ['New image', 'Images', 'Galleries'];
 
-  h2Text.forEach(function (element) {
-  let h2Element = document.createElement('h2');
-  document.getElementById('sidebar-h2').appendChild(h2Element);
-  h2Element.className = 'sbH2';
-  h2Element.innerHTML = element;
-  })
+  for(let i=0;i< h2Text.length;i++) {
+    let h2Element = document.createElement("h2");
+    document.getElementById("sidebar-h2").appendChild(h2Element);
+    h2Element.className = "sbH2";
+    h2Element.innerHTML = h2Text[i];
+    h2Element.id = "h2nav" + (i+1);
+  }
 };
 
 
@@ -63,7 +94,7 @@ function maincontent() {
 
   let mainContentH1 = document.createElement('h1'); //create h1 inside maincontent
   mainContentH1.setAttribute('id', 'maincontent-h1');
-  mainContentH1.innerHTML = 'Images';
+  mainContentH1.innerText = 'Images';
   mainContentDiv.appendChild(mainContentH1);
 };
 
@@ -76,3 +107,4 @@ function displayImage(img) {
   imageElement.src = img.src;
   imageWrapper.appendChild(imageElement);
 }
+
