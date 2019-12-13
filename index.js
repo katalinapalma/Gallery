@@ -17,15 +17,12 @@ function clickNewImage() {
 function clickImages() {
     let newTextRef = document.getElementById("maincontent-h1");
     newTextRef.innerText = "Images";
+    displayImage();
 }
 function clickGalleries() {
    let newTextRef = document.getElementById("maincontent-h1");
    newTextRef.innerText = "Galleries";
 }
-
-window.addEventListener('load', function() {
-    init();
-});
 
 
 window.onload = function init(){
@@ -99,12 +96,13 @@ function maincontent() {
 };
 
 /**
- * @param img  Image to be displayed
+ * @param img  Takes an image object as a parameter to display on the image screen
  */
 function displayImage(img) {
-  let imageWrapper = document.getElementById("img-wrapper");
+  let imageWrapper = document.getElementById("main-content");
   let imageElement = document.createElement("img");
-  imageElement.src = img.src;
+  imageElement.src = "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iKIWgaiJUtss/v2/1000x-1.jpg"
+
   imageWrapper.appendChild(imageElement);
 }
 
