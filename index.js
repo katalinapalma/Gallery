@@ -13,6 +13,7 @@ function initNavigtaion() {
 function clickNewImage() {
     let newTextRef = document.getElementById("maincontent-h1");
     newTextRef.innerText = "New Image";
+    createForm();
 }
 function clickImages() {
     let newTextRef = document.getElementById("maincontent-h1");
@@ -114,7 +115,7 @@ function displayImage(img) {
  * @desc Creates form by HTML
  */
 function createForm() {
-  let formWrapper = document.getElementsByTagName("body")[0]; // Change this to where form should be placed
+  let formWrapper = document.getElementById("main-content");
   formWrapper.innerHTML = "<form action='javascript:saveData();'> <input type='url' name='url' id='url' placeholder='Image URL'> <br> <input type='submit' name='submit' value='submit'>";
 }
 /**
