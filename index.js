@@ -99,6 +99,7 @@ function maincontent() {
 };
 
 /**
+ * @desc Creates the image element and adds it to the DOM
  * @param img  Image to be displayed
  */
 function displayImage(img) {
@@ -108,3 +109,17 @@ function displayImage(img) {
   imageWrapper.appendChild(imageElement);
 }
 
+
+/**
+ * @desc Creates form by HTML
+ */
+function createForm() {
+  let formWrapper = document.getElementsByTagName("body")[0]; // Change this to where form should be placed
+  formWrapper.innerHTML = "<form action='javascript:saveData();'> <input type='url' name='url' id='url' placeholder='Image URL'> <br> <input type='submit' name='submit' value='submit'>";
+}
+/**
+* @desc Saves form input data into var formData
+*/
+function saveData() {
+  let formData = document.getElementById('url').value;
+}
