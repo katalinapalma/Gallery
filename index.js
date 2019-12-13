@@ -24,9 +24,7 @@ function clickGalleries() {
    newTextRef.innerText = "Galleries";
 }
 
-window.addEventListener('load', function() {
-    init();
-});
+
 
 
 window.onload = function init(){
@@ -52,14 +50,14 @@ function header() {
   headerH1.setAttribute('id', 'header-h1');
   headerDiv.appendChild(headerH1);
   headerH1.innerText = 'Gallery application 2000';
-};
+}
 
 function wrapperDiv() {
   // created wrapper div
   let wrapperDiv = document.createElement('div');
   wrapperDiv.setAttribute('id', 'wrapper');
   document.body.appendChild(wrapperDiv);
-};
+}
 
 function sidebar() {
   let sidebarDiv = document.createElement('div'); //create sidebar div
@@ -70,7 +68,7 @@ function sidebar() {
   sidebarDiv.appendChild(sidebarH2Div);
   sidebarH2Div.setAttribute('id', 'sidebar-h2');
   console.log(wrapperDiv); //comment out later
-};
+}
 
 // create h2 text with different 
 function sidebarH2() {
@@ -83,7 +81,7 @@ function sidebarH2() {
     h2Element.innerHTML = h2Text[i];
     h2Element.id = "h2nav" + (i+1);
   }
-};
+}
 
 
 
@@ -97,11 +95,11 @@ function maincontent() {
   mainContentH1.setAttribute('id', 'maincontent-h1');
   mainContentH1.innerText = 'Images';
   mainContentDiv.appendChild(mainContentH1);
-};
+}
 
 /**
  * @desc Creates the image element and adds it to the DOM
- * @param img  Image to be displayed
+ * @param img  The image object to be displayed
  */
 function displayImage(img) {
   let imageWrapper = document.getElementById("img-wrapper");
@@ -116,11 +114,15 @@ function displayImage(img) {
  */
 function createForm() {
   let formWrapper = document.getElementById("main-content");
-  formWrapper.innerHTML = "<form action='javascript:saveData();'> <input type='url' name='url' id='url' placeholder='Image URL'> <br> <input type='submit' name='submit' value='submit'>";
+  formWrapper.innerHTML = "<form id='form1' action='javascript:saveData();'> <input type='url' name='url' id='url' placeholder='Image URL'> <br> <input type='submit' name='submit' value='submit'>";
 }
 /**
 * @desc Saves form input data into var formData
 */
 function saveData() {
-  let formData = document.getElementById('url').value;
+  let formRef = document.getElementById("form1");
+  let formData = new FormData(formRef);
+  for(let value of formData.values()) {
+    console.log(value);
+  }
 }
