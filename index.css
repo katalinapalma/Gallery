@@ -52,6 +52,11 @@ html, body {
   opacity: .5;
 }
 
+.sbH2:hover{
+  cursor: pointer;
+  opacity: .5;
+}
+
 /* main content */
 #main-content {
   flex-direction: column;
