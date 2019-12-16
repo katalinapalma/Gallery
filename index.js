@@ -1,5 +1,7 @@
 
-// function that creates the div wrapper for the 3 links, we also create the 3 links and give them IDs
+/*
+***@ Event that listens for clicks on specific ID, a function runs depending on what you click.
+*/
 function initNavigtaion() {
     // Get the IDs from the links so we can seperate them when we click
     imgNav = document.getElementById('h2nav1');
@@ -27,7 +29,6 @@ function clickGalleries() {
 
 
 window.onload = function init(){
-  
   header();
   wrapperDiv();
   sidebar();
@@ -106,7 +107,6 @@ function displayImage(img) {
   let imageWrapper = document.getElementById("main-content");
   let imageElement = document.createElement("img");
   imageElement.src = "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iKIWgaiJUtss/v2/1000x-1.jpg"
-
   imageWrapper.appendChild(imageElement);
 }
 
@@ -116,7 +116,7 @@ function displayImage(img) {
  */
 function createForm() {
   let formWrapper = document.getElementById("main-content");
-  formWrapper.innerHTML = "<form id='form1' action='javascript:saveData();'> <input type='url' name='url' id='url' placeholder='Image URL'> <br> <input type='submit' name='submit' value='submit'>";
+  formWrapper.innerHTML = "<form id='form1' action='javascript:saveData();'> <input type='url' name='url' id='url' placeholder='Image URL'> <br> <input type='text' name='firstname' placeholder='Name'> <br> <input type='text' name='subject' placeholder='Description'> <br> <input type='submit' name='submit' value='submit'>";
 }
 /**
 * @desc Saves form input data into var formData
