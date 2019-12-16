@@ -47,6 +47,15 @@ html, body {
   font-size: 15px;
   color: #fff;
 }
+.sbH2:hover{
+  cursor: pointer;
+  opacity: .5;
+}
+
+.sbH2:hover{
+  cursor: pointer;
+  opacity: .5;
+}
 
 /* main content */
 #main-content {
@@ -62,5 +71,10 @@ html, body {
   color: white;
   padding: 25px;
   font-size: 25px;
+}
+
+img {
+  height: 200px;
+  width: 300px;
 }
 

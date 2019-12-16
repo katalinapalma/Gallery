@@ -1,22 +1,13 @@
 
-window.onload = function init(){
-  header();
-  wrapperDiv();
-  sidebar();
-  sidebarH2();
-  maincontent();
-  initNavigtaion();
-  removeButton();
-  deleteImg();
-}
-
-// function that creates the div wrapper for the 3 links, we also create the 3 links and give them IDs
+/*
+***@ Event that listens for clicks on specific ID, a function runs depending on what you click.
+*/
 function initNavigtaion() {
     // Get the IDs from the links so we can seperate them when we click
     imgNav = document.getElementById('h2nav1');
     imgNav.addEventListener('click', clickNewImage);
     newImgNav = document.getElementById('h2nav2');
-    newImgNav.addEventListener('click', clickImages);
+    newImgNav.addEventListener('click', showImagesScreen);
     galleryNav = document.getElementById('h2nav3');
     galleryNav.addEventListener('click', clickGalleries);
 }
@@ -24,16 +15,31 @@ function initNavigtaion() {
 function clickNewImage() {
     let newTextRef = document.getElementById("maincontent-h1");
     newTextRef.innerText = "New Image";
+    document.getElementById("main-content-wrapper").innerHTML = " ";
     createForm();
 }
-function clickImages() {
+function showImagesScreen() {
     let newTextRef = document.getElementById("maincontent-h1");
     newTextRef.innerText = "Images";
+    document.getElementById("main-content-wrapper").innerHTML = " ";
     displayImage();
 }
 function clickGalleries() {
    let newTextRef = document.getElementById("maincontent-h1");
    newTextRef.innerText = "Galleries";
+   document.getElementById("main-content-wrapper").innerHTML = " ";
+
+}
+
+window.onload = function init() {
+  header();
+  wrapperDiv();
+  sidebar();
+  sidebarH2();
+  maincontent();
+  initNavigtaion();
+  showImagesScreen();
+  removeBtn();
 }
 
 // created header div with id 'header'
@@ -89,6 +95,10 @@ function maincontent() {
   mainContentH1.setAttribute('id', 'maincontent-h1');
   mainContentH1.innerText = 'Images';
   mainContentDiv.appendChild(mainContentH1);
+
+  let mainContentWrapper = document.createElement("div");
+  mainContentWrapper.setAttribute("id", "main-content-wrapper");
+  mainContentDiv.appendChild(mainContentWrapper);
 }
 
 /**
@@ -98,9 +108,9 @@ function maincontent() {
  * @param img  The image object to be displayed
  */
 function displayImage(img) {
-  let imageWrapper = document.getElementById("main-content");
+  let imageWrapper = document.getElementById("main-content-wrapper");
   let imageElement = document.createElement("img");
-  imageElement.src = "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iKIWgaiJUtss/v2/1000x-1.jpg"
+  imageElement.src = "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iKIWgaiJUtss/v2/1000x-1.jpg";
   imageWrapper.appendChild(imageElement);
 }
 
@@ -109,8 +119,8 @@ function displayImage(img) {
  * @desc Creates form by HTML
  */
 function createForm() {
-  let formWrapper = document.getElementById("main-content");
-  formWrapper.innerHTML = "<form id='form1' action='javascript:saveData();'> <input type='url' name='url' id='url' placeholder='Image URL'> <br> <input type='submit' name='submit' value='submit'>";
+  let formWrapper = document.getElementById("main-content-wrapper");
+  formWrapper.innerHTML = "<form id='form1' action='javascript:saveData();'> <input type='url' name='url' id='url' placeholder='Image URL'> <br> <input type='text' name='firstname' placeholder='Name'> <br> <textarea rows='4' cols='50' name='subject' placeholder='Description'></textarea> <br> <input type='submit' name='submit' value='submit'> ";
 }
 /**
 * @desc Saves form input data into var formData
@@ -123,3 +133,16 @@ function saveData() {
   }
 }
 
+function removeBtn() {
+  let btnWrapper = document.getElementById('main-content-wrapper');
+  let btn = document.createElement('button');
+  btn.innerText = 'remove image';
+  btnWrapper.appendChild(btn);
+  btn.addEventListener('click', deleteImage);
+  }
+
+function deleteImage() {
+  let btnWrapper = document.getElementById('main-content-wrapper');
+  let deletedImg = document.getElementsByTagName('img');
+  btnWrapper.removeChild(deletedImg[0]);
+}
