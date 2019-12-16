@@ -1,4 +1,15 @@
 
+window.onload = function init(){
+  header();
+  wrapperDiv();
+  sidebar();
+  sidebarH2();
+  maincontent();
+  initNavigtaion();
+  removeButton();
+  deleteImg();
+}
+
 // function that creates the div wrapper for the 3 links, we also create the 3 links and give them IDs
 function initNavigtaion() {
     // Get the IDs from the links so we can seperate them when we click
@@ -25,24 +36,11 @@ function clickGalleries() {
    newTextRef.innerText = "Galleries";
 }
 
-
-window.onload = function init(){
-  
-  header();
-  wrapperDiv();
-  sidebar();
-  sidebarH2();
-  maincontent();
-  initNavigtaion();
-}
-
-
 // created header div with id 'header'
 function header() {
   let headerDiv = document.createElement('div');
   headerDiv.setAttribute('id', 'header');
   document.body.appendChild(headerDiv);
-  console.log(headerDiv); //comment out later
 
   //  created h1 inside the header div, with id 'header-h1'
   let headerH1 = document.createElement('h1');
@@ -51,8 +49,8 @@ function header() {
   headerH1.innerText = 'Gallery application 2000';
 }
 
+  // created wrapper div that holds sidebar and main content. 
 function wrapperDiv() {
-  // created wrapper div
   let wrapperDiv = document.createElement('div');
   wrapperDiv.setAttribute('id', 'wrapper');
   document.body.appendChild(wrapperDiv);
@@ -66,7 +64,6 @@ function sidebar() {
   let sidebarH2Div = document.createElement('div'); //create div for h2
   sidebarDiv.appendChild(sidebarH2Div);
   sidebarH2Div.setAttribute('id', 'sidebar-h2');
-  console.log(wrapperDiv); //comment out later
 }
 
 // create h2 text with different 
@@ -81,8 +78,6 @@ function sidebarH2() {
     h2Element.id = "h2nav" + (i+1);
   }
 }
-
-
 
 function maincontent() {
   //create div with main content id
@@ -106,7 +101,6 @@ function displayImage(img) {
   let imageWrapper = document.getElementById("main-content");
   let imageElement = document.createElement("img");
   imageElement.src = "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iKIWgaiJUtss/v2/1000x-1.jpg"
-
   imageWrapper.appendChild(imageElement);
 }
 
@@ -128,3 +122,27 @@ function saveData() {
     console.log(value);
   }
 }
+
+// create remove image button
+function removeButton() {
+  let btnWrapper = document.getElementById("main-content");
+  let btn = document.createElement('button');
+  btnWrapper.appendChild(btn);
+  btn.innerHTML = 'delete image'; //text in button
+  btn.setAttribute('id', 'remove-btn');
+  btn.addEventListener('click', deleteImg); //when button is clicked, image is deleted
+}
+
+
+function deleteImg() {
+  
+  console.log('removes image');
+  
+  // imageWrapper.removeChild(imageElement);
+};
+
+
+// var parent = getElementById('parentid');
+// var child = document.getElementById('imagex');
+// parent.removeChild(child);
+
