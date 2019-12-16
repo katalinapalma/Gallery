@@ -105,7 +105,7 @@ function maincontent() {
 function displayImage(img) {
   let imageWrapper = document.getElementById("main-content");
   let imageElement = document.createElement("img");
-  imageElement.src = "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iKIWgaiJUtss/v2/1000x-1.jpg"
+  imageElement.src = "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iKIWgaiJUtss/v2/1000x-1.jpg";
 
   imageWrapper.appendChild(imageElement);
 }
@@ -116,7 +116,7 @@ function displayImage(img) {
  */
 function createForm() {
   let formWrapper = document.getElementById("main-content");
-  formWrapper.innerHTML = "<form id='form1' action='javascript:saveData();'> <input type='url' name='url' id='url' placeholder='Image URL'> <br> <input type='submit' name='submit' value='submit'>";
+  formWrapper.innerHTML = "<form id='form1' action='javascript:saveData();'> <input type='url' name='url' id='url' placeholder='Image URL'> <br> <input type='text' name='firstname' placeholder='Name'> <br> <textarea rows='4' cols='50' name='subject' placeholder='Description'></textarea> <br> <input type='submit' name='submit' value='submit'> ";
 }
 /**
 * @desc Saves form input data into var formData
