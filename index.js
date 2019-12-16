@@ -10,7 +10,7 @@ function initNavigtaion() {
     newImgNav.addEventListener('click', clickImages);
     galleryNav = document.getElementById('h2nav3');
     galleryNav.addEventListener('click', clickGalleries);
-}
+} 
 
 function clickNewImage() {
     let newTextRef = document.getElementById("maincontent-h1");
