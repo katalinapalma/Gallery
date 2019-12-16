@@ -123,26 +123,3 @@ function saveData() {
   }
 }
 
-// create remove image button
-function removeButton() {
-  let btnWrapper = document.getElementById("main-content");
-  let btn = document.createElement('button');
-  btnWrapper.appendChild(btn);
-  btn.innerHTML = 'delete image'; //text in button
-  btn.setAttribute('id', 'remove-btn');
-  btn.addEventListener('click', deleteImg); //when button is clicked, image is deleted
-}
-
-
-function deleteImg() {
-  
-  console.log('removes image');
-  
-  // imageWrapper.removeChild(imageElement);
-};
-
-
-// var parent = getElementById('parentid');
-// var child = document.getElementById('imagex');
-// parent.removeChild(child);
-
