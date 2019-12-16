@@ -15,16 +15,19 @@ function initNavigtaion() {
 function clickNewImage() {
     let newTextRef = document.getElementById("maincontent-h1");
     newTextRef.innerText = "New Image";
+    document.getElementById("main-content-wrapper").innerHTML = " ";
     createForm();
 }
 function clickImages() {
     let newTextRef = document.getElementById("maincontent-h1");
     newTextRef.innerText = "Images";
+    document.getElementById("main-content-wrapper").innerHTML = " ";
     displayImage();
 }
 function clickGalleries() {
    let newTextRef = document.getElementById("maincontent-h1");
    newTextRef.innerText = "Galleries";
+   document.getElementById("main-content-wrapper").innerHTML = " ";
 }
 
 
@@ -95,6 +98,10 @@ function maincontent() {
   mainContentH1.setAttribute('id', 'maincontent-h1');
   mainContentH1.innerText = 'Images';
   mainContentDiv.appendChild(mainContentH1);
+
+  let mainContentWrapper = document.createElement("div");
+  mainContentWrapper.setAttribute("id", "main-content-wrapper");
+  mainContentDiv.appendChild(mainContentWrapper);
 }
 
 /**
@@ -104,7 +111,7 @@ function maincontent() {
  * @param img  The image object to be displayed
  */
 function displayImage(img) {
-  let imageWrapper = document.getElementById("main-content");
+  let imageWrapper = document.getElementById("main-content-wrapper");
   let imageElement = document.createElement("img");
   imageElement.src = "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iKIWgaiJUtss/v2/1000x-1.jpg";
 
@@ -116,7 +123,7 @@ function displayImage(img) {
  * @desc Creates form by HTML
  */
 function createForm() {
-  let formWrapper = document.getElementById("main-content");
+  let formWrapper = document.getElementById("main-content-wrapper");
   formWrapper.innerHTML = "<form id='form1' action='javascript:saveData();'> <input type='url' name='url' id='url' placeholder='Image URL'> <br> <input type='text' name='firstname' placeholder='Name'> <br> <textarea rows='4' cols='50' name='subject' placeholder='Description'></textarea> <br> <input type='submit' name='submit' value='submit'> ";
 }
 /**
