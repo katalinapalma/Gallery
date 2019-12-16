@@ -1,5 +1,7 @@
 
-// function that creates the div wrapper for the 3 links, we also create the 3 links and give them IDs
+/*
+***@ Event that listens for clicks on specific ID, a function runs depending on what you click.
+*/
 function initNavigtaion() {
     // Get the IDs from the links so we can seperate them when we click
     imgNav = document.getElementById('h2nav1');
@@ -27,7 +29,6 @@ function clickGalleries() {
 
 
 window.onload = function init(){
-  
   header();
   wrapperDiv();
   sidebar();
