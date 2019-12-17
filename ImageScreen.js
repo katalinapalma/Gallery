@@ -1,7 +1,47 @@
+class ImageScreen extends Screen{
+  constructor() {
+    let content = "Images";
+    super(content);
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /*
 ***@ Event that listens for clicks on specific ID, a function runs depending on what you click.
-*/
+
 function initNavigtaion() {
     // Get the IDs from the links so we can seperate them when we click
     imgNav = document.getElementById('h2nav1');
@@ -109,30 +149,40 @@ function maincontent() {
 =======
  * @desc Creates the image element and adds it to the DOM
  * @param img  The image object to be displayed
- */
-function displayImage(img) {
+function displayImage() {
+  
+  let formRef = document.getElementById("form1");
+  let formData = new FormData(formRef);
   let imageWrapper = document.getElementById("main-content-wrapper");
-  let imageElement = document.createElement("img");
-  imageElement.src = "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iKIWgaiJUtss/v2/1000x-1.jpg";
 
-  imageWrapper.appendChild(imageElement);
+  let imageArray = formData.getAll("url");
+  imageArray.forEach(function(element) {
+    let imageElement = document.createElement("img");
+    imageElement.src = element;
+    imageWrapper.appendChild(imageElement);
+  })
+  
+  
+
+  
 }
 
 
 /**
  * @desc Creates form by HTML
- */
 function createForm() {
   let formWrapper = document.getElementById("main-content-wrapper");
-  formWrapper.innerHTML = "<form id='form1' action='javascript:saveData();'> <input type='url' name='url' id='url' placeholder='Image URL'> <br> <input type='text' name='firstname' placeholder='Name'> <br> <textarea rows='4' cols='50' name='subject' placeholder='Description'></textarea> <br> <input type='submit' name='submit' value='submit'> ";
+  formWrapper.innerHTML = "<form id='form1' action=''> <input type='url' name='url' id='url' placeholder='Image URL'> <br> <input type='text' name='firstname' placeholder='Name'> <br> <textarea rows='4' cols='50' name='subject' placeholder='Description'></textarea> <br> <input type='submit' name='submit' value='submit'> ";
 }
 /**
 * @desc Saves form input data into var formData
-*/
 function saveData() {
   let formRef = document.getElementById("form1");
   let formData = new FormData(formRef);
-  for(let value of formData.values()) {
-    console.log(value);
-  }
+  
 }
+
+
+let newImagesScreen = {
+
+} */
