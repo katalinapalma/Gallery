@@ -4,3 +4,4 @@ class NewImageScreen extends Screen{
     super(content);
   }
 }
+
