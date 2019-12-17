@@ -1,2 +1,6 @@
-var hej = 10;
-console.log(hej);
+class NewImageScreen extends Screen{
+  constructor() {
+    let content = "New Images";
+    super(content);
+  }
+}
