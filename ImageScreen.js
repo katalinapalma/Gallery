@@ -1,11 +1,11 @@
-class ImageScreen extends Screen{
+class ImageScreen extends Screen {
   constructor() {
     let content = "Images";
     super(content);
     this.displayImage();
   }
-  displayImage() {
 
+  displayImage() {
     let imgWrapper = document.createElement("div");
     imgWrapper.setAttribute("id", "image-wrapper");
 
@@ -13,12 +13,13 @@ class ImageScreen extends Screen{
     this.mainContentWrapper.appendChild(imgWrapper);
 
     let imgElement = document.createElement("img");
-    imgElement.src = "https://pbs.twimg.com/profile_images/638747380494503936/C89d1hl3_400x400.jpg";
+    imgElement.src = globalImageObj.url;
     imgWrapper.appendChild(imgElement);
-
+    console.log(imgElement);
   }
-}
 
+
+}
 
 
 
