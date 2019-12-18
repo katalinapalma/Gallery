@@ -36,14 +36,19 @@ class NewImageScreen extends Screen{
   addEventListeners(){
     this.theForm.addEventListener('submit', (event) => {
       event.preventDefault();
+
       
       globalImageObj = {
         url: this.theForm.urlID.value,
         name: this.theForm.imageNameID.value,
         description: this.theForm.description.value,
       }
+
       globalObjectArray.push(globalImageObj);
+      this.theForm.reset();
     })
+    
   }
+  
 }
 
