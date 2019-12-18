@@ -17,33 +17,45 @@ class NewImageScreen extends Screen{
     this.urlInput.id = 'urlID';
     this.inputName.id = 'imageNameID';
     this.textArea.id = 'description';
+    this.inputSubmit.id = 'submitButton';
     
     this.urlInput.type = 'url';
     this.urlInput.name = 'image';
-    this.inputSubmit.type = 'submit';
-    this.inputSubmit.value = 'submit';
+    this.urlInput.placeholder = 'Type image url';
+
     this.inputName.type = 'text';
     this.inputName.name = 'imageName';
+    this.inputName.placeholder = 'Name';
 
-    this.theForm.appendChild(this.textArea);
-    this.theForm.appendChild(this.inputName);
-    this.mainWrapper.appendChild(this.theForm);
+    this.textArea.placeholder = 'Description of image...';
+    this.textArea.rows = '4';
+    this.textArea.cols = '50';
+
+    this.inputSubmit.type = 'submit';
+    this.inputSubmit.value = 'submit';
+
+   
+
     this.theForm.appendChild(this.urlInput);
+    this.theForm.appendChild(this.inputName);
+    this.theForm.appendChild(this.textArea);
     this.theForm.appendChild(this.inputSubmit);
+    this.mainWrapper.appendChild(this.theForm);
+
     console.log(this.theForm);
   }
 
   addEventListeners(){
     this.theForm.addEventListener('submit', (event) => {
       event.preventDefault();
-      this.theForm.reset();
+      
       
       globalImageObj = {
         url: this.theForm.urlID.value,
         name: this.theForm.imageNameID.value,
         description: this.theForm.description.value,
       }
-      
+      this.theForm.reset();
     })
     
   }
