@@ -120,6 +120,7 @@ html, body {
   background-color: lightgreen;
 }
 
+<<<<<<< HEAD
 #image-wrapper{
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 }
@@ -136,3 +137,9 @@ img{
   height: 400px;
 }
 
+=======
+img{
+  width: 300px;
+  height: 400px;
+}
+>>>>>>> 7de1465a225bf0514cae74f27e1e34d603a7280d
