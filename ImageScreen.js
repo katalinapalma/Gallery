@@ -12,10 +12,10 @@ class ImageScreen extends Screen{
     this.mainContentWrapper = document.getElementById("main-content");
     this.mainContentWrapper.appendChild(imgWrapper);
 
-    let imgElement = document.createElement("img");
-    imgElement.src = "https://pbs.twimg.com/profile_images/638747380494503936/C89d1hl3_400x400.jpg";
-    imgWrapper.appendChild(imgElement);
-
+    this.imgElement = document.createElement("img");
+    this.imgElement.src = newImage.url;
+    imgWrapper.appendChild(this.imgElement);
+    console.log(newImage);
   }
 }
 

@@ -29,22 +29,32 @@ class NewImageScreen extends Screen{
     this.mainWrapper.appendChild(this.theForm);
     this.theForm.appendChild(this.urlInput);
     this.theForm.appendChild(this.inputSubmit);
-    console.log(this.theForm);
+    //console.log(this.theForm);
     
   }
 
   addEventListeners(){
     this.theForm.addEventListener('submit', (event) => {
       event.preventDefault();
-      
-      this.formData = {
+      let formInputDesc = event.target[0].value;
+      let formInputName = event.target[1].value;
+      let formInputUrl = event.target[2].value;
+
+      window.newImage = new Image(formInputUrl, formInputName, formInputDesc);
+
+     // console.log(window.newImage);
+      console.log(event);
+      console.log(formInputName);
+      /* this.formData = {
         url: urlID.value,
         name: imageNameID.value,
         description: description.value,
-      }
-      console.log(this.theForm.urlID.value);
-      console.log(this.formData);
+      }  */
+      //console.log(this.theForm.urlID.value);
+      
     })
+    
   }
+  
 }
 
