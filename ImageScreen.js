@@ -6,16 +6,19 @@ class ImageScreen extends Screen {
   }
 
   displayImage() {
-    let imgWrapper = document.createElement("div");
-    imgWrapper.setAttribute("id", "image-wrapper");
+    this.imgWrapper = document.createElement("div");
+    this.imgWrapper.setAttribute("id", "image-wrapper");
 
     this.mainContentWrapper = document.getElementById("main-content");
-    this.mainContentWrapper.appendChild(imgWrapper);
+    this.mainContentWrapper.appendChild(this.imgWrapper);
 
-    let imgElement = document.createElement("img");
-    imgElement.src = globalImageObj.url;
-    imgWrapper.appendChild(imgElement);
-    console.log(imgElement);
+    for(let i = 0;i<globalObjectArray.length;i++) {
+
+      this.imgElement = document.createElement("img");
+      this.imgElement.src = globalObjectArray[i].url;
+      this.imgWrapper.appendChild(this.imgElement);
+    
+    }
   }
 
 
