@@ -119,3 +119,8 @@ html, body {
 #submitButton:hover{
   background-color: lightgreen;
 }
+
+img{
+  width: 300px;
+  height: 400px;
+}
