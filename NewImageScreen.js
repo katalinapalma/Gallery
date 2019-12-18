@@ -55,6 +55,7 @@ class NewImageScreen extends Screen{
         name: this.theForm.imageNameID.value,
         description: this.theForm.description.value,
       }
+      console.log(globalImageObj);
       this.theForm.reset();
     })
     

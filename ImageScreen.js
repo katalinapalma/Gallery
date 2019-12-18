@@ -13,9 +13,23 @@ class ImageScreen extends Screen {
     this.mainContentWrapper.appendChild(imgWrapper);
 
     let imgElement = document.createElement("img");
+    let imgName = document.createElement('h2');
+    let imgText = document.createElement('p');
+
+    imgName.id = 'imgNameId';
+    imgText.id = 'imgTextId';
+
     imgElement.src = globalImageObj.url;
+    imgName.innerText = globalImageObj.name;
+    imgText.innerText = globalImageObj.description;
+
     imgWrapper.appendChild(imgElement);
+    imgWrapper.appendChild(imgName);
+    imgWrapper.appendChild(imgText);
+    
     console.log(imgElement);
+    console.log(globalImageObj.name);
+    
   }
 
 
