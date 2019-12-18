@@ -6,11 +6,11 @@ class ImageScreen extends Screen {
   }
 
   displayImage() {
-    let imgWrapper = document.createElement("div");
-    imgWrapper.setAttribute("id", "image-wrapper");
+    this.imgWrapper = document.createElement("div");
+    this.imgWrapper.setAttribute("id", "image-wrapper");
 
     this.mainContentWrapper = document.getElementById("main-content");
-    this.mainContentWrapper.appendChild(imgWrapper);
+    this.mainContentWrapper.appendChild(this.imgWrapper);
 
     let imgElement = document.createElement("img");
     let imgName = document.createElement('h2');
@@ -23,13 +23,27 @@ class ImageScreen extends Screen {
     imgName.innerText = globalImageObj.name;
     imgText.innerText = globalImageObj.description;
 
-    imgWrapper.appendChild(imgElement);
-    imgWrapper.appendChild(imgName);
-    imgWrapper.appendChild(imgText);
+    this.imgWrapper.appendChild(imgElement);
+    this.imgWrapper.appendChild(imgName);
+    this.imgWrapper.appendChild(imgText);
     
     console.log(imgElement);
     console.log(globalImageObj.name);
     
+    for(let i = 0;i<globalObjectArray.length;i++) {
+
+      this.imgElement = document.createElement("img");
+      this.imgElement.src = globalObjectArray[i].url;
+      this.imgName = document.createElement("h2");
+      this.imgName.innerText = globalObjectArray[i].name;
+      this.imgText = document.createElement("p");
+      this.imgText.innerText = globalObjectArray[i].description;
+
+      this.imgWrapper.appendChild(this.imgElement);
+      this.imgWrapper.appendChild(this.imgName);
+      this.imgWrapper.appendChild(this.imgText);
+    
+    }
   }
 
 
