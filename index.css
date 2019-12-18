@@ -75,3 +75,13 @@ html, body {
   font-size: 25px;
 }
 
+#urlID{
+  display: block;
+}
+#imageNameID{
+  display: block;
+}
+#description{
+  display: block;
+}
+

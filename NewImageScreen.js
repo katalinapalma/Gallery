@@ -8,6 +8,7 @@ class NewImageScreen extends Screen{
   createForm(){
     this.mainWrapper = document.getElementById('main-content-wrapper');
     this.theForm = document.createElement('form');
+    this.theForm.setAttribute('id', 'formWrapper');
     this.urlInput = document.createElement('input');
     this.inputSubmit = document.createElement('input');
     this.inputName = document.createElement('input');
@@ -19,15 +20,24 @@ class NewImageScreen extends Screen{
     
     this.urlInput.type = 'url';
     this.urlInput.name = 'image';
-    this.inputSubmit.type = 'submit';
-    this.inputSubmit.value = 'submit';
+    this.urlInput.placeholder = 'Type Your URL';
+
     this.inputName.type = 'text';
     this.inputName.name = 'imageName';
+    this.inputName.placeholder = 'Name';
 
-    this.theForm.appendChild(this.textArea);
-    this.theForm.appendChild(this.inputName);
+    this.textArea.placeholder = 'Description';
+    this.textArea.rows = '4';
+    this.textArea.cols = '50';
+
+    this.inputSubmit.type = 'submit';
+    this.inputSubmit.value = 'submit';
+
+    
     this.mainWrapper.appendChild(this.theForm);
     this.theForm.appendChild(this.urlInput);
+    this.theForm.appendChild(this.inputName);
+    this.theForm.appendChild(this.textArea);
     this.theForm.appendChild(this.inputSubmit);
     console.log(this.theForm);
     
