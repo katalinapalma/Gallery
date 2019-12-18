@@ -4,6 +4,7 @@ class NewImageScreen extends Screen{
     super(content);
     this.createForm();
     this.addEventListeners();
+
   }
   createForm(){
     this.mainWrapper = document.getElementById('main-content-wrapper');
@@ -40,20 +41,17 @@ class NewImageScreen extends Screen{
     this.theForm.appendChild(this.textArea);
     this.theForm.appendChild(this.inputSubmit);
     console.log(this.theForm);
-    
   }
 
   addEventListeners(){
     this.theForm.addEventListener('submit', (event) => {
       event.preventDefault();
       
-      this.formData = {
-        url: urlID.value,
-        name: imageNameID.value,
-        description: description.value,
+      globalImageObj = {
+        url: this.theForm.urlID.value,
+        name: this.theForm.imageNameID.value,
+        description: this.theForm.description.value,
       }
-      console.log(this.theForm.urlID.value);
-      console.log(this.formData);
     })
   }
 }
