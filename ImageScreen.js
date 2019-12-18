@@ -1,24 +1,25 @@
-class ImageScreen extends Screen{
+class ImageScreen extends Screen {
   constructor() {
     let content = "Images";
     super(content);
     this.displayImage();
   }
-  displayImage() {
 
+  displayImage() {
     let imgWrapper = document.createElement("div");
     imgWrapper.setAttribute("id", "image-wrapper");
 
     this.mainContentWrapper = document.getElementById("main-content");
     this.mainContentWrapper.appendChild(imgWrapper);
 
-    this.imgElement = document.createElement("img");
-    this.imgElement.src = newImage.url;
-    imgWrapper.appendChild(this.imgElement);
-    console.log(newImage);
+    let imgElement = document.createElement("img");
+    imgElement.src = globalImageObj.url;
+    imgWrapper.appendChild(imgElement);
+    console.log(imgElement);
   }
-}
 
+
+}
 
 
 
