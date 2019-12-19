@@ -95,7 +95,6 @@ class App {
   }
 }
 document.addEventListener('DOMContentLoaded', function(){
-  
   new App();
 })
 
