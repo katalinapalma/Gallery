@@ -3,7 +3,6 @@ class ImageScreen extends Screen {
     let content = "Images";
     super(content);
     this.displayImage();
-    this.removeBtn();
   }
 
   displayImage() {
@@ -11,27 +10,8 @@ class ImageScreen extends Screen {
     this.imgWrapper.setAttribute("id", "image-wrapper");
 
     this.mainContentWrapper = document.getElementById("main-content-wrapper");
-    this.mainContentWrapper.appendChild(imgWrapper);
+    this.mainContentWrapper.appendChild(this.imgWrapper);
 
-    let imgElement = document.createElement("img");
-    let imgName = document.createElement('h2');
-    let imgText = document.createElement('p');
-
-    imgName.id = 'imgNameId';
-    imgText.id = 'imgTextId';
-
-    imgElement.src = globalImageObj.url;
-    imgWrapper.appendChild(imgElement);
-    imgName.innerText = globalImageObj.name;
-    imgText.innerText = globalImageObj.description;
-
-    this.imgWrapper.appendChild(imgElement);
-    this.imgWrapper.appendChild(imgName);
-    this.imgWrapper.appendChild(imgText);
-    
-    console.log(imgElement);
-    console.log(globalImageObj.name);
-    
     for(let i = 0;i<globalObjectArray.length;i++) {
 
       this.imgElement = document.createElement("img");
@@ -40,31 +20,30 @@ class ImageScreen extends Screen {
       this.imgName.innerText = globalObjectArray[i].name;
       this.imgText = document.createElement("p");
       this.imgText.innerText = globalObjectArray[i].description;
+      this.removeButton = document.createElement('button');
+      this.removeButton.innerText = globalObjectArray[i].button;
+    
+      this.removeButton.id = 'remove-button';
+      this.imgName.id = 'imgNameId' + i;
+      this.imgText.id = 'imgTextId' + i;
 
       this.imgWrapper.appendChild(this.imgElement);
       this.imgWrapper.appendChild(this.imgName);
       this.imgWrapper.appendChild(this.imgText);
-    
-    }
-  }
+      this.imgWrapper.appendChild(this.removeButton);
+      
+      this.removeButton.addEventListener('click', (e) => {
+        let btnWrapper = document.getElementById('image-wrapper');
+        let deletedImg = document.getElementsByTagName('img');
+        let remBtn = document.getElementById('remove-button');
+        btnWrapper.removeChild(deletedImg[0]);
+        btnWrapper.removeChild(this.imgName);
+        btnWrapper.removeChild(this.imgText);
+        btnWrapper.removeChild(remBtn);
+      });
 
-  removeBtn() {
-    let imageWrapper = document.getElementById('image-wrapper');
-    let removeButton = document.createElement('button');
-    removeButton.innerHTML = 
-    `<i class="material-icons">
-    delete_forever</i>`;
-    removeButton.id = 'remove-button';
-    imageWrapper.appendChild(removeButton);
+    }
     
-    removeButton.addEventListener('click', (e) => {
-      let btnWrapper = document.getElementById('image-wrapper');
-      let deletedImg = document.getElementsByTagName('img');
-      let remBtn = document.getElementById('remove-button');
-      btnWrapper.removeChild(deletedImg[0]);
-      btnWrapper.removeChild(remBtn);
-      delete window.globalImageObj;
-    });
   }
 }
 
