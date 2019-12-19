@@ -21,9 +21,9 @@ class ImageScreen extends Screen {
   removeBtn() {
     let imageWrapper = document.getElementById('image-wrapper');
     let removeButton = document.createElement('button');
-    removeButton.innerHTML = `<i class="material-icons">
-    delete_forever
-    </i>`;
+    removeButton.innerHTML = 
+    `<i class="material-icons">
+    delete_forever</i>`;
     removeButton.id = 'remove-button';
     imageWrapper.appendChild(removeButton);
     
@@ -33,6 +33,7 @@ class ImageScreen extends Screen {
       let remBtn = document.getElementById('remove-button');
       btnWrapper.removeChild(deletedImg[0]);
       btnWrapper.removeChild(remBtn);
+      delete window.globalImageObj;
     });
   }
 }

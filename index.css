@@ -142,8 +142,8 @@ img {
   background-color: transparent;
   color: white;
   position: absolute;
-  right: 40%;
-  top: 27px;
+  left: 26%;
+  top: 26px;
 }
 
 #remove-button:hover {
