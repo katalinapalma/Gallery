@@ -1,24 +1,28 @@
-class ImageScreen extends Screen{
+class ImageScreen extends Screen {
   constructor() {
     let content = "Images";
     super(content);
     this.displayImage();
   }
-  displayImage() {
 
-    let imgWrapper = document.createElement("div");
-    imgWrapper.setAttribute("id", "image-wrapper");
+  displayImage() {
+    this.imgWrapper = document.createElement("div");
+    this.imgWrapper.setAttribute("id", "image-wrapper");
 
     this.mainContentWrapper = document.getElementById("main-content");
-    this.mainContentWrapper.appendChild(imgWrapper);
+    this.mainContentWrapper.appendChild(this.imgWrapper);
 
-    let imgElement = document.createElement("img");
-    imgElement.src = "https://pbs.twimg.com/profile_images/638747380494503936/C89d1hl3_400x400.jpg";
-    imgWrapper.appendChild(imgElement);
+    for(let i = 0;i<globalObjectArray.length;i++) {
 
+      this.imgElement = document.createElement("img");
+      this.imgElement.src = globalObjectArray[i].url;
+      this.imgWrapper.appendChild(this.imgElement);
+    
+    }
   }
-}
 
+
+}
 
 
 
