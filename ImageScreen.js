@@ -63,7 +63,7 @@ class ImageScreen extends Screen {
       let remBtn = document.getElementById('remove-button');
       btnWrapper.removeChild(deletedImg[0]);
       btnWrapper.removeChild(remBtn);
-      delete window.globalImageObj;
+      globalImageObj = null;
     });
   }
 }
