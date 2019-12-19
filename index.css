@@ -37,8 +37,8 @@ html, body {
   width: 200px;
   background-color: #E8833A;
   flex-direction: column;
-  
 }
+
 #sidebar-button-div {
   display: flex;
   flex-direction: column;
@@ -54,6 +54,7 @@ html, body {
   display: block;
   padding: 10px;
 }
+
 .navButton:hover{
   cursor: pointer;
   opacity: .5;
@@ -75,30 +76,19 @@ html, body {
   font-size: 25px;
 }
 
-#urlID{
+#urlID {
   display: block;
   width: 50%;
   text-align: center;
   margin-left: 25%;
   border-radius: 2%;
 }
-#urlID:focus{
+
+#urlID:focus {
   background-color: lightblue;
 }
 
-#imageNameID{
-  display: block;
-  width: 50%;
-  text-align: center;
-  margin-left: 25%;
-  margin-top: 10px;
-  border-radius: 2%;
-}
-#imageNameID:focus{
-  background-color: lightblue;
-}
-
-#description{
+#imageNameID {
   display: block;
   width: 50%;
   text-align: center;
@@ -106,33 +96,61 @@ html, body {
   margin-top: 10px;
   border-radius: 2%;
 }
-#description:focus{
+
+#imageNameID:focus {
   background-color: lightblue;
 }
 
-#submitButton{
+#description {
+  display: block;
+  width: 50%;
+  text-align: center;
+  margin-left: 25%;
+  margin-top: 10px;
+  border-radius: 2%;
+}
+
+#description:focus {
+  background-color: lightblue;
+}
+
+#submitButton {
   text-align: center;
   margin-left: 48%;
   margin-top: 10px;
   padding: 10px;
 }
-#submitButton:hover{
+
+#submitButton:hover {
   background-color: lightgreen;
 }
 
-#image-wrapper{
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+/* image-wrapper */
+#image-wrapper {
+  position: relative;
 }
 
-#imgTextId{
-  text-align: center;
-}
-#imgNameId{
-  text-align: center;
-}
-img{
-  margin-left: 38%;
+img {
   width: 300px;
   height: 400px;
+  padding: 20px;
 }
 
+/* remove button */
+#remove-button {
+  border: none;
+  background-color: transparent;
+  color: white;
+  position: absolute;
+  left: 26%;
+  top: 26px;
+}
+
+#remove-button:hover {
+  color: #b53737;
+  cursor: pointer;
+}
+
+.material-icons {
+  font-size: 30px !important;
+}

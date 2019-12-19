@@ -34,8 +34,6 @@ class NewImageScreen extends Screen{
     this.inputSubmit.type = 'submit';
     this.inputSubmit.value = 'submit';
 
-   
-
     this.theForm.appendChild(this.urlInput);
     this.theForm.appendChild(this.inputName);
     this.theForm.appendChild(this.textArea);
