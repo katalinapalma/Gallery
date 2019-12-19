@@ -3,13 +3,14 @@ class ImageScreen extends Screen {
     let content = "Images";
     super(content);
     this.displayImage();
+    this.removeBtn();
   }
 
   displayImage() {
     let imgWrapper = document.createElement("div");
     imgWrapper.setAttribute("id", "image-wrapper");
 
-    this.mainContentWrapper = document.getElementById("main-content");
+    this.mainContentWrapper = document.getElementById("main-content-wrapper");
     this.mainContentWrapper.appendChild(imgWrapper);
 
     let imgElement = document.createElement("img");
@@ -18,8 +19,26 @@ class ImageScreen extends Screen {
     console.log(imgElement);
   }
 
-
+  removeBtn() {
+    let imageWrapper = document.getElementById('image-wrapper');
+    console.log(imageWrapper);
+    let removeButton = document.createElement('button');
+    removeButton.innerHTML = `<i class="material-icons">
+    delete_forever
+    </i>`;
+    removeButton.id = 'remove-button';
+    imageWrapper.appendChild(removeButton);
+    
+    removeButton.addEventListener('click', (e) => {
+      let btnWrapper = document.getElementById('image-wrapper');
+      let deletedImg = document.getElementsByTagName('img');
+      let remBtn = document.getElementById('remove-button');
+      btnWrapper.removeChild(deletedImg[0]);
+      btnWrapper.removeChild(remBtn);
+    });
+  }
 }
+
 
 
 

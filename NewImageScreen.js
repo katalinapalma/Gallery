@@ -34,8 +34,6 @@ class NewImageScreen extends Screen{
     this.inputSubmit.type = 'submit';
     this.inputSubmit.value = 'submit';
 
-   
-
     this.theForm.appendChild(this.urlInput);
     this.theForm.appendChild(this.inputName);
     this.theForm.appendChild(this.textArea);
@@ -48,7 +46,6 @@ class NewImageScreen extends Screen{
   addEventListeners(){
     this.theForm.addEventListener('submit', (event) => {
       event.preventDefault();
-      
       
       globalImageObj = {
         url: this.theForm.urlID.value,
