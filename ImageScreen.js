@@ -42,9 +42,7 @@ class ImageScreen extends Screen {
         btnWrapper.removeChild(remBtn);
         globalObjectArray = [];
       });
-
     }
-    
   }
 }
 
