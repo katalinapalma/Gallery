@@ -3,7 +3,6 @@ class ImageScreen extends Screen {
     let content = "Images";
     super(content);
     this.displayImage();
-    this.removeBtn();
   }
 
   displayImage() {
@@ -41,6 +40,7 @@ class ImageScreen extends Screen {
         btnWrapper.removeChild(this.imgName);
         btnWrapper.removeChild(this.imgText);
         btnWrapper.removeChild(remBtn);
+        globalObjectArray = [];
       });
 
     }
