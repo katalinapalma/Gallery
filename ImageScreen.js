@@ -16,12 +16,10 @@ class ImageScreen extends Screen {
     let imgElement = document.createElement("img");
     imgElement.src = globalImageObj.url;
     imgWrapper.appendChild(imgElement);
-    console.log(imgElement);
   }
 
   removeBtn() {
     let imageWrapper = document.getElementById('image-wrapper');
-    console.log(imageWrapper);
     let removeButton = document.createElement('button');
     removeButton.innerHTML = `<i class="material-icons">
     delete_forever
