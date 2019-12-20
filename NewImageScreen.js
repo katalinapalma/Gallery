@@ -49,7 +49,7 @@ class NewImageScreen extends Screen{
         url: this.theForm.urlID.value,
         name: this.theForm.imageNameID.value,
         description: this.theForm.description.value,
-        button: 'delete',
+        button: 'Delete',
       }
       
       globalObjectArray.push(globalImageObj);
