@@ -23,7 +23,7 @@ class ImageScreen extends Screen {
       this.removeButton = document.createElement('button');
       this.removeButton.innerText = globalObjectArray[i].button;
     
-      this.removeButton.id = 'remove-button';
+      this.removeButton.id = 'remove-button' + i;
       this.imgName.id = 'imgNameId' + i;
       this.imgText.id = 'imgTextId' + i;
 
