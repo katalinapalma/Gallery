@@ -139,7 +139,7 @@ img {
 }
 
 /* remove button */
-#remove-button {
+.removeButtonClass {
   border: none;
   background-color: transparent;
   color: white;
@@ -150,7 +150,7 @@ img {
   background-color: black;
 }
 
-#remove-button:hover {
+.removeButtonClass:hover {
   color: #b53737;
   cursor: pointer;
 }

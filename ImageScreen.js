@@ -24,6 +24,7 @@ class ImageScreen extends Screen {
       this.removeButton.innerText = globalObjectArray[i].button;
     
       this.removeButton.id = 'remove-button' + i;
+      this.removeButton.className = 'removeButtonClass';
       this.imgName.id = 'imgNameId' + i;
       this.imgText.id = 'imgTextId' + i;
 
@@ -31,17 +32,20 @@ class ImageScreen extends Screen {
       this.imgWrapper.appendChild(this.imgName);
       this.imgWrapper.appendChild(this.imgText);
       this.imgWrapper.appendChild(this.removeButton);
-      
+      console.log(this.removeButton);
+
       this.removeButton.addEventListener('click', (e) => {
         let btnWrapper = document.getElementById('image-wrapper');
         let deletedImg = document.getElementsByTagName('img');
-        let remBtn = document.getElementById('remove-button');
+        let remBtn = document.getElementById('remove-button'+ i);
+        let remImgName = document.getElementById('imgNameId'+ i);
+        let remImgText = document.getElementById('imgTextId'+ i);
         btnWrapper.removeChild(deletedImg[0]);
-        btnWrapper.removeChild(this.imgName);
-        btnWrapper.removeChild(this.imgText);
+        btnWrapper.removeChild(remImgText);
+        btnWrapper.removeChild(remImgName);
         btnWrapper.removeChild(remBtn);
         globalObjectArray = [];
-        globalImageObj = {};
+        globalImageObj = {};        
       });
     }
   }
