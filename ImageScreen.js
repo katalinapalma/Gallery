@@ -13,6 +13,10 @@ class ImageScreen extends Screen {
     this.mainContentWrapper.appendChild(this.imgWrapper);
 
     for(let i = 0;i<globalObjectArray.length;i++) {
+      this.imgCard = document.createElement('div');
+      this.imgCard.className = 'card';
+      this.imgCard.id = 'imgCard' + i;
+      this.imgWrapper.appendChild(this.imgCard);
 
       this.imgElement = document.createElement("img");
       this.imgElement.src = globalObjectArray[i].url;
@@ -28,22 +32,15 @@ class ImageScreen extends Screen {
       this.imgName.id = 'imgNameId' + i;
       this.imgText.id = 'imgTextId' + i;
 
-      this.imgWrapper.appendChild(this.imgElement);
-      this.imgWrapper.appendChild(this.imgName);
-      this.imgWrapper.appendChild(this.imgText);
-      this.imgWrapper.appendChild(this.removeButton);
-      console.log(this.removeButton);
+      this.imgCard.appendChild(this.imgElement);
+      this.imgCard.appendChild(this.imgName);
+      this.imgCard.appendChild(this.imgText);
+      this.imgCard.appendChild(this.removeButton);
 
       this.removeButton.addEventListener('click', (e) => {
         let btnWrapper = document.getElementById('image-wrapper');
-        let deletedImg = document.getElementsByTagName('img');
-        let remBtn = document.getElementById('remove-button'+ i);
-        let remImgName = document.getElementById('imgNameId'+ i);
-        let remImgText = document.getElementById('imgTextId'+ i);
-        btnWrapper.removeChild(deletedImg[0]);
-        btnWrapper.removeChild(remImgText);
-        btnWrapper.removeChild(remImgName);
-        btnWrapper.removeChild(remBtn);
+        let remCard = document.getElementById('imgCard'+ i);
+        btnWrapper.removeChild(remCard);
         globalObjectArray = [];
         globalImageObj = {};        
       });
