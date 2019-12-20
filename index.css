@@ -4,7 +4,8 @@
 }
 
 html, body {
-  height: 100%
+  background-color: #4B5C6B;
+  
 }
 
 /* header */
@@ -37,6 +38,7 @@ html, body {
   width: 200px;
   background-color: #E8833A;
   flex-direction: column;
+  
 }
 
 #sidebar-button-div {
@@ -65,7 +67,7 @@ html, body {
   flex-direction: column;
   width: 100%;
   background-color: #4B5C6B;
-  height: 100vh;
+  height: 100%;
 }
 
 /* h1 in maincontent */
@@ -127,14 +129,13 @@ html, body {
 
 /* image-wrapper */
 #image-wrapper {
-  position: relative;
   text-align: center;
 }
 
 img {
   position: relative;
-  width: 300px;
-  height: 400px;
+  width: 200px;
+  height: 300px;
   padding: 20px;
 }
 
@@ -153,4 +154,20 @@ img {
 .removeButtonClass:hover {
   color: #b53737;
   cursor: pointer;
+}
+
+.card {
+  display: inline-block;
+  margin-left: 15px;
+  margin-right: 15px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  border: 2px solid black;
+  width: 20%;
+}
+
+.card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 }

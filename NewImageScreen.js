@@ -39,8 +39,6 @@ class NewImageScreen extends Screen{
     this.theForm.appendChild(this.textArea);
     this.theForm.appendChild(this.inputSubmit);
     this.mainWrapper.appendChild(this.theForm);
-
-    console.log(this.theForm);
   }
 
   addEventListeners(){
