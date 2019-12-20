@@ -39,8 +39,6 @@ class NewImageScreen extends Screen{
     this.theForm.appendChild(this.textArea);
     this.theForm.appendChild(this.inputSubmit);
     this.mainWrapper.appendChild(this.theForm);
-
-    console.log(this.theForm);
   }
 
   addEventListeners(){
@@ -51,7 +49,7 @@ class NewImageScreen extends Screen{
         url: this.theForm.urlID.value,
         name: this.theForm.imageNameID.value,
         description: this.theForm.description.value,
-        button: 'delete',
+        button: 'Delete',
       }
       
       globalObjectArray.push(globalImageObj);
