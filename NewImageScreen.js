@@ -53,7 +53,7 @@ class NewImageScreen extends Screen{
         description: this.theForm.description.value,
         button: 'delete',
       }
-
+      
       globalObjectArray.push(globalImageObj);
 
       this.theForm.reset();
