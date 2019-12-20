@@ -22,7 +22,7 @@ class NewImageScreen extends Screen{
     this.textArea.id = 'description';
     this.inputSubmit.id = 'submitButton';
     this.fileInput.id = 'file-input';
-    this.fileDisplayArea = 'file-display';
+    this.fileDisplayArea.id = 'file-display';
     
     // URL attributes
     this.urlInput.type = 'url';
@@ -55,6 +55,7 @@ class NewImageScreen extends Screen{
     this.theForm.appendChild(this.fileInput);
     this.theForm.appendChild(this.fileDisplayArea);
     this.mainWrapper.appendChild(this.theForm);
+    
   }
 
   addEventListeners(){
@@ -74,7 +75,7 @@ class NewImageScreen extends Screen{
     });
 
     this.fileInput.addEventListener('change', (e) => {
-      let file = fileInput.files[0];
+      let file = this.fileInput.files[0];
       let fileType = /image.*/;
 
       if (file.type.match(fileType)) {
