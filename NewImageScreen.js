@@ -21,7 +21,7 @@ class NewImageScreen extends Screen{
     this.inputName.id = 'imageNameID';
     this.textArea.id = 'description';
     this.inputSubmit.id = 'submitButton';
-    this.fileInput.id = 'file-input';
+    this.fileInput.id = 'fileInput';
     this.fileDisplayArea.id = 'file-display';
     
     // URL attributes
@@ -59,14 +59,20 @@ class NewImageScreen extends Screen{
   }
 
   addEventListeners(){
+    let reader;
     this.theForm.addEventListener('submit', (event) => {
       event.preventDefault();
-      
+    
       globalImageObj = {
         url: this.theForm.urlID.value,
         name: this.theForm.imageNameID.value,
         description: this.theForm.description.value,
         button: 'Delete',
+        filey: function() {  
+          if(reader) {
+            this.url = reader.result;
+          }
+        }
       }
       
       globalObjectArray.push(globalImageObj);
@@ -79,13 +85,12 @@ class NewImageScreen extends Screen{
       let fileType = /image.*/;
 
       if (file.type.match(fileType)) {
-        let reader = new FileReader();
+        reader = new FileReader();
 
         reader.onload = (e) =>{
           this.fileDisplayArea.innerHTML = '';
           let img = new Image();
           img.src = reader.result;
-
           this.fileDisplayArea.appendChild(img);
         }
         reader.readAsDataURL(file);
