@@ -3,7 +3,6 @@ class ImageScreen extends Screen {
     let content = "Images";
     super(content);
     this.displayImage();
-    this.focus1Image();
   }
 
   displayImage() {
