@@ -173,13 +173,14 @@ img {
   height: 20px;
   left: 26%;
   top: 26px;
-  margin-top: 5px;
+  margin-top: 6px;
   margin-bottom: 5px;
-  background-color: black;
+  border: none;
+  background-color: #837a7a;
 }
 
 .removeButtonClass:hover {
-  color: #b53737;
+  background-color: black;
   cursor: pointer;
 }
 
@@ -193,6 +194,7 @@ img {
   transition: 0.3s;
   border: 1px solid black;
   width: 20%;
+  word-wrap: break-word;
 }
 
 .card:hover {

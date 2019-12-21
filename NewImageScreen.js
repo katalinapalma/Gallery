@@ -44,7 +44,7 @@ class NewImageScreen extends Screen{
 
     //Submit button attributes
     this.inputSubmit.type = 'submit';
-    this.inputSubmit.value = 'submit';
+    this.inputSubmit.value = 'Submit';
 
     //File inpit attributes
     this.fileInput.type = 'file';
