@@ -109,6 +109,56 @@ class App {
     this.galleryButton.innerText = 'Gallery';
     bodyRef.appendChild(this.galleryButton);
   }
+  /**
+   * @desc Checks if input email and password matches database
+   */
+  validateLogin() {
+
+    //Regular expressions for validating password
+    let regExp = /[a-z]/g;
+    let regExp2 = /\W|_/g;
+    let emailRegExp = /@/g;
+
+    for(let i = 0; i<this.users.length;i++) {
+      
+      if(!this.logInEmail.value.match(emailRegExp)) {
+        console.log("Email does not contain @");
+      }
+      if(!this.logInPassword.value.match(regExp) && !this.logInPassword.value.match(regExp2)) {
+        console.log("Password does not contain special characters");
+      }
+      if(this.logInEmail.value == this.users[i].email && this.logInPassword.value == this.users[i].address.suite) {
+        console.log("Login succesful"); 
+        if(!this.logInPassword.value.match(regExp)) {
+          console.log("Password does not contain letters");
+        }
+      }
+      
+    }
+    
+  }
+  getUsers(){
+    let url  = 'https://jsonplaceholder.typicode.com/users';
+    
+    let xhr  = new XMLHttpRequest();
+    
+    xhr.open('GET', url, true);
+    
+    xhr.addEventListener('load',  () => {
+
+      this.users = JSON.parse(xhr.responseText);
+    
+      if (xhr.readyState == 4 && xhr.status == '200') {
+        //console.log(users);
+        this.validateLogin();
+      } else {
+        console.error(users);
+      }
+    });
+    
+    xhr.send();
+    }
+  
 
   logInModal() {
     let loginBtn = document.getElementById('login-button');
@@ -128,6 +178,10 @@ class App {
         modal.style.display = 'none';
       }
     })
+    this.logInButton2.addEventListener('click', (e) => {
+      this.getUsers();
+    })
+
   }
 
   addEventListeners(){
