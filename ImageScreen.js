@@ -13,25 +13,35 @@ class ImageScreen extends Screen {
     this.mainContentWrapper.appendChild(this.imgWrapper);
 
     for(let i = 0;i<globalObjectArray.length;i++) {
-      this.imgCard = document.createElement('div');
-      this.imgCard.className = 'card';
-      this.imgCard.id = 'imgCard' + i;
-      this.imgWrapper.appendChild(this.imgCard);
 
-      this.imgElement = document.createElement("img");
-      this.imgElement.src = globalObjectArray[i].url;
+      // Creating img elements
       this.imgName = document.createElement("h2");
-      this.imgName.innerText = globalObjectArray[i].name;
+      this.imgCard = document.createElement('div');
       this.imgText = document.createElement("p");
-      this.imgText.innerText = globalObjectArray[i].description;
       this.removeButton = document.createElement('button');
-      this.removeButton.innerText = globalObjectArray[i].button;
-    
-      this.removeButton.id = 'remove-button' + i;
-      this.removeButton.className = 'removeButtonClass';
+      this.imgElement = document.createElement("img");
+
+      //Setting ID
       this.imgName.id = 'imgNameId' + i;
       this.imgText.id = 'imgTextId' + i;
+      this.removeButton.id = 'remove-button' + i;
+      this.imgCard.id = 'imgCard' + i;
 
+      //Setting class
+      this.imgCard.className = 'card';
+      this.removeButton.className = 'removeButtonClass';
+
+      //Setting text
+      this.imgName.innerText = globalObjectArray[i].name;
+      this.imgText.innerText = globalObjectArray[i].description;
+      this.removeButton.innerText = globalObjectArray[i].button;
+ 
+      //Setting image source
+      this.imgElement.src = globalObjectArray[i].url;
+      globalObjectArray[i].filey();
+    
+      // Append everything
+      this.imgWrapper.appendChild(this.imgCard);
       this.imgCard.appendChild(this.imgElement);
       this.imgCard.appendChild(this.imgName);
       this.imgCard.appendChild(this.imgText);
