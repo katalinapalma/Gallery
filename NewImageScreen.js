@@ -8,6 +8,7 @@ class NewImageScreen extends Screen{
   }
   createForm(){
     this.mainWrapper = document.getElementById('main-content-wrapper');
+    this.formWrapper = document.createElement('div');
     this.theForm = document.createElement('form');
     this.urlInput = document.createElement('input');
     this.inputSubmit = document.createElement('input');
@@ -16,6 +17,8 @@ class NewImageScreen extends Screen{
     this.fileInput = document.createElement('input');
     this.fileDisplayArea = document.createElement('pre');
 
+    //set ID for div
+    this.formWrapper.id = 'formWrapper';
     //Set ID for inputs
     this.urlInput.id = 'urlID';
     this.inputName.id = 'imageNameID';
@@ -54,7 +57,8 @@ class NewImageScreen extends Screen{
     this.theForm.appendChild(this.inputSubmit);
     this.theForm.appendChild(this.fileInput);
     this.theForm.appendChild(this.fileDisplayArea);
-    this.mainWrapper.appendChild(this.theForm);
+    this.mainWrapper.appendChild(this.formWrapper);
+    this.formWrapper.appendChild(this.theForm);
     
   }
 
