@@ -3,6 +3,7 @@ class ImageScreen extends Screen {
     let content = "Images";
     super(content);
     this.displayImage();
+    this.focus1Image();
   }
 
   displayImage() {
@@ -46,11 +47,6 @@ class ImageScreen extends Screen {
       });
     }
   }
-}
-
-
-
-
 
 
 
@@ -224,7 +220,6 @@ function saveData() {
   let formData = new FormData(formRef);
   
 }
-
 
 let newImagesScreen = {
 
