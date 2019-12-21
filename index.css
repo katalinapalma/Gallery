@@ -110,6 +110,7 @@ html, body {
   margin-left: 25%;
   margin-top: 10px;
   border-radius: 2%;
+  resize: none;
 }
 
 #description:focus {
@@ -118,7 +119,7 @@ html, body {
 
 #submitButton {
   text-align: center;
-  margin-left: 48%;
+  margin-left: 25%;
   margin-top: 10px;
   padding: 10px;
 }
@@ -251,4 +252,13 @@ img {
   font-family: 'Raleway';
   font-size: 12px;
   text-transform: uppercase;
+}
+#file-input {
+  width: 21%;
+  margin-left: 2%;
+}
+#file-display {
+  margin-top: -5%;
+  width: 25%;
+  margin-left: 55%;
 }

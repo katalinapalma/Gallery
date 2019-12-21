@@ -34,7 +34,6 @@ class App {
     this.sidebarDiv.appendChild(this.sidebarButtonDiv);
     this.sidebarButtonDiv.setAttribute('id', 'sidebar-button-div');
     
-    
     //Main content
     this.mainContentDiv = document.createElement('div'); //create maincontent div
     this.mainContentDiv.setAttribute('id', 'main-content'); //setting id to div
