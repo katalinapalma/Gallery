@@ -49,20 +49,20 @@ class App {
     this.loginButton.innerText = 'Log in'; //sets inner text for login button 
     bodyRef.appendChild(this.loginButton); //puts the login button inside the side bar div
 
-    this.loginModal = document.createElement('div'); //creates a new div for modal
-    this.loginModal.className = 'modal'; //gives modal div a class name 
-    this.loginModal.id = 'loginModal'; //gives modal div an id 
-    bodyRef.appendChild(this.loginModal); //puts the modal div under the log in button
+    this.loginModal = document.createElement('div'); //creates a new div for log in modal
+    this.loginModal.className = 'modal'; //gives log in modal div a class name 
+    this.loginModal.id = 'loginModal'; //gives log in modal div an id 
+    bodyRef.appendChild(this.loginModal); //puts the log in modal div under the log in button
 
     //Modal for log in button
-    this.modalContent = document.createElement('div'); //creates div for modal content
-    this.modalContent.className = 'modal-content'; //gives the modal div a class name
-    this.loginModal.appendChild(this.modalContent); //puts the content inside the login modal
+    this.modalContent = document.createElement('div'); //creates div for log in modal content
+    this.modalContent.className = 'modal-content'; //gives the log in modal div a class name
+    this.loginModal.appendChild(this.modalContent); //puts the content inside the log in modal
 
     this.spanCloseButton = document.createElement('span'); //creates span
     this.spanCloseButton.className = 'close'; //gives span a class name
-    this.spanCloseButton.innerText = 'X'; //adds icon to close the modal
-    this.modalContent.appendChild(this.spanCloseButton); //puts span inside modal content div
+    this.spanCloseButton.innerText = 'X'; //adds icon to close the log in modal
+    this.modalContent.appendChild(this.spanCloseButton); //puts span inside log in modal content div
 
     // creates form for log in 
     this.logInForm = document.createElement('form'); //creates log in form 
@@ -179,6 +179,7 @@ class App {
         modal.style.display = 'none';
       }
     })
+    
     this.logInButton2.addEventListener('click', (e) => {
       this.getUsers();
     })
@@ -228,4 +229,5 @@ document.addEventListener('DOMContentLoaded', function(){
 
 // Global variables
 var globalImageObj = {};
-var globalObjectArray = [];
+var  globalObjectArray = [];
+
