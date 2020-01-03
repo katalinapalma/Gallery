@@ -76,6 +76,12 @@ class App {
     this.logInPassword.name = 'password';
     this.logInButton2 = document.createElement('button'); //log in button
     this.logInButton2.innerText = 'Log in';
+    this.emailError = document.createElement('div'); //email error message
+    this.emailError.id = 'emailError';
+    this.passwordError = document.createElement('div'); // password error message
+    this.passwordError.id = 'pswError';
+    this.loginSuccesful = document.createElement('div'); // login succesful message
+    this.loginSuccesful.id = 'loginSuccesMsg';
 
     //appends children to the modal content div
     this.modalContent.appendChild(this.logInForm);
@@ -84,6 +90,9 @@ class App {
     this.modalContent.appendChild(this.loginPasswordLabel);
     this.modalContent.appendChild(this.logInPassword);
     this.modalContent.appendChild(this.logInButton2);
+    this.modalContent.appendChild(this.emailError);
+    this.modalContent.appendChild(this.passwordError);
+    this.modalContent.appendChild(this.loginSuccesful);
 
     //sets id for the log in form, inputs and button.
     this.logInForm.id = 'logInForm'; 
@@ -114,30 +123,74 @@ class App {
    */
   validateLogin() {
 
+    console.log('validate')
     //Regular expressions for validating password
-    let regExp = /[a-z]/g;
-    let regExp2 = /\W|_/g;
+    let letterReq = /[a-z]/g;
+    let specialChar = /\W/g;
     let emailRegExp = /@/g;
+    let dotReq = /\./g;
+    let emailErrorRef = document.getElementById('emailError');
+    let passWordErrorRef = document.getElementById('pswError');
+    let emailRef = document.getElementById("email");
+    let passWordRef = document.getElementById('password');
+
+    if(!this.logInEmail.value.match(emailRegExp)) {
+      console.log("Email does not contain @");
+      emailErrorRef.innerHTML = 'Email needs @';
+      emailRef.style.border = "1px solid red";
+      return;
+    } 
+    
+   else if(!this.logInEmail.value.match(dotReq)){
+      console.log("Email does not contain .");
+      emailErrorRef.innerHTML = 'Email needs .';
+      emailRef.style.border = "1px solid red";
+      return;
+    }
+    else{
+      emailErrorRef.innerHTML = ''; 
+      emailRef.style.border = "none";       
+    }
+
+    if(!this.logInPassword.value.match(specialChar)) {
+      console.log('some error specialChar');
+      passWordErrorRef.innerHTML = '*Password requiers speciel characters*';
+      passWordRef.style.border = "1px solid red";
+
+      return;
+    }
+    else if(!this.logInPassword.value.match(letterReq)){
+      console.log("Password does not contain letters - letterReq");
+      passWordErrorRef.innerHTML = '*Password requiers leters*';
+      passWordRef.style.border = "1px solid red";
+
+      return;
+    }
+    else{
+      passWordErrorRef.innerHTML = '';
+      passWordRef.style.border = "none";
+    }
 
     for(let i = 0; i<this.users.length;i++) {
-      
-      if(!this.logInEmail.value.match(emailRegExp)) {
-        console.log("Email does not contain @");
-      }
-      if(!this.logInPassword.value.match(regExp) && !this.logInPassword.value.match(regExp2)) {
-        console.log("Password does not contain special characters");
-      }
       if(this.logInEmail.value == this.users[i].email && this.logInPassword.value == this.users[i].address.suite) {
+<<<<<<< HEAD
+        console.log("Login succesful");
+        document.getElementById('loginSuccesMsg').innerHTML = 'Login Succesful';  
+        break;
+      }else {
+        console.log('login not succes');
+        document.getElementById('loginSuccesMsg').innerHTML = '';  
+=======
         console.log("Login succesful"); 
         this.indicateUserLoggedIn();
         if(!this.logInPassword.value.match(regExp)) {
           console.log("Password does not contain letters");
         }
+>>>>>>> 181bb3782a53e1a81bfc8411422c650e1ea337f8
       }
-      
     }
-    
   }
+  
   getUsers(){
     let url  = 'https://jsonplaceholder.typicode.com/users';
     
@@ -158,7 +211,7 @@ class App {
     });
     
     xhr.send();
-    }
+  }
   
 
   logInModal() {
@@ -181,7 +234,11 @@ class App {
     })
     
     this.logInButton2.addEventListener('click', (e) => {
-      this.getUsers();
+      if(this.users){
+        this.validateLogin();
+      } else {
+        this.getUsers();
+      }
     })
 
   }
