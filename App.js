@@ -129,6 +129,7 @@ class App {
       }
       if(this.logInEmail.value == this.users[i].email && this.logInPassword.value == this.users[i].address.suite) {
         console.log("Login succesful"); 
+        this.indicateUserLoggedIn();
         if(!this.logInPassword.value.match(regExp)) {
           console.log("Password does not contain letters");
         }
@@ -149,7 +150,7 @@ class App {
       this.users = JSON.parse(xhr.responseText);
     
       if (xhr.readyState == 4 && xhr.status == '200') {
-        //console.log(users);
+        console.log(this.users);
         this.validateLogin();
       } else {
         console.error(users);
@@ -183,6 +184,10 @@ class App {
       this.getUsers();
     })
 
+  }
+  indicateUserLoggedIn() {
+    let headerBar = document.getElementById("header");
+    headerBar.textContent = this.logInEmail.value;
   }
 
   addEventListeners(){
