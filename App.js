@@ -173,20 +173,13 @@ class App {
 
     for(let i = 0; i<this.users.length;i++) {
       if(this.logInEmail.value == this.users[i].email && this.logInPassword.value == this.users[i].address.suite) {
-<<<<<<< HEAD
         console.log("Login succesful");
-        document.getElementById('loginSuccesMsg').innerHTML = 'Login Succesful';  
+        document.getElementById('loginSuccesMsg').innerHTML = 'Login Succesful'; 
+        this.indicateUserLoggedIn(); 
         break;
       }else {
         console.log('login not succes');
         document.getElementById('loginSuccesMsg').innerHTML = '';  
-=======
-        console.log("Login succesful"); 
-        this.indicateUserLoggedIn();
-        if(!this.logInPassword.value.match(regExp)) {
-          console.log("Password does not contain letters");
-        }
->>>>>>> 181bb3782a53e1a81bfc8411422c650e1ea337f8
       }
     }
   }
