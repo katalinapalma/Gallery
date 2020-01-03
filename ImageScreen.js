@@ -60,7 +60,7 @@ class ImageScreen extends Screen {
     }
   }
 
-  imgModal(imgElement) { 
+  imgModal() { 
     //creating image modal 
     this.imageModal = document.createElement('div'); //creates image modal div
     this.imageModal.id = 'image-modal'; //gives image modal div an id
@@ -70,10 +70,13 @@ class ImageScreen extends Screen {
     this.imageModalContent.id = 'image-modal-content'; //gives id to image element
     this.imageModal.appendChild(this.imageModalContent); //appends image element to image modal
     
-    this.imgElement.addEventListener('click', (e) => { //when user clicks on image, the image modal opens
-      this.imageModal.style.display = 'block';
-      this.imageModalContent.src = e.target.src;
-    });
+    if(this.imgElement) {
+      this.imgElement.addEventListener('click', (e) => { //when user clicks on image, the image modal opens
+        this.imageModal.style.display = 'block';
+        this.imageModalContent.src = e.target.src;
+      });
+    }
+  
 
     window.addEventListener('click', (e) => { //user can click anywhere on window to close image
       if(e.target === this.imageModal) {

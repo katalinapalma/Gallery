@@ -228,6 +228,6 @@ document.addEventListener('DOMContentLoaded', function(){
 })
 
 // Global variables
-  globalImageObj = {};
-  globalObjectArray = [];
+var globalImageObj = {};
+var  globalObjectArray = [];
 
