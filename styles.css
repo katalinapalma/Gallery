@@ -310,3 +310,26 @@ img {
   width: 25%;
   margin-left: 20%;
 }
+
+#emailError{
+  color: rgb(194, 10, 10);
+  font-weight: bold;
+  text-align: center;
+
+}
+#pswError{
+  color: rgb(194, 10, 10);
+  font-weight: bold;
+  text-align: center;
+
+}
+#loginSuccesMsg{
+  font-weight: bold;
+  text-align: center;
+  color: green;
+}
+#loginFail{
+  font-weight: bold;
+  text-align: center;
+  color: rgb(194, 10, 10);
+}
