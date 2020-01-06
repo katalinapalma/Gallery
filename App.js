@@ -80,9 +80,9 @@ class App {
     this.emailError.id = 'emailError';
     this.passwordError = document.createElement('div'); // password error message
     this.passwordError.id = 'pswError';
-    this.loginSuccesful = document.createElement('div'); // login succesful message
-    this.loginSuccesful.id = 'loginSuccesMsg';
-    this.loginFailMsg = document.createElement('div'); // login succesful message
+    this.loginSuccessful = document.createElement('div'); // login successful message
+    this.loginSuccessful.id = 'loginSuccessMsg';
+    this.loginFailMsg = document.createElement('div'); // login successful message
     this.loginFailMsg.id = 'loginFail';
 
     //appends children to the modal content div
@@ -94,7 +94,7 @@ class App {
     this.modalContent.appendChild(this.logInButton2);
     this.modalContent.appendChild(this.emailError);
     this.modalContent.appendChild(this.passwordError);
-    this.modalContent.appendChild(this.loginSuccesful);
+    this.modalContent.appendChild(this.loginSuccessful);
     this.modalContent.appendChild(this.loginFailMsg);
 
     //sets id for the log in form, inputs and button.
@@ -126,8 +126,6 @@ class App {
    * 
    */
   validateLogin() {
-
-    console.log('validate')
     //Regular expressions for validating password
     let letterReq = /[a-z]/g;
     let specialChar = /\W/g;
@@ -142,7 +140,7 @@ class App {
     if(!this.logInEmail.value.match(emailRegExp)) {
       emailErrorRef.innerHTML = '*Email needs @*';
       emailRef.style.border = "1px solid red";
-      document.getElementById('loginSuccesMsg').innerHTML = '';
+      document.getElementById('loginSuccessMsg').innerHTML = '';
       document.getElementById('loginFail').innerHTML = '';
       return;
     } 
@@ -150,7 +148,7 @@ class App {
    else if(!this.logInEmail.value.match(dotReq)){
       emailErrorRef.innerHTML = '*Email needs .*';
       emailRef.style.border = "1px solid red";
-      document.getElementById('loginSuccesMsg').innerHTML = '';
+      document.getElementById('loginSuccessMsg').innerHTML = '';
       document.getElementById('loginFail').innerHTML = '';
       return;
     }
@@ -162,14 +160,14 @@ class App {
     if(!this.logInPassword.value.match(specialChar)) {
       passWordErrorRef.innerHTML = '*Password requiers speciel characters*';
       passWordRef.style.border = "1px solid red";
-      document.getElementById('loginSuccesMsg').innerHTML = '';
+      document.getElementById('loginSuccessMsg').innerHTML = '';
       document.getElementById('loginFail').innerHTML = '';
       return;
     }
     else if(!this.logInPassword.value.match(letterReq)){
       passWordErrorRef.innerHTML = '*Password requiers leters*';
       passWordRef.style.border = "1px solid red";
-      document.getElementById('loginSuccesMsg').innerHTML = '';
+      document.getElementById('loginSuccessMsg').innerHTML = '';
       document.getElementById('loginFail').innerHTML = '';
       return;
     }
@@ -180,13 +178,13 @@ class App {
 
     for(let i = 0; i<this.users.length;i++) {
       if(this.logInEmail.value == this.users[i].email && this.logInPassword.value == this.users[i].address.suite) {
-        document.getElementById('loginSuccesMsg').innerHTML = 'Login Succesful';
+        document.getElementById('loginSuccessMsg').innerHTML = 'Login Successful';
         document.getElementById('loginFail').innerHTML = '';  
         this.indicateUserLoggedIn(); 
         break;
       }else {
         document.getElementById('loginFail').innerHTML = '*User not found*';
-        document.getElementById('loginSuccesMsg').innerHTML = ''; 
+        document.getElementById('loginSuccessMsg').innerHTML = ''; 
       }
     }
   }
