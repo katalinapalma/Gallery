@@ -350,3 +350,49 @@ img {
   text-align: center;
   color: rgb(194, 10, 10);
 }
+
+/* Gallery screen */
+#galleryContainer {
+  display: flex;
+  width: 100%;
+  height: 600px;
+}
+
+#gallerySectionLeft {
+  border-right: 5px solid #788896;
+  display: inline-block;
+  width: 400px;
+  height: 500px;
+}
+
+#gallerySectionRight {
+  /* background-color: lightsalmon; */
+  display: inline-block;
+  width: 400px;
+  height: 600px;
+}
+
+/* Buttons for left gallery section */
+
+#gallery-button1, #gallery-button2 {
+  background-color:#fff;
+  font-size: 18px;
+  margin: 20px;
+  border: none;
+  border-radius: 3px;
+  width: 50%;
+  padding: 15px;
+  color:#293845;
+}
+
+#gallery-button3 {
+  float: right;
+  background-color:#e8833a;
+  font-size: 25px;
+  margin: 20px;
+  border: none;
+  border-radius: 3px;
+  width: 70%;
+  padding: 15px;
+  color: #fff;
+}
