@@ -18,7 +18,12 @@ class App {
     this.headerH1 = document.createElement('h1');
     this.headerH1.setAttribute('id', 'header-h1');
     this.headerDiv.appendChild(this.headerH1);
-    this.headerH1.innerText = 'Gallery application 2000';
+    if(sessionStorage.length == 0) {
+      this.headerH1.innerText = 'Gallery application 2000';
+    } else {
+      this.headerH1.innerText = sessionStorage.getItem("userEmail");
+    }
+    
 
     //Content
     this.wrapperDiv = document.createElement('div');
@@ -236,8 +241,10 @@ class App {
 
   }
   indicateUserLoggedIn() {
-    let headerBar = document.getElementById("header");
-    headerBar.textContent = this.logInEmail.value;
+    let headerBar = document.getElementById("header-h1");
+    headerBar.innerText = this.logInEmail.value;
+
+    sessionStorage.setItem("userEmail", this.logInEmail.value);
   }
 
   addEventListeners(){
