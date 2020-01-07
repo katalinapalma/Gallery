@@ -84,8 +84,6 @@ class App {
     this.loginSuccessful.id = 'loginSuccessMsg';
     this.loginFailMsg = document.createElement('div'); // login successful message
     this.loginFailMsg.id = 'loginFail';
-    this.userNotFound = document.createElement('div'); // login successful message
-    this.userNotFound.id = 'noUser';
 
     //appends children to the modal content div
     this.modalContent.appendChild(this.logInForm);
@@ -98,7 +96,6 @@ class App {
     this.modalContent.appendChild(this.passwordError);
     this.modalContent.appendChild(this.loginSuccessful);
     this.modalContent.appendChild(this.loginFailMsg);
-    this.modalContent.appendChild(this.userNotFound);
 
     //sets id for the log in form, inputs and button.
     this.logInForm.id = 'logInForm'; 
@@ -184,9 +181,7 @@ class App {
     for(let i = 0; i<this.users.length;i++) {      
       if(this.logInEmail.value == this.users[i].email && this.logInPassword.value == this.users[i].address.suite) {
         document.getElementById('loginSuccessMsg').innerHTML = 'Login Successful';
-        document.getElementById('loginFail').innerHTML = '';  
-        document.getElementById('noUser').innerHTML = '';
-
+        document.getElementById('loginFail').innerHTML = ''; 
         this.indicateUserLoggedIn(); 
         break;
       }
