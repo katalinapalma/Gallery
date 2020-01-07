@@ -17,12 +17,29 @@ html, body {
 
 /* h1 in header */
 #header-h1 {
+  margin: auto;
+  padding: 10px;
+  width: 30%;
   font-family: 'Raleway', sans-serif;
   font-size: 15px;
   color:  #293845;
   text-align: center;
-  padding-top: 10px;
   font-weight: bold;
+}
+#login-div {
+  position: absolute;
+  display: inline-block;
+  width: 30%;
+  
+}
+#login-header {
+  font-size: 15px; 
+}
+#user-icon {
+  width: 10%;
+  height: 10%;
+  margin: 3px;
+  padding: 0;
 }
 
 /* flexbox wrapper */
