@@ -142,6 +142,7 @@ class App {
       emailRef.style.border = "1px solid red";
       document.getElementById('loginSuccessMsg').innerHTML = '';
       document.getElementById('loginFail').innerHTML = '';
+      passWordErrorRef.innerHTML = '';
       return;
     } 
     
@@ -150,6 +151,7 @@ class App {
       emailRef.style.border = "1px solid red";
       document.getElementById('loginSuccessMsg').innerHTML = '';
       document.getElementById('loginFail').innerHTML = '';
+      passWordErrorRef.innerHTML = '';
       return;
     }
     else{
@@ -176,15 +178,24 @@ class App {
       passWordRef.style.border = "none";
     }
 
-    for(let i = 0; i<this.users.length;i++) {
+    for(let i = 0; i<this.users.length;i++) {      
       if(this.logInEmail.value == this.users[i].email && this.logInPassword.value == this.users[i].address.suite) {
         document.getElementById('loginSuccessMsg').innerHTML = 'Login Successful';
-        document.getElementById('loginFail').innerHTML = '';  
+        document.getElementById('loginFail').innerHTML = ''; 
         this.indicateUserLoggedIn(); 
         break;
-      }else {
-        document.getElementById('loginFail').innerHTML = '*User not found*';
-        document.getElementById('loginSuccessMsg').innerHTML = ''; 
+      }
+      else if (this.logInEmail.value != this.users[i].email) {
+        document.getElementById('loginFail').innerHTML = '*User does not exist*';
+        document.getElementById('loginSuccessMsg').innerHTML = '';
+        passWordErrorRef.innerHTML = '';
+        break;
+      }
+      else if (this.logInPassword.value != this.users[i].address.suite){
+        passWordErrorRef.innerHTML = '*Password is incorrect*';
+        document.getElementById('loginSuccessMsg').innerHTML = '';
+        document.getElementById('loginFail').innerHTML = '';
+        break;
       }
     }
   }
