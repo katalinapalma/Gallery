@@ -219,7 +219,7 @@ img {
 }
 
 /* Log in modal and image modal*/
-.modal, #image-modal {
+.modal, #image-modal, #galleryModal {
   display: none; /* Hidden by default */
   position: fixed; /* Stay in place */
   z-index: 1; /* Sit on top */
@@ -238,6 +238,41 @@ img {
   padding: 20px;
   width: 30%;
   border-radius: 5px
+}
+
+/* gallery modal*/
+.modal-content-gallery {
+  width: 40%;
+  background-color: rgb(245, 224, 227);
+  margin: 15% auto;
+  padding-bottom: 30px;
+  border: 2px solid rgb(255, 123, 0);
+}
+
+.modal-content-gallery input{
+  width: 70%;
+  padding: 20px;
+  text-align: center;
+  margin-left: 18%;
+  margin-top: 10%;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  border-radius: 2%;
+  font-size: 20px;
+}
+
+.modal-content-gallery button{
+  width: 30%;
+  margin-left: 36%;
+  margin-top: 5%;
+  padding: 20px;
+  background-color: rgb(255, 123, 0);
+  border: none;
+  display: block;
+  color: white;
+  font-size: 18px;
+  box-shadow: 0 3px 10px 2px rgb(110, 109, 109);
 }
 
 .close {
