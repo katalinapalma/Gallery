@@ -80,8 +80,10 @@ class App {
     this.emailError.id = 'emailError';
     this.passwordError = document.createElement('div'); // password error message
     this.passwordError.id = 'pswError';
-    this.loginSuccesful = document.createElement('div'); // login succesful message
-    this.loginSuccesful.id = 'loginSuccesMsg';
+    this.loginSuccessful = document.createElement('div'); // login successful message
+    this.loginSuccessful.id = 'loginSuccessMsg';
+    this.loginFailMsg = document.createElement('div'); // login successful message
+    this.loginFailMsg.id = 'loginFail';
 
     //appends children to the modal content div
     this.modalContent.appendChild(this.logInForm);
@@ -92,7 +94,8 @@ class App {
     this.modalContent.appendChild(this.logInButton2);
     this.modalContent.appendChild(this.emailError);
     this.modalContent.appendChild(this.passwordError);
-    this.modalContent.appendChild(this.loginSuccesful);
+    this.modalContent.appendChild(this.loginSuccessful);
+    this.modalContent.appendChild(this.loginFailMsg);
 
     //sets id for the log in form, inputs and button.
     this.logInForm.id = 'logInForm'; 
@@ -120,31 +123,33 @@ class App {
   }
   /**
    * @desc Checks if input email and password matches database
+   * 
    */
   validateLogin() {
-
-    console.log('validate')
     //Regular expressions for validating password
     let letterReq = /[a-z]/g;
     let specialChar = /\W/g;
     let emailRegExp = /@/g;
     let dotReq = /\./g;
+    // getting the IDs for the inputfields and the texts
     let emailErrorRef = document.getElementById('emailError');
     let passWordErrorRef = document.getElementById('pswError');
     let emailRef = document.getElementById("email");
     let passWordRef = document.getElementById('password');
 
     if(!this.logInEmail.value.match(emailRegExp)) {
-      console.log("Email does not contain @");
-      emailErrorRef.innerHTML = 'Email needs @';
+      emailErrorRef.innerHTML = '*Email needs @*';
       emailRef.style.border = "1px solid red";
+      document.getElementById('loginSuccessMsg').innerHTML = '';
+      document.getElementById('loginFail').innerHTML = '';
       return;
     } 
     
    else if(!this.logInEmail.value.match(dotReq)){
-      console.log("Email does not contain .");
-      emailErrorRef.innerHTML = 'Email needs .';
+      emailErrorRef.innerHTML = '*Email needs .*';
       emailRef.style.border = "1px solid red";
+      document.getElementById('loginSuccessMsg').innerHTML = '';
+      document.getElementById('loginFail').innerHTML = '';
       return;
     }
     else{
@@ -153,17 +158,17 @@ class App {
     }
 
     if(!this.logInPassword.value.match(specialChar)) {
-      console.log('some error specialChar');
       passWordErrorRef.innerHTML = '*Password requiers speciel characters*';
       passWordRef.style.border = "1px solid red";
-
+      document.getElementById('loginSuccessMsg').innerHTML = '';
+      document.getElementById('loginFail').innerHTML = '';
       return;
     }
     else if(!this.logInPassword.value.match(letterReq)){
-      console.log("Password does not contain letters - letterReq");
       passWordErrorRef.innerHTML = '*Password requiers leters*';
       passWordRef.style.border = "1px solid red";
-
+      document.getElementById('loginSuccessMsg').innerHTML = '';
+      document.getElementById('loginFail').innerHTML = '';
       return;
     }
     else{
@@ -173,13 +178,13 @@ class App {
 
     for(let i = 0; i<this.users.length;i++) {
       if(this.logInEmail.value == this.users[i].email && this.logInPassword.value == this.users[i].address.suite) {
-        console.log("Login succesful");
-        document.getElementById('loginSuccesMsg').innerHTML = 'Login Succesful'; 
+        document.getElementById('loginSuccessMsg').innerHTML = 'Login Successful';
+        document.getElementById('loginFail').innerHTML = '';  
         this.indicateUserLoggedIn(); 
         break;
       }else {
-        console.log('login not succes');
-        document.getElementById('loginSuccesMsg').innerHTML = '';  
+        document.getElementById('loginFail').innerHTML = '*User not found*';
+        document.getElementById('loginSuccessMsg').innerHTML = ''; 
       }
     }
   }
