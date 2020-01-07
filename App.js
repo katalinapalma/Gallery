@@ -9,22 +9,39 @@ class App {
   }
 
   initElement(){
-    //Header
+    //Header Div
     this.headerDiv = document.createElement('div');
     this.headerDiv.setAttribute('id', 'header');
     document.body.appendChild(this.headerDiv);
   
+    // Loginheader Div
+    this.loginDiv = document.createElement('div');
+    this.loginDiv.setAttribute('id', 'login-div');
+    this.headerDiv.appendChild(this.loginDiv);
+
+    // User icon
+    this.loginIcon = document.createElement('img');
+    this.loginIcon.id = "user-icon";
+    this.loginIcon.src = "media/images/6215195_0.jpg";
+    this.loginDiv.appendChild(this.loginIcon);
+
+    // Create h1  for displaying logged in user 
+    this.loginHeader = document.createElement('h1');
+    this.loginHeader.setAttribute('id', 'login-header');
+    this.loginDiv.appendChild(this.loginHeader);
+
+    if(sessionStorage.length == 0) {
+      this.loginHeader.innerText = 'Welcome, please log in';
+    } else {
+      this.loginHeader.innerText = sessionStorage.getItem("userEmail");
+    }
+
     //  created h1 inside the header div, with id 'header-h1'
     this.headerH1 = document.createElement('h1');
     this.headerH1.setAttribute('id', 'header-h1');
     this.headerDiv.appendChild(this.headerH1);
-    if(sessionStorage.length == 0) {
-      this.headerH1.innerText = 'Gallery application 2000';
-    } else {
-      this.headerH1.innerText = sessionStorage.getItem("userEmail");
-    }
-    
-
+    this.headerH1.innerText = 'Gallery application 2000';
+   
     //Content
     this.wrapperDiv = document.createElement('div');
     this.wrapperDiv.setAttribute('id', 'wrapper');
@@ -246,8 +263,8 @@ class App {
 
   }
   indicateUserLoggedIn() {
-    let headerBar = document.getElementById("header-h1");
-    headerBar.innerText = this.logInEmail.value;
+    let loginBar = document.getElementById("login-header");
+    loginBar.innerText = this.logInEmail.value;
 
     sessionStorage.setItem("userEmail", this.logInEmail.value);
   }
