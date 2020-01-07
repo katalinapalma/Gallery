@@ -3,6 +3,7 @@ class ImageScreen extends Screen {
     let content = "Images";
     super(content);
     this.displayImage();
+    this.imgModal();
   }
 
   displayImage() {
@@ -54,6 +55,35 @@ class ImageScreen extends Screen {
         globalObjectArray = [];
         globalImageObj = {};        
       });
+
+      this.imgModal(this.imgElement)
     }
   }
+
+  imgModal() { 
+    //creating image modal 
+    this.imageModal = document.createElement('div'); //creates image modal div
+    this.imageModal.id = 'image-modal'; //gives image modal div an id
+    this.imgWrapper.appendChild(this.imageModal); //appends image modal div to image wrapper
+
+    this.imageModalContent = document.createElement('img'); //creates image element
+    this.imageModalContent.id = 'image-modal-content'; //gives id to image element
+    this.imageModal.appendChild(this.imageModalContent); //appends image element to image modal
+    
+    if(this.imgElement) {
+      this.imgElement.addEventListener('click', (e) => { //when user clicks on image, the image modal opens
+        this.imageModal.style.display = 'block';
+        this.imageModalContent.src = e.target.src;
+      });
+    }
+  
+
+    window.addEventListener('click', (e) => { //user can click anywhere on window to close image
+      if(e.target === this.imageModal) {
+        this.imageModal.style.display = 'none';
+      }
+    })
+
+  }
 }
+
