@@ -109,15 +109,15 @@ class App {
 
     //appends children to the modal content div
     this.modalContent.appendChild(this.logInForm);
-    this.modalContent.appendChild(this.loginNameLabel);
-    this.modalContent.appendChild(this.logInEmail);
-    this.modalContent.appendChild(this.loginPasswordLabel);
-    this.modalContent.appendChild(this.logInPassword);
-    this.modalContent.appendChild(this.logInButton2);
-    this.modalContent.appendChild(this.emailError);
-    this.modalContent.appendChild(this.passwordError);
-    this.modalContent.appendChild(this.loginSuccessful);
-    this.modalContent.appendChild(this.loginFailMsg);
+    this.logInForm.appendChild(this.loginNameLabel);
+    this.logInForm.appendChild(this.logInEmail);
+    this.logInForm.appendChild(this.loginPasswordLabel);
+    this.logInForm.appendChild(this.logInPassword);
+    this.logInForm.appendChild(this.logInButton2);
+    this.logInForm.appendChild(this.emailError);
+    this.logInForm.appendChild(this.passwordError);
+    this.logInForm.appendChild(this.loginSuccessful);
+    this.logInForm.appendChild(this.loginFailMsg);
 
     //sets id for the log in form, inputs and button.
     this.logInForm.id = 'logInForm'; 
@@ -270,6 +270,7 @@ class App {
       } else {
         this.getUsers();
       }
+      e.preventDefault();
     })
 
   }
