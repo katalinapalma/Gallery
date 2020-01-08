@@ -70,14 +70,16 @@ class GalleryScreen extends Screen{
     this.createButtonGallery.addEventListener('click', (e) => { // when the user creates a new gallery, a new object is created
       e.preventDefault();
 
-      globalGalleryObj = {
-        name: this.galleryName.value,
+      if (this.galleryName.value == 0) {
+        console.log('tomt');
+      }else{
+        globalGalleryObj = {
+          name: this.galleryName.value,
+        }
+        console.log(globalGalleryObj);
+        this.createNewGallery();
+        globalGalleryObjArray.push(globalGalleryObj);
       }
-      console.log(globalGalleryObj);
-      this.createNewGallery();
-
-      globalGalleryObjArray.push(globalGalleryObj);
-
       this.galleryForm.reset();
     })
     
