@@ -22,7 +22,7 @@ class App {
     // User icon
     this.loginIcon = document.createElement('img');
     this.loginIcon.id = "user-icon";
-    this.loginIcon.src = "media/images/6215195_0.jpg";
+    this.loginIcon.src = "media/images/icon-4.png";
     this.loginDiv.appendChild(this.loginIcon);
 
     // Create h1  for displaying logged in user 
@@ -30,6 +30,7 @@ class App {
     this.loginHeader.setAttribute('id', 'login-header');
     this.loginDiv.appendChild(this.loginHeader);
 
+    // Set welcome message in header if user is not logged in
     if(sessionStorage.length == 0) {
       this.loginHeader.innerText = 'Welcome, please log in';
     } else {
