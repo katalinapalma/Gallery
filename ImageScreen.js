@@ -4,7 +4,6 @@ class ImageScreen extends Screen {
     super(content);
     this.displayImage();
     this.imgModal();
-    this.dropdownListener();
   }
 
   displayImage() {
@@ -50,29 +49,42 @@ class ImageScreen extends Screen {
       globalObjectArray[i].filey();
 
       //Gallery selection
-      this.gallerySelectionWrapper = document.createElement("div");
-      this.gallerySelectionWrapper.className = "dropdown";
-      this.imgCard.appendChild(this.gallerySelectionWrapper);
 
-      this.attachGalleryButton = document.createElement("button");
-      this.attachGalleryButton.id = "gallery-button" + i;
-      this.attachGalleryButton.className = "dropbtn";
-      this.attachGalleryButton.onclick = this.toggleDropdown;
-      this.attachGalleryButton.innerText = "Attach";
-      this.gallerySelectionWrapper.appendChild(this.attachGalleryButton);
 
-      this.galleryDropdownList = document.createElement("div");
-      this.galleryDropdownList.id = "myDropdown";
-      this.galleryDropdownList.className = "dropdown-content";
-      this.gallerySelectionWrapper.appendChild(this.galleryDropdownList);
 
-      this.galleryOptionOne = document.createElement("a");
-      this.galleryOptionOne.onclick = () => {
-        this.galleryText.innerHTML = "Gallery: " + globalGalleryObj.name;
+      
+
+
+
+
+      for(let i = 0;i<globalGalleryObjArray.length;i++){
+
+        this.gallerySelectionWrapper = document.createElement("div");
+        this.gallerySelectionWrapper.className = "dropdown";
+        
+        this.imgCard.appendChild(this.gallerySelectionWrapper);
+        this.attachGalleryButton = document.createElement("button");
+        this.attachGalleryButton.id = "gallery-button" + i;
+        this.attachGalleryButton.className = "dropbtn";
+        this.attachGalleryButton.onclick = () => {
+          this.galleryDropdownList.classList.toggle("show");
+        }
+        this.attachGalleryButton.innerText = "Attach";
+        this.gallerySelectionWrapper.appendChild(this.attachGalleryButton);
+        this.galleryDropdownList = document.createElement("div");
+        this.galleryDropdownList.id = "myDropdown" + i;
+        this.galleryDropdownList.className = "dropdown-content";
+        this.gallerySelectionWrapper.appendChild(this.galleryDropdownList);
+        this.galleryOption = document.createElement("a");
+        this.galleryOption.id = 'gallery-option' + i;
+        this.galleryOption.innerText = globalGalleryObjArray[i].name;
+
+        this.galleryDropdownList.appendChild(this.galleryOption);
+        this.galleryOption.addEventListener("click", () => {
+          this.galleryText.innerHTML = "Gallery: " + globalGalleryObjArray[i].name; 
+        })
       }
-      this.galleryOptionOne.innerText = globalGalleryObj.name;
-      this.galleryDropdownList.appendChild(this.galleryOptionOne);
-    
+      
 
       
       // Append everything
@@ -91,15 +103,23 @@ class ImageScreen extends Screen {
         globalObjectArray = [];
         globalImageObj = {};        
       });
+      // Close the dropdown menu if the user clicks outside of it
+      window.addEventListener("click", (e) => {
+        if (!e.target.matches('.dropbtn')) {
+          var dropdowns = document.getElementsByClassName("dropdown-content");
+          var i;
+          for (i = 0; i < dropdowns.length; i++) {
+            var openDropdown = dropdowns[i];
+            if (openDropdown.classList.contains('show')) {
+              openDropdown.classList.remove('show');
+            }
+          }
+        }
+      })
 
       this.imgModal(this.imgElement)
     }
   }
-  setGallery() {
-    console.log("OK");
-    this.galleryText.innerHTML = "Gallery: " + globalGalleryObj.name;
-  }
-
   imgModal() { 
     //creating image modal 
     this.imageModal = document.createElement('div'); //creates image modal div
@@ -128,24 +148,9 @@ class ImageScreen extends Screen {
 
   /* When the user clicks on the button,
       toggle between hiding and showing the dropdown content */
-  toggleDropdown() {
-        document.getElementById("myDropdown").classList.toggle("show");
+  toggleDropdown(i) {
+    document.getElementById("myDropdown" + i)
   }
-      
-  dropdownListener() {
-      // Close the dropdown menu if the user clicks outside of it
-      window.addEventListener("click", (e) => {
-        if (!e.target.matches('.dropbtn')) {
-          var dropdowns = document.getElementsByClassName("dropdown-content");
-          var i;
-          for (i = 0; i < dropdowns.length; i++) {
-            var openDropdown = dropdowns[i];
-            if (openDropdown.classList.contains('show')) {
-              openDropdown.classList.remove('show');
-            }
-          }
-        }
-      })
-  }
+  
 }
 
