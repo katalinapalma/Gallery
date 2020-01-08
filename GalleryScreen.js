@@ -27,12 +27,12 @@ class GalleryScreen extends Screen{
     this.galleryBtn3.id = 'gallery-button3';
     this.galleryBtn3.innerText = 'Create Gallery';
 
-    /*for (let i = 0;i<globalGalleryObjArray.length;i++){
+    for (let i = 0;i<globalGalleryObjArray.length;i++){
       this.galleryBtn1 = document.createElement('button');
       this.galleryBtn1.className = 'gallery-buttons';
       this.galleryBtn1.innerText =  globalGalleryObjArray[i].name;
       this.gallerySectionLeft.appendChild(this.galleryBtn1);
-    }*/
+    }
   }
 
   initModal(){
