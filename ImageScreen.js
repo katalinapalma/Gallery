@@ -22,6 +22,12 @@ class ImageScreen extends Screen {
       this.removeButton = document.createElement('button');
       this.imgElement = document.createElement("img");
 
+      // Gallery
+      this.galleryText = document.createElement("p");
+      this.galleryText.className = "galleryText";
+      this.galleryText.innerText = "Gallery: " + globalObjectArray[i].gallery;
+      console.log(globalObjectArray[i].gallery);
+
       //Setting ID
       this.imgName.id = 'imgNameId' + i;
       this.imgText.id = 'imgTextId' + i;
@@ -46,6 +52,7 @@ class ImageScreen extends Screen {
       this.imgCard.appendChild(this.imgElement);
       this.imgCard.appendChild(this.imgName);
       this.imgCard.appendChild(this.imgText);
+      this.imgCard.appendChild(this.galleryText);
       this.imgCard.appendChild(this.removeButton);
 
       this.removeButton.addEventListener('click', (e) => {
@@ -53,7 +60,7 @@ class ImageScreen extends Screen {
         let remCard = document.getElementById('imgCard'+ i);
         btnWrapper.removeChild(remCard);
         globalObjectArray = [];
-        globalImageObj = {};        
+        globalImageObj = {};
       });
 
       this.imgModal(this.imgElement)
