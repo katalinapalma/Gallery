@@ -26,6 +26,13 @@ class GalleryScreen extends Screen{
     this.gallerySectionRight.appendChild(this.galleryBtn3);
     this.galleryBtn3.id = 'gallery-button3';
     this.galleryBtn3.innerText = 'Create Gallery';
+
+    /*for (let i = 0;i<globalGalleryObjArray.length;i++){
+      this.galleryBtn1 = document.createElement('button');
+      this.galleryBtn1.className = 'gallery-buttons';
+      this.galleryBtn1.innerText =  globalGalleryObjArray[i].name;
+      this.gallerySectionLeft.appendChild(this.galleryBtn1);
+    }*/
   }
 
   initModal(){
@@ -49,9 +56,11 @@ class GalleryScreen extends Screen{
     this.createButtonGallery = document.createElement('button'); //gallery modal button
     this.createButtonGallery.innerText = 'Create'; // text for the modal button
 
+    
+
     this.modalContent.appendChild(this.galleryForm);
-    this.modalContent.appendChild(this.galleryName);
-    this.modalContent.appendChild(this.createButtonGallery);
+    this.galleryForm.appendChild(this.galleryName);
+    this.galleryForm.appendChild(this.createButtonGallery);
 
 
     this.galleryButton.addEventListener('click', (e) => { //when user clicks on gallery modal button, the modal opens
@@ -59,13 +68,17 @@ class GalleryScreen extends Screen{
     })
     
     this.createButtonGallery.addEventListener('click', (e) => { // when the user creates a new gallery, a new object is created
+      e.preventDefault();
 
       globalGalleryObj = {
         name: this.galleryName.value,
       }
       console.log(globalGalleryObj);
       this.createNewGallery();
-      e.preventDefault();
+
+      globalGalleryObjArray.push(globalGalleryObj);
+
+      this.galleryForm.reset();
     })
     
     window.addEventListener('click', (e) => { //user can click anywhere on window to close modal
@@ -78,12 +91,27 @@ class GalleryScreen extends Screen{
   createNewGallery(){
     // creates buttons to left section in gallery, depending on what the user names the gallery.
     if (globalGalleryObj.name == 0) {
-      alert('Name your gallery!');
+      alert('Name your Gallery')
     }else{
-    this.galleryBtn1 = document.createElement('button');
-    this.gallerySectionLeft.appendChild(this.galleryBtn1);
-    this.galleryBtn1.className = 'gallery-buttons';
-    this.galleryBtn1.innerText =  globalGalleryObj.name;
+        this.galleryBtn1 = document.createElement('button');
+        this.galleryBtn1.className = 'gallery-buttons';
+        this.galleryBtn1.innerText =  globalGalleryObj.name;
+        this.gallerySectionLeft.appendChild(this.galleryBtn1);
     }
   }
+    
+    
+    // let galleryArraySame = globalGalleryObjArray.map();
+
+    /*globalGalleryObjArray.forEach((element) =>{
+      let n = element.name.includes(this.galleryName.value);
+      if(n) {
+        alert('Gallery already exist!');
+      }else{
+        this.galleryBtn1 = document.createElement('button');
+        this.galleryBtn1.className = 'gallery-buttons';
+        this.galleryBtn1.innerText =  globalGalleryObj.name;
+        this.gallerySectionLeft.appendChild(this.galleryBtn1);
+      }
+    })*/
 }

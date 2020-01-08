@@ -16,6 +16,14 @@ class NewImageScreen extends Screen{
     this.textArea = document.createElement('textarea');
     this.fileInput = document.createElement('input');
     this.fileDisplayArea = document.createElement('pre');
+    this.dropDownList = document.createElement('select');
+
+    for(let i = 0;i<globalGalleryObjArray.length;i++){
+      this.dropDownOption = document.createElement('option');
+      this.dropDownOption.id = 'drop-option' + i;
+      this.dropDownOption.innerText = globalGalleryObjArray[i].name;
+      this.dropDownList.appendChild(this.dropDownOption);
+    }
 
     //set ID for div
     this.formWrapper.id = 'formWrapper';
@@ -26,7 +34,9 @@ class NewImageScreen extends Screen{
     this.inputSubmit.id = 'submitButton';
     this.fileInput.id = 'fileInput';
     this.fileDisplayArea.id = 'file-display';
-    
+    this.dropDownList.id = 'dropdown-list';
+    this.dropDownList.name = 'Galleries';
+
     // URL attributes
     this.urlInput.type = 'url';
     this.urlInput.name = 'image';
@@ -50,16 +60,20 @@ class NewImageScreen extends Screen{
     this.fileInput.type = 'file';
     this.fileInput.name = 'inputfile';
 
+    //Dropdown options
+    
+
 
     this.theForm.appendChild(this.urlInput);
     this.theForm.appendChild(this.inputName);
     this.theForm.appendChild(this.textArea);
+    this.theForm.appendChild(this.dropDownList);
     this.theForm.appendChild(this.inputSubmit);
     this.theForm.appendChild(this.fileInput);
     this.theForm.appendChild(this.fileDisplayArea);
     this.mainWrapper.appendChild(this.formWrapper);
     this.formWrapper.appendChild(this.theForm);
-    
+
   }
 
   addEventListeners(){
