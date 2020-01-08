@@ -159,6 +159,7 @@ html, body {
   color: white;
   padding: 14px 20px;
   margin-left: 10%;
+  margin-top: 5%;
   border: none;
   border-radius: 4px;
   cursor: pointer;
@@ -168,6 +169,12 @@ html, body {
 #submitButton:hover {
   background-color: lightgreen;
 }
+
+#dropdown-list{
+  width: 30%;
+  margin-left: 35%;
+}
+
 
 /* image-wrapper */
 #image-wrapper {
