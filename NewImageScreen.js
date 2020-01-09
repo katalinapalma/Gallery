@@ -85,7 +85,12 @@ class NewImageScreen extends Screen{
         name: this.theForm.imageNameID.value,
         description: this.theForm.description.value,
         button: 'Delete',
-        gallery: this.theForm.dropdownList.selectedOptions[0].value,
+        gallery: "None",
+        setGallery: () => {
+          if(this.theForm.dropdownList.selectedOptions[0].value) {
+            this.gallery = this.theForm.dropdownList.selectedOptions[0].value;
+          }
+        },
         filey: function() {  
           if(reader) {
             this.url = reader.result;

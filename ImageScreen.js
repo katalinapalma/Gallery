@@ -28,6 +28,7 @@ class ImageScreen extends Screen {
       this.galleryText = document.createElement("p");
       this.galleryText.className = "galleryText";
       this.galleryText.innerText = "Gallery: " + globalObjectArray[i].gallery;
+      
       console.log(globalObjectArray[i].gallery);
 
       //Setting ID
@@ -51,45 +52,9 @@ class ImageScreen extends Screen {
       
  
       //Setting image source
-      this.imgElement.src = globalObjectArray[i].url;
       globalObjectArray[i].filey();
+      this.imgElement.src = globalObjectArray[i].url;
 
-      //Gallery selection
-
-
-
-      
-
-
-
-
-      for(let i = 0;i<globalGalleryObjArray.length;i++){
-
-        this.gallerySelectionWrapper = document.createElement("div");
-        this.gallerySelectionWrapper.className = "dropdown";
-        
-        this.imgCard.appendChild(this.gallerySelectionWrapper);
-        this.attachGalleryButton = document.createElement("button");
-        this.attachGalleryButton.id = "gallery-button" + i;
-        this.attachGalleryButton.className = "dropbtn";
-        this.attachGalleryButton.onclick = () => {
-          this.galleryDropdownList.classList.toggle("show");
-        }
-        this.attachGalleryButton.innerText = "Attach";
-        this.gallerySelectionWrapper.appendChild(this.attachGalleryButton);
-        this.galleryDropdownList = document.createElement("div");
-        this.galleryDropdownList.id = "myDropdown" + i;
-        this.galleryDropdownList.className = "dropdown-content";
-        this.gallerySelectionWrapper.appendChild(this.galleryDropdownList);
-        this.galleryOption = document.createElement("a");
-        this.galleryOption.id = 'gallery-option' + i;
-        this.galleryOption.innerText = globalGalleryObjArray[i].name;
-
-        this.galleryDropdownList.appendChild(this.galleryOption);
-        this.galleryOption.addEventListener("click", () => {
-          this.galleryText.innerHTML = "Gallery: " + globalGalleryObjArray[i].name; 
-        })
-      }
       
 
       
