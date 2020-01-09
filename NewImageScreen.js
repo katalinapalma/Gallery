@@ -20,7 +20,6 @@ class NewImageScreen extends Screen{
 
     for(let i = 0;i<globalGalleryObjArray.length;i++){
       this.dropDownOption = document.createElement('option');
-      this.dropDownOption.id = 'drop-option' + i;
       this.dropDownOption.innerText = globalGalleryObjArray[i].name;
       this.dropDownList.appendChild(this.dropDownOption);
     }
@@ -34,7 +33,7 @@ class NewImageScreen extends Screen{
     this.inputSubmit.id = 'submitButton';
     this.fileInput.id = 'fileInput';
     this.fileDisplayArea.id = 'file-display';
-    this.dropDownList.id = 'dropdown-list';
+    this.dropDownList.id = 'dropdownList';
     this.dropDownList.name = 'Galleries';
 
     // URL attributes
@@ -86,6 +85,7 @@ class NewImageScreen extends Screen{
         name: this.theForm.imageNameID.value,
         description: this.theForm.description.value,
         button: 'Delete',
+        gallery: this.theForm.dropdownList.selectedOptions[0].value,
         filey: function() {  
           if(reader) {
             this.url = reader.result;
@@ -105,12 +105,12 @@ class NewImageScreen extends Screen{
       if (file.type.match(fileType)) {
         reader = new FileReader();
 
-        reader.onload = (e) =>{
+        reader.addEventListener('load', (e) =>{
           this.fileDisplayArea.innerHTML = '';
           let img = new Image();
           img.src = reader.result;
           this.fileDisplayArea.appendChild(img);
-        }
+        })
         reader.readAsDataURL(file);
       }
       else {
