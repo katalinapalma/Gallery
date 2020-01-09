@@ -202,7 +202,7 @@ class App {
     }
 
     for(let i = 0; i<this.users.length;i++) {      
-      if(this.logInEmail.value == this.users[i].email && this.logInPassword.value == this.users[i].address.suite) {
+      if(this.logInEmail.value.toLowerCase() == this.users[i].email.toLowerCase() && this.logInPassword.value == this.users[i].address.suite) {
         document.getElementById('loginSuccessMsg').innerHTML = 'Login Successful';
         document.getElementById('loginFail').innerHTML = ''; 
         this.indicateUserLoggedIn(); 
