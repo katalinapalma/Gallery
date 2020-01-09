@@ -202,8 +202,6 @@ class App {
     }
 
     for(let i = 0; i<this.users.length;i++) {
-      console.log(this.users[i]);
-            
       if(this.logInEmail.value.toLowerCase() == this.users[i].email.toLowerCase() && this.logInPassword.value == this.users[i].address.suite) {
         document.getElementById('loginSuccessMsg').innerHTML = 'Login Successful';
         document.getElementById('loginFail').innerHTML = ''; 
@@ -214,7 +212,6 @@ class App {
         document.getElementById('loginFail').innerHTML = '*User does not exist*';
         document.getElementById('loginSuccessMsg').innerHTML = '';
         passWordErrorRef.innerHTML = '';
-        //break;
       }
       else if (this.logInPassword.value != this.users[i].address.suite){
         passWordErrorRef.innerHTML = '*Password is incorrect*';
