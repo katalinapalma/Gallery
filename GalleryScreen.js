@@ -16,6 +16,12 @@ class GalleryScreen extends Screen{
     this.gallerySectionLeft = document.createElement('section'); //creates left div to Gallery screen
     this.galleryContainer.appendChild(this.gallerySectionLeft); //appends child to div container
     this.gallerySectionLeft.id = 'gallerySectionLeft'; //gives div an id
+    this.gallerySectionLeft.addEventListener('click', (e) => {
+      if(e.target !== e.currentTarget) {
+        let clickedBtn = e.target.id;
+        console.log('clicked me', clickedBtn);
+      }
+    })
 
     this.gallerySectionRight = document.createElement('section'); //creates right div to Gallery screen
     this.galleryContainer.appendChild(this.gallerySectionRight); //appends child to div container
@@ -30,6 +36,7 @@ class GalleryScreen extends Screen{
     for (let i = 0;i<globalGalleryObjArray.length;i++){
       this.galleryBtn = document.createElement('button');
       this.galleryBtn.className = 'gallery-buttons';
+      this.galleryBtn.id = 'galleryBtn' + i;
       this.galleryBtn.innerText =  globalGalleryObjArray[i].name;
       this.gallerySectionLeft.appendChild(this.galleryBtn);
     }
@@ -95,11 +102,10 @@ class GalleryScreen extends Screen{
     } else {
         this.galleryBtn = document.createElement('button');
         this.galleryBtn.className = 'gallery-buttons';
+        this.galleryBtn.id = 'gallery' + globalGalleryObjArray.length;
         this.galleryBtn.innerText =  globalGalleryObj.name;
         this.gallerySectionLeft.appendChild(this.galleryBtn);
       }
-
-      this.clickOnGallery(this.galleryBtn);
   }
 
     // Prevents galleries from having the same name
@@ -117,22 +123,6 @@ class GalleryScreen extends Screen{
       }
     })*/
 
-  clickOnGallery() { 
-    let galleryParent = document.querySelector('#gallerySectionLeft'); //get the parent of all gallery buttons
+    createbutton
 
-    // gives every gallery an id
-    for(let i = 0; i < globalGalleryObjArray.length +1; i++) {
-      this.galleryBtn.id = 'gallery' + i;
-    }
-
-    // click event on parent when user clicks on a gallery button
-    galleryParent.addEventListener('click', (e) => {
-      if(e.target !== e.currentTarget) {
-        let clickedBtn = e.target.id;
-        console.log('clicked me', clickedBtn);
-      }
-
-      e.stopPropagation(); //stops bubbling up to the parent elements
-    })
-  }
 }
