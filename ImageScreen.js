@@ -44,9 +44,9 @@ class ImageScreen extends Screen {
       this.removeButton.innerText = globalObjectArray[i].button;
  
       //Setting image source
-      this.imgElement.src = globalObjectArray[i].url;
       globalObjectArray[i].filey();
-    
+      this.imgElement.src = globalObjectArray[i].url;
+      
       // Append everything
       this.imgWrapper.appendChild(this.imgCard);
       this.imgCard.appendChild(this.imgElement);
