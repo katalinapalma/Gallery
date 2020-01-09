@@ -201,18 +201,20 @@ class App {
       passWordRef.style.border = "none";
     }
 
-    for(let i = 0; i<this.users.length;i++) {      
+    for(let i = 0; i<this.users.length;i++) {
+      console.log(this.users[i]);
+            
       if(this.logInEmail.value.toLowerCase() == this.users[i].email.toLowerCase() && this.logInPassword.value == this.users[i].address.suite) {
         document.getElementById('loginSuccessMsg').innerHTML = 'Login Successful';
         document.getElementById('loginFail').innerHTML = ''; 
         this.indicateUserLoggedIn(); 
         break;
-      }
+      }      
       else if (this.logInEmail.value != this.users[i].email) {
         document.getElementById('loginFail').innerHTML = '*User does not exist*';
         document.getElementById('loginSuccessMsg').innerHTML = '';
         passWordErrorRef.innerHTML = '';
-        break;
+        //break;
       }
       else if (this.logInPassword.value != this.users[i].address.suite){
         passWordErrorRef.innerHTML = '*Password is incorrect*';
@@ -235,7 +237,7 @@ class App {
       this.users = JSON.parse(xhr.responseText);
     
       if (xhr.readyState == 4 && xhr.status == '200') {
-        console.log(this.users);
+        //console.log(this.users);
         this.validateLogin();
       } else {
         console.error(users);
@@ -277,7 +279,7 @@ class App {
   }
   indicateUserLoggedIn() {
     let loginBar = document.getElementById("login-header");
-    loginBar.innerText = this.logInEmail.value;
+    loginBar.innerText = this.logInEmail.value.toLowerCase();
 
     sessionStorage.setItem("userEmail", this.logInEmail.value);
   }
