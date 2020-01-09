@@ -28,10 +28,10 @@ class GalleryScreen extends Screen{
     this.galleryBtn3.innerText = 'Create Gallery';
 
     for (let i = 0;i<globalGalleryObjArray.length;i++){
-      this.galleryBtn1 = document.createElement('button');
-      this.galleryBtn1.className = 'gallery-buttons';
-      this.galleryBtn1.innerText =  globalGalleryObjArray[i].name;
-      this.gallerySectionLeft.appendChild(this.galleryBtn1);
+      this.galleryBtn = document.createElement('button');
+      this.galleryBtn.className = 'gallery-buttons';
+      this.galleryBtn.innerText =  globalGalleryObjArray[i].name;
+      this.gallerySectionLeft.appendChild(this.galleryBtn);
     }
   }
 
@@ -55,8 +55,6 @@ class GalleryScreen extends Screen{
     this.galleryName.placeholder = 'Gallery name...'; //a placeholder
     this.createButtonGallery = document.createElement('button'); //gallery modal button
     this.createButtonGallery.innerText = 'Create'; // text for the modal button
-
-    
 
     this.modalContent.appendChild(this.galleryForm);
     this.galleryForm.appendChild(this.galleryName);
@@ -94,15 +92,17 @@ class GalleryScreen extends Screen{
     // creates buttons to left section in gallery, depending on what the user names the gallery.
     if (globalGalleryObj.name == 0) {
       alert('Name your Gallery')
-    }else{
-        this.galleryBtn1 = document.createElement('button');
-        this.galleryBtn1.className = 'gallery-buttons';
-        this.galleryBtn1.innerText =  globalGalleryObj.name;
-        this.gallerySectionLeft.appendChild(this.galleryBtn1);
-    }
+    } else {
+        this.galleryBtn = document.createElement('button');
+        this.galleryBtn.className = 'gallery-buttons';
+        this.galleryBtn.innerText =  globalGalleryObj.name;
+        this.gallerySectionLeft.appendChild(this.galleryBtn);
+      }
+
+      this.clickOnGallery(this.galleryBtn);
   }
-    
-    
+
+    // Prevents galleries from having the same name
     // let galleryArraySame = globalGalleryObjArray.map();
 
     /*globalGalleryObjArray.forEach((element) =>{
@@ -110,10 +110,29 @@ class GalleryScreen extends Screen{
       if(n) {
         alert('Gallery already exist!');
       }else{
-        this.galleryBtn1 = document.createElement('button');
-        this.galleryBtn1.className = 'gallery-buttons';
-        this.galleryBtn1.innerText =  globalGalleryObj.name;
-        this.gallerySectionLeft.appendChild(this.galleryBtn1);
+        this.galleryBtn = document.createElement('button');
+        this.galleryBtn.className = 'gallery-buttons';
+        this.galleryBtn.innerText =  globalGalleryObj.name;
+        this.gallerySectionLeft.appendChild(this.galleryBtn);
       }
     })*/
+
+  clickOnGallery() { 
+    let galleryParent = document.querySelector('#gallerySectionLeft'); //get the parent of all gallery buttons
+
+    // gives every gallery an id
+    for(let i = 0; i < globalGalleryObjArray.length +1; i++) {
+      this.galleryBtn.id = 'gallery' + i;
+    }
+
+    // click event on parent when user clicks on a gallery button
+    galleryParent.addEventListener('click', (e) => {
+      if(e.target !== e.currentTarget) {
+        let clickedBtn = e.target.id;
+        console.log('clicked me', clickedBtn);
+      }
+
+      e.stopPropagation(); //stops bubbling up to the parent elements
+    })
+  }
 }
