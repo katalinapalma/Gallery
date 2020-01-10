@@ -298,6 +298,7 @@ class App {
     if(this.activeScreen) {
       this.activeScreen.removeMe();
     }
+    
 
     switch(screenType) {
       case 'New Image':

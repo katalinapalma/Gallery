@@ -27,6 +27,11 @@ class GalleryScreen extends Screen{
     this.galleryBtn3.id = 'gallery-button3';
     this.galleryBtn3.innerText = 'Create Gallery';
 
+    // Import button
+    this.importButton = document.createElement("button");
+    this.importButton.id = "import-button";
+    this.importButton.innerText = "Import";
+
     for (let i = 0;i<globalGalleryObjArray.length;i++){
       this.galleryBtn1 = document.createElement('button');
       this.galleryBtn1.className = 'gallery-buttons';
