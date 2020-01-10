@@ -26,7 +26,6 @@ class ImageScreen extends Screen {
       this.galleryText = document.createElement("p");
       this.galleryText.className = "galleryText";
       this.galleryText.innerText = "Gallery: " + globalObjectArray[i].gallery;
-      console.log(globalObjectArray[i].gallery);
 
       //Setting ID
       this.imgName.id = 'imgNameId' + i;

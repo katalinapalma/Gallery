@@ -83,15 +83,16 @@ class NewImageScreen extends Screen{
         button: 'Delete',
         gallery: "None",
         setGallery: function() {
-          
-          for(let i = 0; listOption.options.length-1;i++) {
+          if(listOption.options.length > 0) {
+
+          for(let i = 0; listOption.options.length;i++) {
             let opt = listOption.options[i];
             if(opt.selected === true) {
               globalImageObj.gallery = opt.value;
-              console.log(opt);
               break;
             }
           }
+        }
         },
         filey: function() {  
           if(reader) {
