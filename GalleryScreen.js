@@ -16,10 +16,11 @@ class GalleryScreen extends Screen{
     this.gallerySectionLeft = document.createElement('section'); //creates left div to Gallery screen
     this.galleryContainer.appendChild(this.gallerySectionLeft); //appends child to div container
     this.gallerySectionLeft.id = 'gallerySectionLeft'; //gives div an id
-    this.gallerySectionLeft.addEventListener('click', (e) => {
+    this.gallerySectionLeft.addEventListener('click', (e) => { //adds event listener to buttons for galleries
       if(e.target !== e.currentTarget) {
         let clickedBtn = e.target.id;
-        console.log('clicked me', clickedBtn);
+        
+        console.log('clicked: ', clickedBtn);
       }
     })
 
@@ -36,7 +37,7 @@ class GalleryScreen extends Screen{
     for (let i = 0;i<globalGalleryObjArray.length;i++){
       this.galleryBtn = document.createElement('button');
       this.galleryBtn.className = 'gallery-buttons';
-      this.galleryBtn.id = 'galleryBtn' + i;
+      this.galleryBtn.id = 'gallery' + i;
       this.galleryBtn.innerText =  globalGalleryObjArray[i].name;
       this.gallerySectionLeft.appendChild(this.galleryBtn);
     }
@@ -122,7 +123,4 @@ class GalleryScreen extends Screen{
         this.gallerySectionLeft.appendChild(this.galleryBtn);
       }
     })*/
-
-    createbutton
-
 }
