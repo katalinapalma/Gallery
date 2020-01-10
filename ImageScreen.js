@@ -45,8 +45,7 @@ class ImageScreen extends Screen {
       //Setting image source
       globalObjectArray[i].filey();
       this.imgElement.src = globalObjectArray[i].url;
-
-    
+      
       // Append everything
       this.imgWrapper.appendChild(this.imgCard);
       this.imgCard.appendChild(this.imgElement);
