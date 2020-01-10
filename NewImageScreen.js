@@ -58,25 +58,21 @@ class NewImageScreen extends Screen{
     //File inpit attributes
     this.fileInput.type = 'file';
     this.fileInput.name = 'inputfile';
-
-    //Dropdown options
     
-
-
     this.theForm.appendChild(this.urlInput);
     this.theForm.appendChild(this.inputName);
-    this.theForm.appendChild(this.textArea);
+    this.theForm.appendChild(this.textArea);  
     this.theForm.appendChild(this.dropDownList);
     this.theForm.appendChild(this.inputSubmit);
     this.theForm.appendChild(this.fileInput);
     this.theForm.appendChild(this.fileDisplayArea);
     this.mainWrapper.appendChild(this.formWrapper);
     this.formWrapper.appendChild(this.theForm);
-
   }
 
   addEventListeners(){
     let reader;
+    let listOption = document.getElementById("dropdownList");
     this.theForm.addEventListener('submit', (event) => {
       event.preventDefault();
     
@@ -85,14 +81,25 @@ class NewImageScreen extends Screen{
         name: this.theForm.imageNameID.value,
         description: this.theForm.description.value,
         button: 'Delete',
-        gallery: this.theForm.dropdownList.selectedOptions[0].value,
+        gallery: "None",
+        setGallery: function() {
+          
+          for(let i = 0; listOption.options.length-1;i++) {
+            let opt = listOption.options[i];
+            if(opt.selected === true) {
+              globalImageObj.gallery = opt.value;
+              console.log(opt);
+              break;
+            }
+          }
+        },
         filey: function() {  
           if(reader) {
             this.url = reader.result;
           }
         }
       }
-      
+      globalImageObj.setGallery();
       globalObjectArray.push(globalImageObj);
 
       this.theForm.reset();
