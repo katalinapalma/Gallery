@@ -109,7 +109,7 @@ class GalleryScreen extends Screen{
     this.importButton.innerText = "Import";
     this.gallerySectionRight.appendChild(this.importButton);
 
-    let URL = 'https://jsonplaceholder.typicode.com/users';
+    let URL = 'https://jsonplaceholder.typicode.com/albums';
 
     this.importButton.addEventListener("click", function() {
 
