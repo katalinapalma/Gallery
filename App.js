@@ -4,7 +4,7 @@ class App {
     this.initElement();
     this.initButtons();
     this.addEventListeners();
-    this.changeScreen();
+    ScreenHandler.changeScreen();
     this.logInModal();
   }
 
@@ -284,37 +284,19 @@ class App {
 
   addEventListeners(){
     this.newImagesButton.addEventListener('click', () => {
-      this.changeScreen('New Image');
+      ScreenHandler.changeScreen('New Image');
     })
 
     this.imagesButton.addEventListener('click', () => {
-      this.changeScreen('Images');
+      globalFilteredImageArray = globalObjectArray;
+      ScreenHandler.changeScreen('Images');
     })
     this.galleryButton.addEventListener(  'click', () => {
-      this.changeScreen('Gallery');
+      ScreenHandler.changeScreen('Gallery');
     })
   }
 
-  changeScreen(screenType){
-    if(this.activeScreen) {
-      this.activeScreen.removeMe();
-    }
-    
-
-    switch(screenType) {
-      case 'New Image':
-        this.activeScreen = new NewImageScreen();
-        break;
-      case 'Images':
-        this.activeScreen = new ImageScreen();
-        break;
-      case 'Gallery':
-        this.activeScreen = new GalleryScreen();
-        break;
-      default:
-        this.activeScreen = new NewImageScreen();
-    }
-  }
+  
 }
 document.addEventListener('DOMContentLoaded', function(){
   new App();
@@ -325,4 +307,4 @@ var globalImageObj = {};
 var globalGalleryObj = {};
 var globalGalleryObjArray = [];
 var globalObjectArray = [];
-
+var globalFilteredImageArray = [];
