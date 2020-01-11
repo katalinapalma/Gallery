@@ -4,6 +4,7 @@ class GalleryScreen extends Screen{
     super(content);
     this.GalleryUI();
     this.initModal();
+    this.initImportButton();
   }
 
   GalleryUI() {
@@ -26,11 +27,6 @@ class GalleryScreen extends Screen{
     this.gallerySectionRight.appendChild(this.galleryBtn3);
     this.galleryBtn3.id = 'gallery-button3';
     this.galleryBtn3.innerText = 'Create Gallery';
-
-    // Import button
-    this.importButton = document.createElement("button");
-    this.importButton.id = "import-button";
-    this.importButton.innerText = "Import";
 
     for (let i = 0;i<globalGalleryObjArray.length;i++){
       this.galleryBtn1 = document.createElement('button');
@@ -105,6 +101,21 @@ class GalleryScreen extends Screen{
         this.galleryBtn1.innerText =  globalGalleryObj.name;
         this.gallerySectionLeft.appendChild(this.galleryBtn1);
     }
+  }
+  initImportButton() {
+
+    this.importButton = document.createElement("button");
+    this.importButton.id = "import-button";
+    this.importButton.innerText = "Import";
+    this.gallerySectionRight.appendChild(this.importButton);
+
+    let URL = 'https://jsonplaceholder.typicode.com/users';
+
+    this.importButton.addEventListener("click", function() {
+
+      fetch(URL).then(response => response.json()).then(json => console.log(json))
+
+    })
   }
     
     

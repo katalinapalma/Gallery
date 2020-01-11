@@ -30,7 +30,8 @@ class App {
     this.loginHeader.setAttribute('id', 'login-header');
     this.loginDiv.appendChild(this.loginHeader);
 
-    // Set welcome message in header if user is not logged in
+    // KEEP USER LOGGED IN
+    // If not logged in, display welcome message
     if(sessionStorage.length == 0) {
       this.loginHeader.innerText = 'Welcome, please log in';
     } else {
