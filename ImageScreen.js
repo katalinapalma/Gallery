@@ -58,8 +58,8 @@ class ImageScreen extends Screen {
         let btnWrapper = document.getElementById('image-wrapper');
         let remCard = document.getElementById('imgCard'+ i);
         btnWrapper.removeChild(remCard);
-        globalFilteredImageArray = [];
-        globalImageObj = {};
+        globalFilteredImageArray.splice(i, 1);
+        console.log(globalFilteredImageArray);
       });
 
       this.imgModal(this.imgElement)
