@@ -12,8 +12,8 @@ class ImageScreen extends Screen {
 
     this.mainContentWrapper = document.getElementById("main-content-wrapper");
     this.mainContentWrapper.appendChild(this.imgWrapper);
-
-    for(let i = 0;i<globalObjectArray.length;i++) {
+    
+    for(let i = 0;i<globalFilteredImageArray.length;i++) {
 
       // Creating img elements
       this.imgName = document.createElement("h2");
@@ -25,7 +25,7 @@ class ImageScreen extends Screen {
       // Gallery
       this.galleryText = document.createElement("p");
       this.galleryText.className = "galleryText";
-      this.galleryText.innerText = "Gallery: " + globalObjectArray[i].gallery;
+      this.galleryText.innerText = "Gallery: " + globalFilteredImageArray[i].gallery;
 
       //Setting ID
       this.imgName.id = 'imgNameId' + i;
@@ -38,13 +38,13 @@ class ImageScreen extends Screen {
       this.removeButton.className = 'removeButtonClass';
 
       //Setting text
-      this.imgName.innerText = globalObjectArray[i].name;
-      this.imgText.innerText = globalObjectArray[i].description;
-      this.removeButton.innerText = globalObjectArray[i].button;
+      this.imgName.innerText = globalFilteredImageArray[i].name;
+      this.imgText.innerText = globalFilteredImageArray[i].description;
+      this.removeButton.innerText = globalFilteredImageArray[i].button;
  
       //Setting image source
-      globalObjectArray[i].filey();
-      this.imgElement.src = globalObjectArray[i].url;
+      globalFilteredImageArray[i].filey();
+      this.imgElement.src = globalFilteredImageArray[i].url;
       
       // Append everything
       this.imgWrapper.appendChild(this.imgCard);
@@ -58,7 +58,7 @@ class ImageScreen extends Screen {
         let btnWrapper = document.getElementById('image-wrapper');
         let remCard = document.getElementById('imgCard'+ i);
         btnWrapper.removeChild(remCard);
-        globalObjectArray = [];
+        globalFilteredImageArray = [];
         globalImageObj = {};
       });
 

@@ -18,9 +18,15 @@ class GalleryScreen extends Screen{
     this.gallerySectionLeft.id = 'gallerySectionLeft'; //gives div an id
     this.gallerySectionLeft.addEventListener('click', (e) => { //adds event listener to buttons for galleries
       if(e.target !== e.currentTarget) {
-        let clickedBtn = e.target.id;
+        let clickedBtn = e.target.innerText;
+        this.removeMe();
         
-        console.log('clicked: ', clickedBtn);
+        let galleryImageArr = globalObjectArray.filter((imageObject) => {
+          return imageObject.gallery === clickedBtn;
+        });
+
+        globalFilteredImageArray = galleryImageArr;
+        ScreenHandler.activeScreen = new ImageScreen();
       }
     })
 
@@ -68,8 +74,7 @@ class GalleryScreen extends Screen{
     this.galleryForm.appendChild(this.galleryName);
     this.galleryForm.appendChild(this.createButtonGallery);
 
-
-    this.galleryButton.addEventListener('click', (e) => { //when user clicks on gallery modal button, the modal opens
+    this.galleryButton.addEventListener('click', () => { //when user clicks on gallery modal button, the modal opens
       this.galleryModal.style.display = 'block';
     })
     
