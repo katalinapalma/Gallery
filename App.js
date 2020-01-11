@@ -30,7 +30,8 @@ class App {
     this.loginHeader.setAttribute('id', 'login-header');
     this.loginDiv.appendChild(this.loginHeader);
 
-    // Set welcome message in header if user is not logged in
+    // KEEP USER LOGGED IN
+    // If not logged in, display welcome message
     if(sessionStorage.length == 0) {
       this.loginHeader.innerText = 'Welcome, please log in';
     } else {
@@ -205,6 +206,7 @@ class App {
       if(this.logInEmail.value.toLowerCase() == this.users[i].email.toLowerCase() && this.logInPassword.value == this.users[i].address.suite) {
         document.getElementById('loginSuccessMsg').innerHTML = 'Login Successful';
         document.getElementById('loginFail').innerHTML = ''; 
+        sessionStorage.setItem("userID", this.users[i].id);
         this.indicateUserLoggedIn(); 
         break;
       }      
@@ -277,7 +279,6 @@ class App {
   indicateUserLoggedIn() {
     let loginBar = document.getElementById("login-header");
     loginBar.innerText = this.logInEmail.value.toLowerCase();
-
     sessionStorage.setItem("userEmail", this.logInEmail.value);
   }
 

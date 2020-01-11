@@ -4,6 +4,7 @@ class GalleryScreen extends Screen{
     super(content);
     this.GalleryUI();
     this.initModal();
+    this.initImportButton();
   }
 
   GalleryUI() {
@@ -113,8 +114,23 @@ class GalleryScreen extends Screen{
         this.gallerySectionLeft.appendChild(this.galleryBtn);
       }
   }
+  initImportButton() {
 
-    // Prevents galleries from having the same name
+    this.importButton = document.createElement("button");
+    this.importButton.id = "import-button";
+    this.importButton.innerText = "Import";
+    this.gallerySectionRight.appendChild(this.importButton);
+
+    let URL = 'https://jsonplaceholder.typicode.com/albums';
+
+    this.importButton.addEventListener("click", function() {
+
+      fetch(URL).then(response => response.json()).then(json => console.log(json))
+
+    })
+  }
+    
+    
     // let galleryArraySame = globalGalleryObjArray.map();
 
     /*globalGalleryObjArray.forEach((element) =>{
