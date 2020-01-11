@@ -121,14 +121,21 @@ class GalleryScreen extends Screen{
     this.importButton.innerText = "Import";
     this.gallerySectionRight.appendChild(this.importButton);
 
-    let URL = 'https://jsonplaceholder.typicode.com/albums';
 
-    this.importButton.addEventListener("click", function() {
+    this.importButton.addEventListener("click", () => {
+      let request = getJsonData.getData('https://jsonplaceholder.typicode.com/photos');
+      let userID = sessionStorage.getItem("userID");
+      
+      for(let i = 0; i < request.length; i++) {
+        if(request[i].userId == userID) {
+          console.log(request);
+          console.log("found album: " + request[i].userId);
+          
+      }
+      
+    }})
+    }
 
-      fetch(URL).then(response => response.json()).then(json => console.log(json))
-
-    })
-  }
     
     
     // let galleryArraySame = globalGalleryObjArray.map();
