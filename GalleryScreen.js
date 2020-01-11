@@ -121,6 +121,7 @@ class GalleryScreen extends Screen{
     this.importButton.innerText = "Import";
     this.gallerySectionRight.appendChild(this.importButton);
 
+
     this.importButton.addEventListener("click", () => {
       let request = getJsonData.getData('https://jsonplaceholder.typicode.com/photos');
       let userID = sessionStorage.getItem("userID");
@@ -134,6 +135,7 @@ class GalleryScreen extends Screen{
       
     }})
     }
+
     
     
     // let galleryArraySame = globalGalleryObjArray.map();
