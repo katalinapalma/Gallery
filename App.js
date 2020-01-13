@@ -323,4 +323,4 @@ var globalImageObj = {};
 var globalGalleryObj = {};
 var globalGalleryObjArray = [];
 var globalObjectArray = [];
-
+var globalCardsArray = [];

@@ -102,7 +102,7 @@ class NewImageScreen extends Screen{
       }
       globalImageObj.setGallery();
       globalObjectArray.push(globalImageObj);
-
+      
       this.theForm.reset();
     });
 
