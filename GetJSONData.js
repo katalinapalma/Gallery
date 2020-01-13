@@ -1,8 +1,11 @@
 var getJsonData = {
 
-  async getData(URL) {
+  getData(URL) {
     
-      let jsonResponse = await fetch(URL).then(response => {return response.json();})
-      console.log(jsonResponse);
+    return fetch(URL)
+    .then((response) => {
+      return response.json();
+    });
+    
   }
-}
+} 
