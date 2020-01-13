@@ -124,6 +124,7 @@ class GalleryScreen extends Screen{
 
     this.importButton.addEventListener("click", () => {
 
+
       let userID = sessionStorage.getItem("userID");
 
       let getAlbums = getJsonData.getData('https://jsonplaceholder.typicode.com/albums');
@@ -174,6 +175,7 @@ class GalleryScreen extends Screen{
         })
         })
     });
+
 
       
     }
