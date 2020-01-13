@@ -1,64 +1,60 @@
 class ImageCard {
     constructor(i){
-        console.log('whore 2');
         this.i = i;
         this.imageCardinit();
     }
 
 imageCardinit(){
-    console.log('in loop');
-
     this.imgWrapps = document.getElementById('image-wrapper');
     this.mainContentWrapper = document.getElementById("main-content-wrapper");
     this.mainContentWrapper.appendChild(this.imgWrapps);
 
-    // Creating img elements
-    this.imgName = document.createElement("h2");
-    this.imgCard = document.createElement('div');
-    this.imgText = document.createElement("p");
-    this.removeButton = document.createElement('button');
-    this.imgElement = document.createElement("img");
-    this.modalNameChange = document.getElementById('metaNameEdit');
+     // Creating img elements
+     this.imgName = document.createElement("h2");
+     this.imgCard = document.createElement('div');
+     this.imgText = document.createElement("p");
+     this.removeButton = document.createElement('button');
+     this.imgElement = document.createElement("img");
 
-    // Gallery
-    this.galleryText = document.createElement("p");
-    this.galleryText.className = "galleryText";
-    this.galleryText.innerText = "Gallery: " + globalObjectArray[this.i].gallery;
+     // Gallery
+     this.galleryText = document.createElement("p");
+     this.galleryText.className = "galleryText";
+     this.galleryText.innerText = "Gallery: " + globalFilteredImageArray[this.i].gallery;
 
-    //Setting ID
-    this.imgName.id = 'imgNameId' + this.i;
-    this.imgText.id = 'imgTextId' + this.i;
-    this.removeButton.id = 'remove-button' + this.i;
-    this.imgCard.id = 'imgCard' + this.i;
+     //Setting ID
+     this.imgName.id = 'imgNameId' + this.i;
+     this.imgText.id = 'imgTextId' + this.i;
+     this.removeButton.id = 'remove-button' + this.i;
+     this.imgCard.id = 'imgCard' + this.i;
 
-    //Setting class
-    this.imgCard.className = 'card';
-    this.removeButton.className = 'removeButtonClass';
+     //Setting class
+     this.imgCard.className = 'card';
+     this.removeButton.className = 'removeButtonClass';
 
-    //Setting text
-    this.imgName.innerText = globalObjectArray[this.i].name;
-    this.imgText.innerText = globalObjectArray[this.i].description;
-    this.removeButton.innerText = globalObjectArray[this.i].button;
+     //Setting text
+     this.imgName.innerText = globalFilteredImageArray[this.i].name;
+     this.imgText.innerText = globalFilteredImageArray[this.i].description;
+     this.removeButton.innerText = globalFilteredImageArray[this.i].button;
 
-    //Setting image source
-    globalObjectArray[this.i].filey();
-    this.imgElement.src = globalObjectArray[this.i].url;
-    
-    // Append everything
-    this.imgWrapps.appendChild(this.imgCard);
-    this.imgCard.appendChild(this.imgElement);
-    this.imgCard.appendChild(this.imgName);
-    this.imgCard.appendChild(this.imgText);
-    this.imgCard.appendChild(this.galleryText);
-    this.imgCard.appendChild(this.removeButton);
+     //Setting image source
 
-    this.removeButton.addEventListener('click', (e) => {
-      let btnWrapper = document.getElementById('image-wrapper');
-      let remCard = document.getElementById('imgCard'+ this.i);
-      btnWrapper.removeChild(remCard);
-      globalObjectArray = [];
-      globalImageObj = {};
-    });
+     this.imgElement.src = globalFilteredImageArray[this.i].url;
+     
+     // Append everything
+     this.imgWrapps.appendChild(this.imgCard);
+     this.imgCard.appendChild(this.imgElement);
+     this.imgCard.appendChild(this.imgName);
+     this.imgCard.appendChild(this.imgText);
+     this.imgCard.appendChild(this.galleryText);
+     this.imgCard.appendChild(this.removeButton);
+
+     this.removeButton.addEventListener('click', (e) => {
+       let btnWrapper = document.getElementById('image-wrapper');
+       let remCard = document.getElementById('imgCard'+ this.i);
+       btnWrapper.removeChild(remCard);
+       globalFilteredImageArray.splice(this.i, 1);
+       e.stopPropagation();
+     });
 
     this.imgCard.addEventListener('click', () => { //when user clicks on image, the image modal opens
       let image = new ImageModal(globalObjectArray[this.i].url,

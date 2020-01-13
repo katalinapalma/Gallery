@@ -4,7 +4,7 @@ class App {
     this.initElement();
     this.initButtons();
     this.addEventListeners();
-    this.changeScreen();
+    ScreenHandler.changeScreen();
     this.logInModal();
   }
 
@@ -30,7 +30,8 @@ class App {
     this.loginHeader.setAttribute('id', 'login-header');
     this.loginDiv.appendChild(this.loginHeader);
 
-    // Set welcome message in header if user is not logged in
+    // KEEP USER LOGGED IN
+    // If not logged in, display welcome message
     if(sessionStorage.length == 0) {
       this.loginHeader.innerText = 'Welcome, please log in';
     } else {
@@ -205,6 +206,7 @@ class App {
       if(this.logInEmail.value.toLowerCase() == this.users[i].email.toLowerCase() && this.logInPassword.value == this.users[i].address.suite) {
         document.getElementById('loginSuccessMsg').innerHTML = 'Login Successful';
         document.getElementById('loginFail').innerHTML = ''; 
+        sessionStorage.setItem("userID", this.users[i].id);
         this.indicateUserLoggedIn(); 
         break;
       }      
@@ -277,42 +279,24 @@ class App {
   indicateUserLoggedIn() {
     let loginBar = document.getElementById("login-header");
     loginBar.innerText = this.logInEmail.value.toLowerCase();
-
     sessionStorage.setItem("userEmail", this.logInEmail.value);
   }
 
   addEventListeners(){
     this.newImagesButton.addEventListener('click', () => {
-      this.changeScreen('New Image');
+      ScreenHandler.changeScreen('New Image');
     })
 
     this.imagesButton.addEventListener('click', () => {
-      this.changeScreen('Images');
+      globalFilteredImageArray = globalObjectArray;
+      ScreenHandler.changeScreen('Images');
     })
     this.galleryButton.addEventListener(  'click', () => {
-      this.changeScreen('Gallery');
+      ScreenHandler.changeScreen('Gallery');
     })
   }
 
-  changeScreen(screenType){
-    if(this.activeScreen) {
-      this.activeScreen.removeMe();
-    }
-
-    switch(screenType) {
-      case 'New Image':
-        this.activeScreen = new NewImageScreen();
-        break;
-      case 'Images':
-        this.activeScreen = new ImageScreen();
-        break;
-      case 'Gallery':
-        this.activeScreen = new GalleryScreen();
-        break;
-      default:
-        this.activeScreen = new NewImageScreen();
-    }
-  }
+  
 }
 document.addEventListener('DOMContentLoaded', function(){
   new App();
@@ -324,3 +308,4 @@ var globalGalleryObj = {};
 var globalGalleryObjArray = [];
 var globalObjectArray = [];
 var globalCardsArray = [];
+var globalFilteredImageArray = [];
