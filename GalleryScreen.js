@@ -122,17 +122,20 @@ class GalleryScreen extends Screen{
     this.gallerySectionRight.appendChild(this.importButton);
 
     this.importButton.addEventListener("click", () => {
-      let request = getJsonData.getData('https://jsonplaceholder.typicode.com/photos');
-      let userID = sessionStorage.getItem("userID");
+      let request = getJsonData.getData('https://jsonplaceholder.typicode.com/albums');
+      request.then((myJson) => {
+        console.log(myJson);
+        let userID = sessionStorage.getItem("userID");
+        for(let i = 0; i < myJson.length; i++) {
+          if(myJson[i].userId == userID) {
+            
+            console.log("found album: " + myJson[i].userId);
+          }
+        }
+      })
+      });
+
       
-      for(let i = 0; i < request.length; i++) {
-        if(request[i].userId == userID) {
-          console.log(request);
-          console.log("found album: " + request[i].userId);
-          
-      }
-      
-    }})
     }
     
     
