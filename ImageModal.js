@@ -19,6 +19,10 @@ class ImageModal {
             this.imageMetaName = document.createElement('h2');
             this.imageMetaText = document.createElement('p');
             this.modalSubmit = document.createElement('input');
+            this.styleButton = document.createElement('button');
+            this.styleButton2 = document.createElement('button');
+            this.styleButton3 = document.createElement('button');
+
 
             this.imageRef.id = 'image-modal-content'; //gives id to image element
             this.imageMetaName.id = 'model-image-name';
@@ -30,9 +34,13 @@ class ImageModal {
             this.imageRef.className = 'imageRefModal'; //gives className to image element
             this.imageMetaName.className = 'imgMetaName';
             this.imageMetaText.className = 'imgMetaText';
+            this.styleButton.className = 'fontStyle';
 
             this.modalSubmit.type = 'submit';
             this.modalSubmit.value = 'Edit';
+            this.styleButton.innerText = 'B';
+            this.styleButton2.innerText = 'U';
+            this.styleButton3.innerText = 'Size';
 
             this.imageModalRef.style.display = 'block';
             
@@ -46,6 +54,13 @@ class ImageModal {
         this.myForm.appendChild(this.imageMetaName);
         this.myForm.appendChild(this.imageMetaText);
         this.myForm.appendChild(this.modalSubmit);
+        this.myForm.appendChild(this.styleButton);
+        this.myForm.appendChild(this.styleButton2);
+        this.myForm.appendChild(this.styleButton3);
+
+        this.styleButton.addEventListener('click', () =>{
+            this.styleButton = document.execCommand('bold',false,null);
+        })
         
 /*
         this.imageMetaName.addEventListener('click', () => {
