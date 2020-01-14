@@ -17,6 +17,7 @@ class GalleryScreen extends Screen{
     this.gallerySectionLeft = document.createElement('section'); //creates left div to Gallery screen
     this.galleryContainer.appendChild(this.gallerySectionLeft); //appends child to div container
     this.gallerySectionLeft.id = 'gallerySectionLeft'; //gives div an id
+
     this.gallerySectionLeft.addEventListener('click', (e) => { //adds event listener to buttons for galleries
       if(e.target !== e.currentTarget) {
         let clickedBtn = e.target.innerText;
@@ -115,14 +116,13 @@ class GalleryScreen extends Screen{
       }
   }
   initImportButton() {
-
     this.importButton = document.createElement("button");
     this.importButton.id = "import-button";
     this.importButton.innerText = "Import";
     this.gallerySectionRight.appendChild(this.importButton);
 
     this.importButton.addEventListener("click", () => {
-      let request = getJsonData.getData('https://jsonplaceholder.typicode.com/albums');
+      let request = getJsonData.getData('https://jsonplaceholder.typicode.com/photos');
       request.then((myJson) => {
         console.log(myJson);
         let userID = sessionStorage.getItem("userID");
@@ -134,7 +134,6 @@ class GalleryScreen extends Screen{
         }
       })
       });
-
       
     }
     

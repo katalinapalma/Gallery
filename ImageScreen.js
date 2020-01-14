@@ -4,6 +4,7 @@ class ImageScreen extends Screen {
     super(content);
     this.displayImage();
     this.imgModal();
+    this.ImportImagesBtn();
   }
 
   displayImage() {
@@ -43,7 +44,7 @@ class ImageScreen extends Screen {
       this.removeButton.innerText = globalFilteredImageArray[i].button;
  
       //Setting image source
-      globalFilteredImageArray[i].filey();
+      
       this.imgElement.src = globalFilteredImageArray[i].url;
       
       // Append everything
@@ -59,10 +60,10 @@ class ImageScreen extends Screen {
         let remCard = document.getElementById('imgCard'+ i);
         btnWrapper.removeChild(remCard);
         globalFilteredImageArray.splice(i, 1);
-        console.log(globalFilteredImageArray);
       });
 
       this.imgModal(this.imgElement)
+     
     }
   }
 
@@ -83,13 +84,47 @@ class ImageScreen extends Screen {
       });
     }
   
-
     window.addEventListener('click', (e) => { //user can click anywhere on window to close image
       if(e.target === this.imageModal) {
         this.imageModal.style.display = 'none';
       }
     })
-
   }
-}
 
+  ImportImagesBtn() {
+    this.importBtn = document.createElement('button');
+    this.importBtn.innerText = 'Import images';
+    this.importBtn.id = 'import-images-button';
+    this.mainContentWrapper.appendChild(this.importBtn);
+
+    this.importBtn.addEventListener('click', () => {
+      let getImages = getJsonData.getData('https://jsonplaceholder.typicode.com/photos');
+      getImages.then((jsonImages) => {
+        
+        let userID = sessionStorage.getItem("userID");
+        let items = [jsonImages];
+        let albumID = items.albumId;
+        // console.log('items', items);
+        // console.log('albumid', albumID);
+        
+        for(let i = 0; i < jsonImages.length; i++) {
+          let items = jsonImages[i];
+          console.log('items', items);
+          
+
+          // if(this.albumID === this.userID) {  
+          //   globalFilteredImageArray.push(items);
+          //   globalFilteredImageArray[i].name = items.title;
+          //   globalFilteredImageArray[i].description = '';
+          //   globalFilteredImageArray[i].gallery = items.albumId;
+          //   globalFilteredImageArray[i].button = "Delete";
+
+          //   this.displayImage();
+
+          // }
+        } 
+      })
+    })
+  }
+
+}
