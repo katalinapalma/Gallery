@@ -43,7 +43,7 @@ class ImageScreen extends Screen {
       this.removeButton.innerText = globalFilteredImageArray[i].button;
  
       //Setting image source
-      globalFilteredImageArray[i].filey();
+
       this.imgElement.src = globalFilteredImageArray[i].url;
       
       // Append everything
@@ -59,7 +59,6 @@ class ImageScreen extends Screen {
         let remCard = document.getElementById('imgCard'+ i);
         btnWrapper.removeChild(remCard);
         globalFilteredImageArray.splice(i, 1);
-        console.log(globalFilteredImageArray);
       });
 
       this.imgModal(this.imgElement)
