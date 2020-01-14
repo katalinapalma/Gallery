@@ -75,6 +75,7 @@ imageCardinit(){
 
           this.inputNewText.id = 'newTextInput';
           this.inputNewText.maxLength = '50';
+          this.inputNewText.placeholder = 'Type the new description';
 
           image.myForm.appendChild(this.inputNewText);
           image.myForm.appendChild(this.inputNewName);
