@@ -20,7 +20,7 @@ class NewImageScreen extends Screen{
 
     for(let i = 0;i<globalGalleryObjArray.length;i++){
       this.dropDownOption = document.createElement('option');
-      this.dropDownOption.innerText = globalGalleryObjArray[i].name;
+      this.dropDownOption.innerText = globalGalleryObjArray[i].title;
       this.dropDownList.appendChild(this.dropDownOption);
     }
 

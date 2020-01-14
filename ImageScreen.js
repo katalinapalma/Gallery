@@ -44,7 +44,6 @@ class ImageScreen extends Screen {
       this.removeButton.innerText = globalFilteredImageArray[i].button;
  
       //Setting image source
-      
       this.imgElement.src = globalFilteredImageArray[i].url;
       
       // Append everything
@@ -120,7 +119,7 @@ class ImageScreen extends Screen {
               globalFilteredImageArray[y].button = 'Detele';
             } 
           }
-        } 
+        }
         this.displayImage();
       })
     })
