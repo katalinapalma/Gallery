@@ -12,15 +12,24 @@ class ImageScreen extends Screen {
 
     this.mainContentWrapper = document.getElementById("main-content-wrapper");
     this.mainContentWrapper.appendChild(this.imgWrapper);
+
+    this.toggleButton = document.createElement("button");
+    this.toggleButton.id = "toggle-button";
+    this.toggleButton.innerText = "Toggle metadata";
     
+    document.getElementById("maincontent-h1").appendChild(this.toggleButton);
+    this.toggleButton.addEventListener("click", this.toggleMetaData);
+
     for(let i = 0;i<globalFilteredImageArray.length;i++) {
 
       // Creating img elements
       this.imgName = document.createElement("h2");
       this.imgCard = document.createElement('div');
+      this.metaDataContainer = document.createElement("div");
       this.imgText = document.createElement("p");
       this.removeButton = document.createElement('button');
       this.imgElement = document.createElement("img");
+      
 
       // Gallery
       this.galleryText = document.createElement("p");
@@ -32,25 +41,29 @@ class ImageScreen extends Screen {
       this.imgText.id = 'imgTextId' + i;
       this.removeButton.id = 'remove-button' + i;
       this.imgCard.id = 'imgCard' + i;
+      this.metaDataContainer.id = "meta-container" +i;
+      
 
       //Setting class
       this.imgCard.className = 'card';
       this.removeButton.className = 'removeButtonClass';
+      this.metaDataContainer.className = "metaContainer";
 
       //Setting text
       this.imgName.innerText = globalFilteredImageArray[i].name;
       this.imgText.innerText = globalFilteredImageArray[i].description;
       this.removeButton.innerText = globalFilteredImageArray[i].button;
  
-      //Setting image source
+      //Setting image source 
 
       this.imgElement.src = globalFilteredImageArray[i].url;
       
       // Append everything
       this.imgWrapper.appendChild(this.imgCard);
       this.imgCard.appendChild(this.imgElement);
-      this.imgCard.appendChild(this.imgName);
-      this.imgCard.appendChild(this.imgText);
+      this.imgCard.appendChild(this.metaDataContainer);
+      this.metaDataContainer.appendChild(this.imgName);
+      this.metaDataContainer.appendChild(this.imgText);
       this.imgCard.appendChild(this.galleryText);
       this.imgCard.appendChild(this.removeButton);
 
@@ -89,6 +102,16 @@ class ImageScreen extends Screen {
       }
     })
 
+  }
+  toggleMetaData() {
+    for(let i = 0;i<globalFilteredImageArray.length;i++) {
+      var x = document.getElementsByClassName("metaContainer")[i];
+      if (x.style.display === "none") {
+        x.style.display = "block";
+      } else {
+        x.style.display = "none";
+      }
+    }
   }
 }
 
