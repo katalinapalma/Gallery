@@ -216,7 +216,7 @@ img {
   margin-top: 15px;
   margin-bottom: 15px;
   transition: 0.3s;
-  border: 1px solid black;
+  border: 2px solid black;
   width: 20%;
   word-wrap: break-word;
 }
@@ -433,7 +433,6 @@ img {
 
 .gallery-buttons:hover {
   border-bottom: 4px solid #e8833a;
-
 }
 
 /* create gallery button */

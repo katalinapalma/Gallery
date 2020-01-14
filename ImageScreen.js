@@ -92,39 +92,37 @@ class ImageScreen extends Screen {
   }
 
   ImportImagesBtn() {
+    this.btnDiv = document.createElement('div');
+    this.btnDiv.id = 'btndiv';
+    this.mainContentWrapper.appendChild(this.btnDiv);
     this.importBtn = document.createElement('button');
     this.importBtn.innerText = 'Import images';
     this.importBtn.id = 'import-images-button';
-    this.mainContentWrapper.appendChild(this.importBtn);
+    this.btnDiv.appendChild(this.importBtn);
 
     this.importBtn.addEventListener('click', () => {
       let getImages = getJsonData.getData('https://jsonplaceholder.typicode.com/photos');
       getImages.then((jsonImages) => {
-        
         let userID = sessionStorage.getItem("userID");
-        let items = [jsonImages];
-        let albumID = items.albumId;
-        // console.log('items', items);
-        // console.log('albumid', albumID);
+        
         
         for(let i = 0; i < jsonImages.length; i++) {
           let items = jsonImages[i];
-          console.log('items', items);
+          let albumID = items.albumId;
           
-
-          // if(this.albumID === this.userID) {  
-          //   globalFilteredImageArray.push(items);
-          //   globalFilteredImageArray[i].name = items.title;
-          //   globalFilteredImageArray[i].description = '';
-          //   globalFilteredImageArray[i].gallery = items.albumId;
-          //   globalFilteredImageArray[i].button = "Delete";
-
-          //   this.displayImage();
-
-          // }
+          if(albumID == userID) {
+            globalFilteredImageArray.push(items);
+            
+            for(let y = 0;y < globalFilteredImageArray.length;y++ ) {
+              globalFilteredImageArray[y].name = items.title;
+              globalFilteredImageArray[y].description = '';
+              globalFilteredImageArray[y].gallery = items.albumId;
+              globalFilteredImageArray[y].button = 'Detele';
+            } 
+          }
         } 
+        this.displayImage();
       })
     })
   }
-
 }
