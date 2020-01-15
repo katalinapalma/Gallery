@@ -4,6 +4,7 @@ class ImageScreen extends Screen {
     super(content);
     this.displayImage();
     this.imgModal();
+    this.ImportImagesBtn();
   }
 
   displayImage() {
@@ -43,7 +44,6 @@ class ImageScreen extends Screen {
       this.removeButton.innerText = globalFilteredImageArray[i].button;
  
       //Setting image source
-
       this.imgElement.src = globalFilteredImageArray[i].url;
       
       // Append everything
@@ -62,6 +62,7 @@ class ImageScreen extends Screen {
       });
 
       this.imgModal(this.imgElement)
+     
     }
   }
 
@@ -82,13 +83,45 @@ class ImageScreen extends Screen {
       });
     }
   
-
     window.addEventListener('click', (e) => { //user can click anywhere on window to close image
       if(e.target === this.imageModal) {
         this.imageModal.style.display = 'none';
       }
     })
+  }
 
+  ImportImagesBtn() {
+    this.btnDiv = document.createElement('div');
+    this.btnDiv.id = 'btndiv';
+    this.mainContentWrapper.appendChild(this.btnDiv);
+    this.importBtn = document.createElement('button');
+    this.importBtn.innerText = 'Import images';
+    this.importBtn.id = 'import-images-button';
+    this.btnDiv.appendChild(this.importBtn);
+
+    this.importBtn.addEventListener('click', () => {
+      let getImages = getJsonData.getData('https://jsonplaceholder.typicode.com/photos');
+      getImages.then((jsonImages) => {
+        let userID = sessionStorage.getItem("userID");
+        
+        
+        for(let i = 0; i < jsonImages.length; i++) {
+          let items = jsonImages[i];
+          let albumID = items.albumId;
+          
+          if(albumID == userID) {
+            globalFilteredImageArray.push(items);
+            
+            for(let y = 0;y < globalFilteredImageArray.length;y++ ) {
+              globalFilteredImageArray[y].name = items.title;
+              globalFilteredImageArray[y].description = '';
+              globalFilteredImageArray[y].gallery = items.albumId;
+              globalFilteredImageArray[y].button = 'Detele';
+            } 
+          }
+        }
+        this.displayImage();
+      })
+    })
   }
 }
-

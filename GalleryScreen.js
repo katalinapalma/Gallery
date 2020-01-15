@@ -17,6 +17,7 @@ class GalleryScreen extends Screen{
     this.gallerySectionLeft = document.createElement('section'); //creates left div to Gallery screen
     this.galleryContainer.appendChild(this.gallerySectionLeft); //appends child to div container
     this.gallerySectionLeft.id = 'gallerySectionLeft'; //gives div an id
+
     this.gallerySectionLeft.addEventListener('click', (e) => { //adds event listener to buttons for galleries
       if(e.target !== e.currentTarget) {
         let clickedBtn = e.target.innerText;
@@ -116,7 +117,6 @@ class GalleryScreen extends Screen{
       }
   }
   initImportButton() {
-
     this.importButton = document.createElement("button");
     this.importButton.id = "import-button";
     this.importButton.innerText = "Import";
