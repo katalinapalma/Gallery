@@ -21,14 +21,12 @@ class GalleryScreen extends Screen{
     this.gallerySectionLeft.addEventListener('click', (e) => { //adds event listener to buttons for galleries
       if(e.target !== e.currentTarget) {
         let clickedBtn = e.target.innerText;
-        this.removeMe();
         
-        let galleryImageArr = globalObjectArray.filter((imageObject) => {
+        globalGalleryImageArray = globalImportedAlbumsArray.filter((imageObject) => {
           return imageObject.gallery === clickedBtn;
         }); 
-        console.log(galleryImageArr);
-        globalFilteredImageArray = galleryImageArr;
-        ScreenHandler.activeScreen = new ImageScreen();
+        
+        ScreenHandler.changeScreen('Images', 'Album');
       }
     })
 
@@ -164,7 +162,7 @@ class GalleryScreen extends Screen{
                   description: jsonPhotos[i].albumId,
                   gallery: jsonAlbums[y].title,
                 }
-                globalObjectArray.push(globalImageObj);
+                globalImportedAlbumsArray.push(globalImageObj);
                 
               }
             }

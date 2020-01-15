@@ -1,6 +1,6 @@
 var ScreenHandler = {
   activeScreen: null,
-  changeScreen: function(screenType){
+  changeScreen: function(screenType, mode){
     if(this.activeScreen) {
       this.activeScreen.removeMe();
     }
@@ -10,7 +10,7 @@ var ScreenHandler = {
         this.activeScreen = new NewImageScreen();
         break;
       case 'Images':
-        this.activeScreen = new ImageScreen();
+        this.activeScreen = new ImageScreen(mode);
         break;
       case 'Gallery':
         this.activeScreen = new GalleryScreen();
