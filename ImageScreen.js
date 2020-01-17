@@ -3,6 +3,7 @@ class ImageScreen extends Screen {
     let content = "Images";
     super(content);
     this.displayImage();
+    this.ImportImagesBtn();
   }
 
   displayImage() {
@@ -16,25 +17,40 @@ class ImageScreen extends Screen {
       let imageCards = new ImageCard(i);
       globalCardsArray.push(imageCards);
     }
+  }
 
-  /*imgModal() { 
-    //creating image modal 
-    this.imageModal = document.createElement('div'); //creates image modal div
-    this.imageModal.id = 'image-modal'; //gives image modal div an id
-    this.imgWrapper.appendChild(this.imageModal); //appends image modal div to image wrapper
+  ImportImagesBtn() {
+    this.btnDiv = document.createElement('div');
+    this.btnDiv.id = 'btndiv';
+    this.mainContentWrapper.appendChild(this.btnDiv);
+    this.importBtn = document.createElement('button');
+    this.importBtn.innerText = 'Import images';
+    this.importBtn.id = 'import-images-button';
+    this.btnDiv.appendChild(this.importBtn);
 
-    this.imageModalContent = document.createElement('img'); //creates image element
-    this.imageModalContent.id = 'image-modal-content'; //gives id to image element
-    this.imageModal.appendChild(this.imageModalContent); //appends image element to image modal
-    
-    if(this.imgElement) {
-      this.imgElement.addEventListener('click', (e) => { //when user clicks on image, the image modal opens
-        this.imageModal.style.display = 'block';
-        this.imageModalContent.src = e.target.src;
-      });
-    }*/
-
+    this.importBtn.addEventListener('click', () => {
+      let getImages = getJsonData.getData('https://jsonplaceholder.typicode.com/photos');
+      getImages.then((jsonImages) => {
+        let userID = sessionStorage.getItem("userID");
+        
+        
+        for(let i = 0; i < jsonImages.length; i++) {
+          let items = jsonImages[i];
+          let albumID = items.albumId;
+          
+          if(albumID == userID) {
+            globalFilteredImageArray.push(items);
+            
+            for(let y = 0;y < globalFilteredImageArray.length;y++ ) {
+              globalFilteredImageArray[y].name = items.title;
+              globalFilteredImageArray[y].description = '';
+              globalFilteredImageArray[y].gallery = items.albumId;
+              globalFilteredImageArray[y].button = 'Detele';
+            } 
+          }
+        }
+        this.displayImage();
+      })
+    })
   }
 }
-
-

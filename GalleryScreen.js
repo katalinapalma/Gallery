@@ -17,6 +17,7 @@ class GalleryScreen extends Screen{
     this.gallerySectionLeft = document.createElement('section'); //creates left div to Gallery screen
     this.galleryContainer.appendChild(this.gallerySectionLeft); //appends child to div container
     this.gallerySectionLeft.id = 'gallerySectionLeft'; //gives div an id
+
     this.gallerySectionLeft.addEventListener('click', (e) => { //adds event listener to buttons for galleries
       if(e.target !== e.currentTarget) {
         let clickedBtn = e.target.innerText;
@@ -24,8 +25,8 @@ class GalleryScreen extends Screen{
         
         let galleryImageArr = globalObjectArray.filter((imageObject) => {
           return imageObject.gallery === clickedBtn;
-        });
-
+        }); 
+        console.log(galleryImageArr);
         globalFilteredImageArray = galleryImageArr;
         ScreenHandler.activeScreen = new ImageScreen();
       }
@@ -42,10 +43,11 @@ class GalleryScreen extends Screen{
     this.galleryBtn3.innerText = 'Create Gallery';
 
     for (let i = 0;i<globalGalleryObjArray.length;i++){
+
       this.galleryBtn = document.createElement('button');
       this.galleryBtn.className = 'gallery-buttons';
       this.galleryBtn.id = 'gallery' + i;
-      this.galleryBtn.innerText =  globalGalleryObjArray[i].name;
+      this.galleryBtn.innerText =  globalGalleryObjArray[i].title;
       this.gallerySectionLeft.appendChild(this.galleryBtn);
     }
   }
@@ -86,7 +88,7 @@ class GalleryScreen extends Screen{
         console.log('tomt');
       }else{
         globalGalleryObj = {
-          name: this.galleryName.value,
+          title: this.galleryName.value,
         }
         console.log(globalGalleryObj);
         this.createNewGallery();
@@ -104,36 +106,76 @@ class GalleryScreen extends Screen{
 
   createNewGallery(){
     // creates buttons to left section in gallery, depending on what the user names the gallery.
-    if (globalGalleryObj.name == 0) {
+    if (globalGalleryObj.title == 0) {
       alert('Name your Gallery')
     } else {
         this.galleryBtn = document.createElement('button');
         this.galleryBtn.className = 'gallery-buttons';
         this.galleryBtn.id = 'gallery' + globalGalleryObjArray.length;
-        this.galleryBtn.innerText =  globalGalleryObj.name;
+        this.galleryBtn.innerText =  globalGalleryObj.title;
         this.gallerySectionLeft.appendChild(this.galleryBtn);
       }
   }
   initImportButton() {
-
     this.importButton = document.createElement("button");
     this.importButton.id = "import-button";
     this.importButton.innerText = "Import";
     this.gallerySectionRight.appendChild(this.importButton);
 
     this.importButton.addEventListener("click", () => {
-      let request = getJsonData.getData('https://jsonplaceholder.typicode.com/albums');
-      request.then((myJson) => {
-        console.log(myJson);
-        let userID = sessionStorage.getItem("userID");
-        for(let i = 0; i < myJson.length; i++) {
-          if(myJson[i].userId == userID) {
-            
-            console.log("found album: " + myJson[i].userId);
+
+
+      let userID = sessionStorage.getItem("userID");
+
+      let getAlbums = getJsonData.getData('https://jsonplaceholder.typicode.com/albums');
+      getAlbums.then((jsonAlbums) => {
+        console.log(jsonAlbums);
+        for(let i = 0; i < jsonAlbums.length; i++) {
+
+          if(jsonAlbums[i].userId == userID) {
+
+            globalGalleryObj = {
+              title: jsonAlbums[i].title,
+              id: jsonAlbums[i].id,
+            }
+            console.log(globalGalleryObj);
+            globalGalleryObjArray.push(jsonAlbums[i]);
+            this.createNewGallery();
           }
         }
-      })
-      });
+
+        let getPhotos = getJsonData.getData('https://jsonplaceholder.typicode.com/photos');
+        getPhotos.then((jsonPhotos) => {
+
+          console.log(jsonPhotos);
+
+          //Go through all photos
+          for(let i = 0; i < jsonPhotos.length; i++) {
+
+            //For every photo, go through all albums
+            for(let y = 0; y < jsonAlbums.length; y++) {
+
+              // When ID's match, save info and push to array
+              if(jsonPhotos[i].albumId == jsonAlbums[y].id) {
+
+                globalImageObj = {
+                  url: jsonPhotos[i].url,
+                  name: "",
+                  description: jsonPhotos[i].albumId,
+                  gallery: jsonAlbums[y].title,
+                }
+                globalObjectArray.push(globalImageObj);
+                
+              }
+            }
+            
+          }
+          
+
+        })
+        })
+    });
+
 
       
     }

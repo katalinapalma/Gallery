@@ -216,7 +216,7 @@ img {
   margin-top: 15px;
   margin-bottom: 15px;
   transition: 0.3s;
-  border: 1px solid black;
+  border: 2px solid black;
   width: 20%;
   word-wrap: break-word;
 }
@@ -517,7 +517,6 @@ img {
 
 .gallery-buttons:hover {
   border-bottom: 4px solid #e8833a;
-
 }
 
 /* create gallery button */
@@ -540,7 +539,24 @@ img {
 #import-button {
   font-size: 25px;
 }
+
 #gallery-button3:hover {
   background-color: #F7C325;
 }
 
+/* Import images button */
+#import-images-button {
+  background-color:#61b865;
+  color: #fff;
+  font-family: 'Raleway';
+  border: 4px solid #447e47;
+  border-radius: 5px;
+  font-size: 15px;
+  padding: 8px;
+  margin: 17px;
+  margin-top: 3px;
+}
+
+#import-images-button:hover {
+  background-color: #7ae77f;
+}
