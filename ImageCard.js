@@ -10,7 +10,7 @@ imageCardinit(){
     this.mainContentWrapper.appendChild(this.imgWrapps);
 
      // Creating img elements
-     this.imgName = document.createElement("h2");
+     this.imgName = document.createElement("p");
      this.imgCard = document.createElement('div');
      this.imgText = document.createElement("p");
      this.removeButton = document.createElement('button');
@@ -30,6 +30,7 @@ imageCardinit(){
      //Setting class
      this.imgCard.className = 'card';
      this.removeButton.className = 'removeButtonClass';
+     this.imgName.className = 'imgNameClass';
 
      //Setting text
      this.imgName.innerText = globalFilteredImageArray[this.i].name;
@@ -65,27 +66,47 @@ imageCardinit(){
           image.imageMetaName.innerText = '';
           image.imageMetaText.innerText = '';
         //creates a form in the modal so the user can type the name or text
-          this.inputNewName = document.createElement('input');
-          this.inputNewText = document.createElement('textarea');
+          this.inputNewName = document.createElement('div');
+          this.inputNewText = document.createElement('div');
 
+          this.inputNewName.setAttribute('contenteditable', 'true');
+          this.inputNewText.setAttribute('contenteditable', 'true');
+          
           this.inputNewName.id = 'newNameInput';
-          this.inputNewName.type = 'name';
-          this.inputNewName.placeholder = 'Type the new name';
-          this.inputNewName.maxLength = '30';
-
           this.inputNewText.id = 'newTextInput';
-          this.inputNewText.maxLength = '50';
+          this.inputNewName.innerHTML = '';
 
           image.myForm.appendChild(this.inputNewText);
           image.myForm.appendChild(this.inputNewName);
+          
+          image.boldButton.addEventListener('click', (e) => {
+            e.stopPropagation();
+            console.log('bold');
+            
+            document.execCommand('bold');
+          })
+
+          image.underLineButton.addEventListener('click', (e) =>{
+            e.stopPropagation();
+            document.execCommand('underline');
+
+          })
+
+          image.sizeButton.addEventListener('click', (e) =>{
+            e.stopPropagation();
+            document.execCommand('fontSize','false', '10');            
+          })
 
          image.myForm.addEventListener('submit', (e) => {
           e.preventDefault();
             // depending on the input of the name or text, it will change the name/description in the object array
-            globalObjectArray[this.i].name = this.inputNewName.value;
-            this.imgName.innerText = this.inputNewName.value;  
-            globalObjectArray[this.i].description = this.inputNewText.value;
-            this.imgText.innerText = this.inputNewText.value;  
+            globalObjectArray[this.i].name = this.inputNewName.textContent;
+            this.imgName.innerHTML = this.inputNewName.textContent;
+            globalObjectArray[this.i].description = this.inputNewText.textContent;
+            this.imgText.innerHTML = this.inputNewText.textContent;
+            let bitchass = window.getComputedStyle(this.inputNewName, null);
+            console.log(bitchass);
+            
       })
     })
   }

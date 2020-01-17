@@ -105,9 +105,10 @@ class NewImageScreen extends Screen{
       globalObjectArray.push(globalImageObj);
 
       this.theForm.reset();
-      if (reader) {
+
+      /*if (reader) {
         this.fileDisplayArea.removeChild(this.img);
-      }      
+      } */     
     });
 
     this.fileInput.addEventListener('change', (e) => {

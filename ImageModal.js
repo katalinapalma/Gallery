@@ -19,9 +19,10 @@ class ImageModal {
             this.imageMetaName = document.createElement('h2');
             this.imageMetaText = document.createElement('p');
             this.modalSubmit = document.createElement('input');
-            this.styleButton = document.createElement('button');
-            this.styleButton2 = document.createElement('button');
-            this.styleButton3 = document.createElement('button');
+            this.styleButtonWrapper = document.createElement('div');
+            this.boldButton = document.createElement('button');
+            this.underLineButton = document.createElement('button');
+            this.sizeButton = document.createElement('button');
 
 
             this.imageRef.id = 'image-modal-content'; //gives id to image element
@@ -29,18 +30,21 @@ class ImageModal {
             this.imageMetaText.id = 'model-image-text';
             this.modalSubmit.id = 'mySubmitModal';
             this.myForm.id = 'myFormId';
+            this.styleButtonWrapper.id = 'styleButtonWrapper';
 
             this.modalSubmit.className = 'modalSubmit';
             this.imageRef.className = 'imageRefModal'; //gives className to image element
             this.imageMetaName.className = 'imgMetaName';
             this.imageMetaText.className = 'imgMetaText';
-            this.styleButton.className = 'fontStyle';
+            this.boldButton.className = 'bold';
+            this.underLineButton.className = 'Underline';
+            this.sizeButton.className = 'fontSize';
 
             this.modalSubmit.type = 'submit';
             this.modalSubmit.value = 'Edit';
-            this.styleButton.innerText = 'B';
-            this.styleButton2.innerText = 'U';
-            this.styleButton3.innerText = 'Size';
+            this.boldButton.innerText = 'B';
+            this.underLineButton.innerText = 'U';
+            this.sizeButton.innerText = 'Size';
 
             this.imageModalRef.style.display = 'block';
             
@@ -50,17 +54,15 @@ class ImageModal {
 
         this.imgWrapper.appendChild(this.imageModalRef); //appends image modal div to image wrapper
         this.imageModalRef.appendChild(this.imageRef); //appends image element to image modal
+        this.imageModalRef.appendChild(this.styleButtonWrapper);
+        this.styleButtonWrapper.appendChild(this.boldButton);
+        this.styleButtonWrapper.appendChild(this.underLineButton);
+        this.styleButtonWrapper.appendChild(this.sizeButton);
         this.imageModalRef.appendChild(this.myForm);
         this.myForm.appendChild(this.imageMetaName);
         this.myForm.appendChild(this.imageMetaText);
         this.myForm.appendChild(this.modalSubmit);
-        this.myForm.appendChild(this.styleButton);
-        this.myForm.appendChild(this.styleButton2);
-        this.myForm.appendChild(this.styleButton3);
-
-        this.styleButton.addEventListener('click', () =>{
-            this.styleButton = document.execCommand('bold',false,null);
-        })
+        
         
 /*
         this.imageMetaName.addEventListener('click', () => {
