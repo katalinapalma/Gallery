@@ -33,8 +33,8 @@ imageCardinit(){
      this.imgName.className = 'imgNameClass';
 
      //Setting text
-     this.imgName.innerText = globalFilteredImageArray[this.i].name;
-     this.imgText.innerText = globalFilteredImageArray[this.i].description;
+     this.imgName.innerHTML = globalFilteredImageArray[this.i].name;
+     this.imgText.innerHTML = globalFilteredImageArray[this.i].description;
      this.removeButton.innerText = globalFilteredImageArray[this.i].button;
 
      //Setting image source
@@ -81,8 +81,7 @@ imageCardinit(){
           
           image.boldButton.addEventListener('click', (e) => {
             e.stopPropagation();
-            console.log('bold');
-            
+           
             document.execCommand('bold');
           })
 
@@ -100,10 +99,10 @@ imageCardinit(){
          image.myForm.addEventListener('submit', (e) => {
           e.preventDefault();
             // depending on the input of the name or text, it will change the name/description in the object array
-            globalObjectArray[this.i].name = this.inputNewName.textContent;
-            this.imgName.innerHTML = this.inputNewName.textContent;
-            globalObjectArray[this.i].description = this.inputNewText.textContent;
-            this.imgText.innerHTML = this.inputNewText.textContent;
+            globalObjectArray[this.i].name = this.inputNewName.innerHTML;
+            this.imgName.innerHTML = this.inputNewName.innerHTML;
+            globalObjectArray[this.i].description = this.inputNewText.innerHTML;
+            this.imgText.innerHTML = this.inputNewText.innerHTML;
             let bitchass = window.getComputedStyle(this.inputNewName, null);
             console.log(bitchass);
             
