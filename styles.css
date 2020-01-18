@@ -543,7 +543,15 @@ img {
 #gallery-button3:hover {
   background-color: #F7C325;
 }
-
+#toggle-button {
+  display: block;
+  position: absolute;
+  padding: 8px;
+  right: 30px;
+}
+.metaContainer {
+  display: block;
+}
 /* Import images button */
 #import-images-button {
   background-color:#61b865;
@@ -560,3 +568,4 @@ img {
 #import-images-button:hover {
   background-color: #7ae77f;
 }
+

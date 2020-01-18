@@ -12,10 +12,18 @@ class ImageScreen extends Screen {
 
     this.mainContentWrapper = document.getElementById("main-content-wrapper");
     this.mainContentWrapper.appendChild(this.imgWrapper);
+
+    this.toggleButton = document.createElement("button");
+    this.toggleButton.id = "toggle-button";
+    this.toggleButton.innerText = "Toggle metadata";
     
+    document.getElementById("maincontent-h1").appendChild(this.toggleButton);
+    this.toggleButton.addEventListener("click", this.toggleMetaData);
+
     for(let i = 0;i<globalFilteredImageArray.length;i++) {
       let imageCards = new ImageCard(i);
       globalCardsArray.push(imageCards);
+
     }
   }
 
@@ -52,5 +60,15 @@ class ImageScreen extends Screen {
         this.displayImage();
       })
     })
+  }
+  toggleMetaData() {
+    for(let i = 0;i<globalFilteredImageArray.length;i++) {
+      var x = document.getElementsByClassName("metaContainer")[i];
+      if (x.style.display === "none") {
+        x.style.display = "block";
+      } else {
+        x.style.display = "none";
+      }
+    }
   }
 }
