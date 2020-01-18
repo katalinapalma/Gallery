@@ -249,10 +249,15 @@ class App {
 
   logInModal() {
     let loginBtn = document.getElementById('login-button');
+    let loginImg = document.getElementById('user-icon');
     let spanClose = document.getElementsByClassName('close')[0];
     let modal = document.getElementById('loginModal');
     
     loginBtn.addEventListener('click', (e) => { //when user clicks on log in button, the modal opens
+      modal.style.display = 'block';
+    })
+
+    loginImg.addEventListener('click', (e) => { //when user clicks on log in button, the modal opens
       modal.style.display = 'block';
     })
     

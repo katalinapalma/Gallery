@@ -20,7 +20,7 @@ html, body {
   margin: auto;
   padding: 10px;
   width: 30%;
-  font-family: 'Raleway', sans-serif;
+  font-family: '', sans-serif;
   font-size: 15px;
   color:  #293845;
   text-align: center;
@@ -33,13 +33,21 @@ html, body {
   
 }
 #login-header {
-  font-size: 15px; 
+  font-size: 13px;
+  color: rgb(0, 0, 0);
+  margin-left: 7%; 
 }
 #user-icon {
   width: 37px;
   height: 37px;
   margin: 3px;
   padding: 0;
+  transition: 5s;
+}
+
+#user-icon:hover{
+  transform: rotate(10000deg);
+  cursor: pointer;
 }
 
 /* flexbox wrapper */
@@ -65,7 +73,7 @@ html, body {
 
 /* h2 in sidebar */
 .navButton, #login-button {
-  font-family: 'Raleway', sans-serif;
+  font-family: '', sans-serif;
   background-color: #E8833A;
   border: none;
   font-size: 20px;
@@ -89,7 +97,7 @@ html, body {
 
 /* h1 in maincontent */
 #maincontent-h1 {
-  font-family: 'Raleway', sans-serif;
+  font-family: '', sans-serif;
   color: white;
   padding: 25px;
   font-size: 25px;
@@ -98,7 +106,8 @@ html, body {
 #formWrapper{
   border-radius: 5px;
   background-color: rgb(96, 118, 138);
-  margin: 10px;
+  margin-left: 10%;
+  width: 75%;
 }
 
 #urlID {
@@ -107,7 +116,7 @@ html, body {
   text-align: center;
   padding: 12px 20px;
   margin-left: 10%;
-  margin-top: 10px;
+  margin-top: 20px;
   display: inline-block;
   border: 1px solid #ccc;
   border-radius: 4px;
@@ -162,6 +171,7 @@ html, body {
   margin-top: 5%;
   border: none;
   border-radius: 4px;
+  font-size: 20px;
   cursor: pointer;
   transition: 0.3s;
 }
@@ -197,7 +207,7 @@ img {
   height: 20px;
   left: 26%;
   top: 26px;
-  margin-top: 6px;
+  margin-top: 20px;
   margin-bottom: 5px;
   border: none;
   background-color: #837a7a;
@@ -215,8 +225,10 @@ img {
   margin-right: 15px;
   margin-top: 15px;
   margin-bottom: 15px;
+  padding-bottom: 10px;
   transition: 0.3s;
-  border: 2px solid black;
+  border: 2px solid rgb(34, 33, 33);
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,2);
   width: 20%;
   word-wrap: break-word;
 }
@@ -278,8 +290,13 @@ img {
   border: none;
   display: block;
   color: white;
-  font-size: 18px;
+  font-size: 30px;
   box-shadow: 0 3px 10px 2px rgb(110, 109, 109);
+}
+
+.modal-content-gallery button:hover{
+  background-color: #F7C325;
+  cursor: pointer;
 }
 
 .close {
@@ -287,7 +304,7 @@ img {
   float: right;
   font-size: 20px;
   font-weight: bold;
-  font-family: 'Raleway';
+  font-family: '';
   margin-top: -14px;
   margin-right: -10px;
 }
@@ -308,7 +325,7 @@ img {
   border: none;
   border-radius: 3px;
   text-transform: uppercase;
-  font-family: 'Raleway';
+  font-family: '';
   font-size: 16px;
 }
 
@@ -334,7 +351,7 @@ img {
 }
 
 .modal-content p {
-  font-family: 'Raleway';
+  font-family: '';
   font-size: 12px;
   text-transform: uppercase;
 }
@@ -383,7 +400,7 @@ img {
   width: 200px;
   display: block;
   position: absolute;
-  margin-left: 44%;
+  margin-left: 44.8%;
 }
 #newTextInput{
   display: block;
@@ -399,8 +416,8 @@ img {
 
 .modalSubmit{
   position: absolute;
-  margin-top: 150px;
-  margin-left: -1%;
+  margin-top: 113px;
+  margin-left: 5%;
   padding: 10px;
   width: 100px;
   background-color:#4CAF50;
@@ -422,26 +439,64 @@ img {
   font-size: 30px;
 }
 
+.galleryText{
+  font-weight: bold;
+  text-decoration: underline;
+  color: black;
+  margin-top: 20px;
+}
+
+.metaContainer {
+  display: block;  
+}
+
 #styleButtonWrapper{
   position: absolute;
-  margin-left: 49%;
+  width: 20%;
+
+  margin-left: 35%;
   margin-top: 615px;
 }
 
 .bold{
   font-weight: bold;
-  padding: 5px;
-  margin-right: 5px;
+  padding: 10px;
+  margin-right: 10px;
+  border: none;
+  background-color: black;
+  color: white;
+  transition: 0.3s;
 }
+.bold:hover{
+  background-color: rgb(61, 58, 58);
+  transform: translateY(5px);
+}
+
 .Underline{
   text-decoration: underline;
-  padding: 5px;
+  padding: 10px;
+  border: none;
+  margin-right: 10px;
+  background-color: black;
+  color: white;
+  transition: 0.3s;
+}
+.Underline:hover{
+  background-color: rgb(61, 58, 58);
+  transform: translateY(5px);
+
 }
 .fontSize{
   text-transform: uppercase;
-  padding: 5px;
-  margin-left: 5px;
-
+  padding: 10px;
+  border: none;
+  background-color: black;
+  color: white;
+  transition: 0.3s;
+}
+.fontSize:hover{
+  background-color: rgb(61, 58, 58);
+  transform: translateY(5px);
 }
 
 #file-input {
@@ -477,6 +532,10 @@ img {
   color: rgb(194, 10, 10);
 }
 
+#logInForm{
+  font-weight: bold;
+}
+
 /* Gallery screen */
 #galleryContainer {
   display: flex;
@@ -502,7 +561,7 @@ img {
   display: block;
   background-color:#fff;
   color:#293845;
-  font-family: 'Raleway';
+  font-family: '';
   font-size: 18px;
   font-weight: bold;
   margin: 20px;
@@ -523,7 +582,6 @@ img {
 #gallery-button3 {
   float: right;
   background-color:#e8833a;
-  font-family: 'Raleway';
   font-size: 25px;
   font-weight: bold;
   margin: 20px;
@@ -538,6 +596,17 @@ img {
 
 #import-button {
   font-size: 25px;
+  background-color:#61b865;
+  color: #fff;
+  border: 4px solid #447e47;
+  border-radius: 5px;
+  padding: 8px;
+  margin: 17px;
+  margin-top: 3px;
+}
+
+#import-button:hover {
+  background-color: #7ae77f;
 }
 
 #gallery-button3:hover {
@@ -549,14 +618,12 @@ img {
   padding: 8px;
   right: 30px;
 }
-.metaContainer {
-  display: block;
-}
+
 /* Import images button */
 #import-images-button {
   background-color:#61b865;
   color: #fff;
-  font-family: 'Raleway';
+  font-family: '';
   border: 4px solid #447e47;
   border-radius: 5px;
   font-size: 15px;
