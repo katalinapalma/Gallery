@@ -21,14 +21,12 @@ class GalleryScreen extends Screen{
     this.gallerySectionLeft.addEventListener('click', (e) => { //adds event listener to buttons for galleries
       if(e.target !== e.currentTarget) {
         let clickedBtn = e.target.innerText;
-        this.removeMe();
         
-        let galleryImageArr = globalObjectArray.filter((imageObject) => {
+        globalGalleryImageArray = globalImportedAlbumsArray.filter((imageObject) => {
           return imageObject.gallery === clickedBtn;
         }); 
-        console.log(galleryImageArr);
-        globalFilteredImageArray = galleryImageArr;
-        ScreenHandler.activeScreen = new ImageScreen();
+        
+        ScreenHandler.changeScreen('Images', 'Album');
       }
     })
 
@@ -90,7 +88,6 @@ class GalleryScreen extends Screen{
         globalGalleryObj = {
           title: this.galleryName.value,
         }
-        console.log(globalGalleryObj);
         this.createNewGallery();
         globalGalleryObjArray.push(globalGalleryObj);
       }
@@ -138,7 +135,6 @@ class GalleryScreen extends Screen{
               title: jsonAlbums[i].title,
               id: jsonAlbums[i].id,
             }
-            console.log(globalGalleryObj);
             globalGalleryObjArray.push(jsonAlbums[i]);
             this.createNewGallery();
           }
@@ -147,7 +143,6 @@ class GalleryScreen extends Screen{
         let getPhotos = getJsonData.getData('https://jsonplaceholder.typicode.com/photos');
         getPhotos.then((jsonPhotos) => {
 
-          console.log(jsonPhotos);
 
           //Go through all photos
           for(let i = 0; i < jsonPhotos.length; i++) {
@@ -163,8 +158,9 @@ class GalleryScreen extends Screen{
                   name: "",
                   description: jsonPhotos[i].albumId,
                   gallery: jsonAlbums[y].title,
+                  button: 'Delete',
                 }
-                globalObjectArray.push(globalImageObj);
+                globalImportedAlbumsArray.push(globalImageObj);
                 
               }
             }
