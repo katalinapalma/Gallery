@@ -12,6 +12,7 @@ imageCardinit(){
      // Creating img elements
      this.imgName = document.createElement("p");
      this.imgCard = document.createElement('div');
+     this.metaDataContainer = document.createElement('div');
      this.imgText = document.createElement("p");
      this.removeButton = document.createElement('button');
      this.imgElement = document.createElement("img");
@@ -26,15 +27,17 @@ imageCardinit(){
      this.imgText.id = 'imgTextId' + this.i;
      this.removeButton.id = 'remove-button' + this.i;
      this.imgCard.id = 'imgCard' + this.i;
+     this.metaDataContainer.id = 'meta-container' + this.i;
 
      //Setting class
+     this.metaDataContainer.className = 'metaContainer';
      this.imgCard.className = 'card';
      this.removeButton.className = 'removeButtonClass';
      this.imgName.className = 'imgNameClass';
 
      //Setting text
-     this.imgName.innerHTML = globalFilteredImageArray[this.i].name;
-     this.imgText.innerHTML = globalFilteredImageArray[this.i].description;
+     this.imgName.innerText = globalFilteredImageArray[this.i].name;
+     this.imgText.innerText = globalFilteredImageArray[this.i].description;
      this.removeButton.innerText = globalFilteredImageArray[this.i].button;
 
      //Setting image source
@@ -44,8 +47,9 @@ imageCardinit(){
      // Append everything
      this.imgWrapps.appendChild(this.imgCard);
      this.imgCard.appendChild(this.imgElement);
-     this.imgCard.appendChild(this.imgName);
-     this.imgCard.appendChild(this.imgText);
+     this.imgCard.appendChild(this.metaDataContainer);
+     this.metaDataContainer.appendChild(this.imgName);
+     this.metaDataContainer.appendChild(this.imgText);
      this.imgCard.appendChild(this.galleryText);
      this.imgCard.appendChild(this.removeButton);
 
@@ -81,7 +85,8 @@ imageCardinit(){
           
           image.boldButton.addEventListener('click', (e) => {
             e.stopPropagation();
-           
+            console.log('bold');
+            
             document.execCommand('bold');
           })
 
@@ -103,9 +108,6 @@ imageCardinit(){
             this.imgName.innerHTML = this.inputNewName.innerHTML;
             globalObjectArray[this.i].description = this.inputNewText.innerHTML;
             this.imgText.innerHTML = this.inputNewText.innerHTML;
-            let bitchass = window.getComputedStyle(this.inputNewName, null);
-            console.log(bitchass);
-            
       })
     })
   }
