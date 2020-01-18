@@ -4,6 +4,7 @@ class ImageScreen extends Screen {
     super(content);
     this.mode = mode;
     this.createWrapper();
+    this.displayButtons();
     
     switch(mode) {
       case 'Sidebar':
@@ -61,8 +62,7 @@ class ImageScreen extends Screen {
 
   ImportImagesBtn() {
     let userID = sessionStorage.getItem("userID");
-
-    if(userID) {
+    if(userID && globalObjectArray.length == 0) {
     this.importBtn.addEventListener('click', () => {
       
       let getImages = getJsonData.getData('https://jsonplaceholder.typicode.com/photos');
@@ -82,14 +82,16 @@ class ImageScreen extends Screen {
               globalImportedPhotosArray[y].name = jsonImages[i].title;
               globalImportedPhotosArray[y].description = '';
               globalImportedPhotosArray[y].gallery = jsonImages[i].albumId;
-              globalImportedPhotosArray[y].button = 'Detele';
+              globalImportedPhotosArray[y].button = 'Delete';
               
             } 
             globalObjectArray.push(globalImportedPhotosArray[i]);
           }
         }
+        
         this.displayImage();
       })
+      
       this.importBtn.disabled = true;
     })
     

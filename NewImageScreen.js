@@ -106,8 +106,9 @@ class NewImageScreen extends Screen{
       globalImportedAlbumsArray.push(globalImageObj); //Add new image to imported albums so user can find 
                                                       //the new image when clicking on a user-created gallery
       this.theForm.reset();
-      if (reader) {
+      if (this.fileDisplayArea.contains(this.img)) {
         this.fileDisplayArea.removeChild(this.img);
+        
       }  
     });
 
