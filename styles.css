@@ -536,36 +536,33 @@ img {
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2), 0 2px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
+#gallery-button3:hover {
+  background-color: #F7C325;
+}
+
+/* import button gallery */
 #import-button {
   font-size: 25px;
 }
 
-#gallery-button3:hover {
-  background-color: #F7C325;
-}
-#toggle-button {
-  display: block;
-  position: absolute;
-  padding: 8px;
-  right: 30px;
-}
 .metaContainer {
   display: block;
 }
-/* Import images button */
-#import-images-button {
+
+/* Import images buttons */
+#import-images-button, #toggle-button {
   background-color:#61b865;
   color: #fff;
   font-family: 'Raleway';
   border: 4px solid #447e47;
   border-radius: 5px;
-  font-size: 15px;
+  font-size: 13px;
   padding: 8px;
   margin: 17px;
   margin-top: 3px;
 }
 
-#import-images-button:hover {
+#import-images-button:hover, #toggle-button:hover {
   background-color: #7ae77f;
 }
 
