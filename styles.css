@@ -413,6 +413,86 @@ img {
 }
 
 
+.imgMetaName{
+  font-size: 45px;
+  text-transform: uppercase;
+  font-weight: bold;
+  color: #fff;
+  margin-top: 500px;
+}
+.imgMetaText{
+  font-size: 24px;
+  font-weight: bold;
+  color: #fff;
+}
+#newNameInput{
+  background-color: white;
+  color: black;
+  padding: 15px;
+  width: 200px;
+  display: block;
+  position: absolute;
+  margin-left: 44%;
+}
+#newTextInput{
+  display: block;
+  position: absolute;
+  background-color: white;
+  color: black;
+  margin-left: 44%;
+  margin-top: 70px;
+  padding: 5px;
+  width: 242px;
+  resize: none;
+}
+
+.modalSubmit{
+  position: absolute;
+  margin-top: 150px;
+  margin-left: -1%;
+  padding: 10px;
+  width: 100px;
+  background-color:#4CAF50;
+  color: white;
+  border: none;
+  border-radius: 2%;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.modalSubmit:hover {
+  background-color: green;
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+
+}
+
+.imgNameClass{
+  font-size: 30px;
+}
+
+#styleButtonWrapper{
+  position: absolute;
+  margin-left: 49%;
+  margin-top: 615px;
+}
+
+.bold{
+  font-weight: bold;
+  padding: 5px;
+  margin-right: 5px;
+}
+.Underline{
+  text-decoration: underline;
+  padding: 5px;
+}
+.fontSize{
+  text-transform: uppercase;
+  padding: 5px;
+  margin-left: 5px;
+
+}
+
 #file-input {
   width: 21%;
   margin-left: 2%;
@@ -512,7 +592,15 @@ img {
 #gallery-button3:hover {
   background-color: #F7C325;
 }
-
+#toggle-button {
+  display: block;
+  position: absolute;
+  padding: 8px;
+  right: 30px;
+}
+.metaContainer {
+  display: block;
+}
 /* Import images button */
 #import-images-button {
   background-color:#61b865;
@@ -529,3 +617,4 @@ img {
 #import-images-button:hover {
   background-color: #7ae77f;
 }
+
