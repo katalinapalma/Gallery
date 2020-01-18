@@ -87,8 +87,8 @@ class GalleryScreen extends Screen{
       }else{
         globalGalleryObj = {
           title: this.galleryName.value,
+          button: 'Delete',
         }
-        console.log(globalGalleryObj);
         this.createNewGallery();
         globalGalleryObjArray.push(globalGalleryObj);
       }
@@ -135,8 +135,8 @@ class GalleryScreen extends Screen{
             globalGalleryObj = {
               title: jsonAlbums[i].title,
               id: jsonAlbums[i].id,
+              buttton: 'Delete',
             }
-            console.log(globalGalleryObj);
             globalGalleryObjArray.push(jsonAlbums[i]);
             this.createNewGallery();
           }
@@ -145,7 +145,6 @@ class GalleryScreen extends Screen{
         let getPhotos = getJsonData.getData('https://jsonplaceholder.typicode.com/photos');
         getPhotos.then((jsonPhotos) => {
 
-          console.log(jsonPhotos);
 
           //Go through all photos
           for(let i = 0; i < jsonPhotos.length; i++) {
@@ -161,6 +160,7 @@ class GalleryScreen extends Screen{
                   name: "",
                   description: jsonPhotos[i].albumId,
                   gallery: jsonAlbums[y].title,
+                  button: 'Delete',
                 }
                 globalImportedAlbumsArray.push(globalImageObj);
                 
