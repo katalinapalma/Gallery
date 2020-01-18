@@ -1,6 +1,7 @@
 class ImageCard {
-    constructor(i){
+    constructor(i, image){
         this.i = i;
+        this.image = image;
         this.imageCardinit();
     }
 
@@ -20,7 +21,7 @@ imageCardinit(){
      // Gallery
      this.galleryText = document.createElement("p");
      this.galleryText.className = "galleryText";
-     this.galleryText.innerText = "Gallery: " + globalFilteredImageArray[this.i].gallery;
+     this.galleryText.innerText = "Gallery: " + this.image[this.i].gallery;
 
      //Setting ID
      this.imgName.id = 'imgNameId' + this.i;
@@ -36,13 +37,13 @@ imageCardinit(){
      this.imgName.className = 'imgNameClass';
 
      //Setting text
-     this.imgName.innerText = globalFilteredImageArray[this.i].name;
-     this.imgText.innerText = globalFilteredImageArray[this.i].description;
-     this.removeButton.innerText = globalFilteredImageArray[this.i].button;
+     this.imgName.innerText = this.image[this.i].name;
+     this.imgText.innerText = this.image[this.i].description;
+     this.removeButton.innerText = this.image[this.i].button;
 
      //Setting image source
 
-     this.imgElement.src = globalFilteredImageArray[this.i].url;
+     this.imgElement.src = this.image[this.i].url;
      
      // Append everything
      this.imgWrapps.appendChild(this.imgCard);
@@ -54,17 +55,17 @@ imageCardinit(){
      this.imgCard.appendChild(this.removeButton);
 
      this.removeButton.addEventListener('click', (e) => {
+       e.stopPropagation();
        let btnWrapper = document.getElementById('image-wrapper');
        let remCard = document.getElementById('imgCard'+ this.i);
        btnWrapper.removeChild(remCard);
-       globalFilteredImageArray.splice(this.i, 1);
-       e.stopPropagation();
+       this.image.splice(this.i, 1);
      });
 
     this.imgCard.addEventListener('click', () => { //when user clicks on image, the image modal opens
-      let image = new ImageModal(globalObjectArray[this.i].url,
-         globalObjectArray[this.i].description, 
-         globalObjectArray[this.i].name)
+      let image = new ImageModal(this.image[this.i].url,
+        this.image[this.i].description, 
+        this.image[this.i].name)
 
          //removes the name and text on the modal
           image.imageMetaName.innerText = '';
@@ -104,9 +105,9 @@ imageCardinit(){
          image.myForm.addEventListener('submit', (e) => {
           e.preventDefault();
             // depending on the input of the name or text, it will change the name/description in the object array
-            globalObjectArray[this.i].name = this.inputNewName.innerHTML;
+            this.image[this.i].name = this.inputNewName.innerHTML;
             this.imgName.innerHTML = this.inputNewName.innerHTML;
-            globalObjectArray[this.i].description = this.inputNewText.innerHTML;
+            this.image[this.i].description = this.inputNewText.innerHTML;
             this.imgText.innerHTML = this.inputNewText.innerHTML;
       })
     })

@@ -3,9 +3,8 @@ class App {
     this.content = content;
     this.initElement();
     this.initButtons();
-    this.addEventListeners();
+    this.createLoginWindow();
     ScreenHandler.changeScreen();
-    this.logInModal();
   }
 
   initElement(){
@@ -65,85 +64,133 @@ class App {
   }
 
   initButtons(){
-    let bodyRef = document.getElementById("sidebar-button-div");
+    
+    this.sidebarRef = document.getElementById("sidebar-button-div");
 
     //Log in button
-    this.loginButton = document.createElement('button'); //creates login button
-    this.loginButton.id = 'login-button'; //sets id for login button
-    this.loginButton.innerText = 'Log in'; //sets inner text for login button 
-    bodyRef.appendChild(this.loginButton); //puts the login button inside the side bar div
-
-    this.loginModal = document.createElement('div'); //creates a new div for log in modal
-    this.loginModal.className = 'modal'; //gives log in modal div a class name 
-    this.loginModal.id = 'loginModal'; //gives log in modal div an id 
-    bodyRef.appendChild(this.loginModal); //puts the log in modal div under the log in button
-
-    //Modal for log in button
-    this.modalContent = document.createElement('div'); //creates div for log in modal content
-    this.modalContent.className = 'modal-content'; //gives the log in modal div a class name
-    this.loginModal.appendChild(this.modalContent); //puts the content inside the log in modal
-
-    this.spanCloseButton = document.createElement('span'); //creates span
-    this.spanCloseButton.className = 'close'; //gives span a class name
-    this.spanCloseButton.innerText = 'X'; //adds icon to close the log in modal
-    this.modalContent.appendChild(this.spanCloseButton); //puts span inside log in modal content div
-
-    // creates form for log in 
-    this.logInForm = document.createElement('form'); //creates log in form 
-    this.loginNameLabel = document.createElement('p'); //creates label for name input field
-    this.loginNameLabel.innerText = 'Email:';
-    this.logInEmail = document.createElement('input'); //input for email
-    this.logInEmail.name = 'email';
-    this.loginPasswordLabel = document.createElement('p'); //creates label for name input field
-    this.loginPasswordLabel.innerText = 'Password:';
-    this.logInPassword = document.createElement('input'); //input for password
-    this.logInPassword.name = 'password';
-    this.logInButton2 = document.createElement('button'); //log in button
-    this.logInButton2.innerText = 'Log in';
-    this.emailError = document.createElement('div'); //email error message
-    this.emailError.id = 'emailError';
-    this.passwordError = document.createElement('div'); // password error message
-    this.passwordError.id = 'pswError';
-    this.loginSuccessful = document.createElement('div'); // login successful message
-    this.loginSuccessful.id = 'loginSuccessMsg';
-    this.loginFailMsg = document.createElement('div'); // login successful message
-    this.loginFailMsg.id = 'loginFail';
-
-    //appends children to the modal content div
-    this.modalContent.appendChild(this.logInForm);
-    this.logInForm.appendChild(this.loginNameLabel);
-    this.logInForm.appendChild(this.logInEmail);
-    this.logInForm.appendChild(this.loginPasswordLabel);
-    this.logInForm.appendChild(this.logInPassword);
-    this.logInForm.appendChild(this.logInButton2);
-    this.logInForm.appendChild(this.emailError);
-    this.logInForm.appendChild(this.passwordError);
-    this.logInForm.appendChild(this.loginSuccessful);
-    this.logInForm.appendChild(this.loginFailMsg);
-
-    //sets id for the log in form, inputs and button.
-    this.logInForm.id = 'logInForm'; 
-    this.logInEmail.id = 'email';
-    this.logInPassword.id = 'password';  
-    this.logInButton2.id =  'login';
+    this.loginButton = document.createElement('button'); 
+    this.loginButton.id = 'login-button'; 
+    this.loginButton.innerText = 'Log in'; 
+    this.sidebarRef.appendChild(this.loginButton); 
 
     //creates new Image button
     this.newImagesButton = document.createElement('button');
     this.newImagesButton.className = 'navButton';
     this.newImagesButton.innerText = 'New Image';
-    bodyRef.appendChild(this.newImagesButton);
+    this.sidebarRef.appendChild(this.newImagesButton);
     
     //Creates images button
     this.imagesButton = document.createElement('button');
     this.imagesButton.className = 'navButton';
     this.imagesButton.innerText = 'Images';
-    bodyRef.appendChild(this.imagesButton);
+    this.sidebarRef.appendChild(this.imagesButton);
 
     //Creates gallery button
     this.galleryButton = document.createElement("button");
     this.galleryButton.className = 'navButton';
     this.galleryButton.innerText = 'Gallery';
-    bodyRef.appendChild(this.galleryButton);
+    this.sidebarRef.appendChild(this.galleryButton);
+
+    this.newImagesButton.addEventListener('click', () => {
+      ScreenHandler.changeScreen('New Image');
+    })
+
+    this.imagesButton.addEventListener('click', () => {
+      //globalFilteredImageArray = globalObjectArray; // (Error) Makes all 5000 photos display after importing galleries
+      ScreenHandler.changeScreen('Images', 'Sidebar');
+    })
+    this.galleryButton.addEventListener(  'click', () => {
+      ScreenHandler.changeScreen('Gallery');
+    })
+  }
+
+
+  createLoginWindow() {
+
+    //Outer modal
+    this.loginModal = document.createElement('div'); 
+    this.loginModal.className = 'modal'; 
+    this.sidebarRef.appendChild(this.loginModal); 
+
+    //Inner modal (content)
+    this.modalContent = document.createElement('div'); 
+    this.modalContent.className = 'modal-content'; 
+    this.loginModal.appendChild(this.modalContent); 
+
+    //Close button
+    this.spanCloseButton = document.createElement('span'); 
+    this.spanCloseButton.className = 'close'; 
+    this.spanCloseButton.innerText = 'X'; 
+    this.modalContent.appendChild(this.spanCloseButton); 
+
+
+
+    this.logInForm = document.createElement('form'); 
+    this.logInForm.id = 'logInForm'; 
+
+    //Email
+    this.loginNameLabel = document.createElement('p');
+    this.loginNameLabel.innerText = 'Email:';
+    this.logInEmail = document.createElement('input'); 
+    this.logInEmail.id = 'email';
+    this.emailError = document.createElement('div'); 
+    this.emailError.id = 'emailError';
+
+    //Password
+    this.loginPasswordLabel = document.createElement('p'); 
+    this.loginPasswordLabel.innerText = 'Password:';
+    this.logInPassword = document.createElement('input'); 
+    this.logInPassword.id = 'password';  
+    this.passwordError = document.createElement('div'); 
+    this.passwordError.id = 'pswError';
+        
+
+    //Login button
+    this.formLoginButton = document.createElement('button'); 
+    this.formLoginButton.innerText = 'Log in';
+    this.formLoginButton.id =  'login';
+
+    this.loginSuccessful = document.createElement('div'); 
+    this.loginSuccessful.id = 'loginSuccessMsg';
+    this.loginFailMsg = document.createElement('div'); 
+    this.loginFailMsg.id = 'loginFail';
+
+  
+
+
+
+
+    this.modalContent.appendChild(this.logInForm);
+    this.logInForm.appendChild(this.loginNameLabel);
+    this.logInForm.appendChild(this.logInEmail);
+    this.logInForm.appendChild(this.loginPasswordLabel);
+    this.logInForm.appendChild(this.logInPassword);
+    this.logInForm.appendChild(this.formLoginButton);
+    this.logInForm.appendChild(this.emailError);
+    this.logInForm.appendChild(this.passwordError);
+    this.logInForm.appendChild(this.loginSuccessful);
+    this.logInForm.appendChild(this.loginFailMsg);
+
+
+    this.loginButton.addEventListener('click', (e) => { //when user clicks on log in button, the modal opens
+      this.loginModal.style.display = 'block';
+    })
+    
+    this.spanCloseButton.addEventListener('click', (e) => { //when user clicks on x, modal closes
+      this.loginModal.style.display = 'none';
+    })
+
+    window.addEventListener('click', (e) => { //user can click anywhere on window to close modal
+      if(e.target === this.loginModal) {
+        this.loginModal.style.display = 'none';
+      }
+    })
+    
+    this.formLoginButton.addEventListener('click', (e) => {
+      this.validateLogin();
+      e.preventDefault();
+    })
+
   }
   /**
    * @desc Checks if input email and password matches database
@@ -202,100 +249,40 @@ class App {
       passWordRef.style.border = "none";
     }
 
-    for(let i = 0; i<this.users.length;i++) {
-      if(this.logInEmail.value.toLowerCase() == this.users[i].email.toLowerCase() && this.logInPassword.value == this.users[i].address.suite) {
+    // Get users from JSON placeholder and check if login data entered matches the database
+    // If it does = login succesful
+
+    let getUsers = getJsonData.getData('https://jsonplaceholder.typicode.com/users');
+    getUsers.then((users) => {
+
+    for(let i = 0; i<users.length;i++) {
+      if(this.logInEmail.value.toLowerCase() == users[i].email.toLowerCase() && this.logInPassword.value == users[i].address.suite) {
         document.getElementById('loginSuccessMsg').innerHTML = 'Login Successful';
         document.getElementById('loginFail').innerHTML = ''; 
-        sessionStorage.setItem("userID", this.users[i].id);
+        sessionStorage.setItem("userID", users[i].id);
         this.indicateUserLoggedIn(); 
         break;
       }      
-      else if (this.logInEmail.value != this.users[i].email) {
+      else if (this.logInEmail.value != users[i].email) {
         document.getElementById('loginFail').innerHTML = '*User does not exist*';
         document.getElementById('loginSuccessMsg').innerHTML = '';
         passWordErrorRef.innerHTML = '';
       }
-      else if (this.logInPassword.value != this.users[i].address.suite){
+      else if (this.logInPassword.value != users[i].address.suite){
         passWordErrorRef.innerHTML = '*Password is incorrect*';
         document.getElementById('loginSuccessMsg').innerHTML = '';
         document.getElementById('loginFail').innerHTML = '';
         break;
       }
     }
+    })
   }
-  
-  getUsers(){
-    let url  = 'https://jsonplaceholder.typicode.com/users';
-    
-    let xhr  = new XMLHttpRequest();
-    
-    xhr.open('GET', url, true);
-    
-    xhr.addEventListener('load',  () => {
 
-      this.users = JSON.parse(xhr.responseText);
-    
-      if (xhr.readyState == 4 && xhr.status == '200') {
-        //console.log(this.users);
-        this.validateLogin();
-      } else {
-        console.error(users);
-      }
-    });
-    
-    xhr.send();
-  }
-  
-
-  logInModal() {
-    let loginBtn = document.getElementById('login-button');
-    let spanClose = document.getElementsByClassName('close')[0];
-    let modal = document.getElementById('loginModal');
-    
-    loginBtn.addEventListener('click', (e) => { //when user clicks on log in button, the modal opens
-      modal.style.display = 'block';
-    })
-    
-    spanClose.addEventListener('click', (e) => { //when user clicks on x, modal closes
-      modal.style.display = 'none';
-    })
-
-    window.addEventListener('click', (e) => { //user can click anywhere on window to close modal
-      if(e.target === modal) {
-        modal.style.display = 'none';
-      }
-    })
-    
-    this.logInButton2.addEventListener('click', (e) => {
-      if(this.users){
-        this.validateLogin();
-      } else {
-        this.getUsers();
-      }
-      e.preventDefault();
-    })
-
-  }
   indicateUserLoggedIn() {
     let loginBar = document.getElementById("login-header");
     loginBar.innerText = this.logInEmail.value.toLowerCase();
     sessionStorage.setItem("userEmail", this.logInEmail.value);
   }
-
-  addEventListeners(){
-    this.newImagesButton.addEventListener('click', () => {
-      ScreenHandler.changeScreen('New Image');
-    })
-
-    this.imagesButton.addEventListener('click', () => {
-      globalFilteredImageArray = globalObjectArray;
-      ScreenHandler.changeScreen('Images');
-    })
-    this.galleryButton.addEventListener(  'click', () => {
-      ScreenHandler.changeScreen('Gallery');
-    })
-  }
-
   
 }
 document.addEventListener('DOMContentLoaded', function(){
@@ -307,5 +294,7 @@ var globalImageObj = {};
 var globalGalleryObj = {};
 var globalGalleryObjArray = [];
 var globalObjectArray = [];
+var globalImportedPhotosArray = [];
+var globalImportedAlbumsArray = [];
+var globalGalleryImageArray = [];
 var globalCardsArray = [];
-var globalFilteredImageArray = [];
