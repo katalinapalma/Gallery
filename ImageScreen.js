@@ -43,30 +43,34 @@ class ImageScreen extends Screen {
   }
 
   ImportImagesBtn() {
-    this.importBtn.addEventListener('click', () => {
-      let getImages = getJsonData.getData('https://jsonplaceholder.typicode.com/photos');
-      getImages.then((jsonImages) => {
-        let userID = sessionStorage.getItem("userID");
-        
-        for(let i = 0; i < jsonImages.length; i++) {
-          let items = jsonImages[i];
-          let albumID = items.albumId;
-          
-          if(albumID == userID) {
-            globalFilteredImageArray.push(items);
+    let userID = sessionStorage.getItem("userID");
+
+    if(userID) {
+      this.importBtn.addEventListener('click', () => {
+        let getImages = getJsonData.getData('https://jsonplaceholder.typicode.com/photos');
+        getImages.then((jsonImages) => {          
+          for(let i = 0; i < jsonImages.length; i++) {
+            let items = jsonImages[i];
+            let albumID = items.albumId;
             
-            for(let y = 0;y < globalFilteredImageArray.length;y++ ) {
-              globalFilteredImageArray[y].name = items.title;
-              globalFilteredImageArray[y].description = '';
-              globalFilteredImageArray[y].gallery = items.albumId;
-              globalFilteredImageArray[y].button = 'Detele';
-            } 
+            if(albumID == userID) {
+              globalFilteredImageArray.push(items);
+              
+              for(let y = 0;y < globalFilteredImageArray.length;y++ ) {
+                globalFilteredImageArray[y].name = items.title;
+                globalFilteredImageArray[y].description = '';
+                globalFilteredImageArray[y].gallery = items.albumId;
+                globalFilteredImageArray[y].button = 'Detele';
+              } 
+            }
           }
-        }
-        this.displayImage();
+          this.displayImage();
+        })
+        this.importBtn.disabled = true;
       })
-    })
+    }
   }
+
   toggleMetaData() {
     for(let i = 0;i<globalFilteredImageArray.length;i++) {
       var x = document.getElementsByClassName("metaContainer")[i];
