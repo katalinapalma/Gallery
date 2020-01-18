@@ -23,11 +23,27 @@ class ImageScreen extends Screen {
 
     this.mainContentWrapper = document.getElementById("main-content-wrapper");
     this.mainContentWrapper.appendChild(this.imgWrapper);
-
-    this.toggleButton = document.createElement("button");
-    this.toggleButton.id = "toggle-button";
-    this.toggleButton.innerText = "Toggle metadata";
-    document.getElementById("maincontent-h1").appendChild(this.toggleButton);
+  }
+  displayButtons() {
+      // creates btn div
+      this.btnDiv = document.createElement('div');
+      this.btnDiv.id = 'btndiv';
+      this.mainContentWrapper = document.getElementById("main-content-wrapper");
+      this.mainContentWrapper.appendChild(this.btnDiv);
+  
+      // creates import images button
+      this.importBtn = document.createElement('button');
+      this.importBtn.innerText = 'Import images';
+      this.importBtn.id = 'import-images-button';
+      this.btnDiv.appendChild(this.importBtn);
+  
+      // creates toggle meta data button
+      this.toggleButton = document.createElement("button");
+      this.toggleButton.id = "toggle-button";
+      this.toggleButton.innerText = "Toggle metadata";
+      this.btnDiv.appendChild(this.toggleButton);
+      this.toggleButton.addEventListener("click", this.toggleMetaData);    
+    
 
   }
   displayImage() {
@@ -44,14 +60,9 @@ class ImageScreen extends Screen {
   }
 
   ImportImagesBtn() {
-    this.btnDiv = document.createElement('div');
-    this.btnDiv.id = 'btndiv';
-    this.mainContentWrapper.appendChild(this.btnDiv);
-    this.importBtn = document.createElement('button');
-    this.importBtn.innerText = 'Import images';
-    this.importBtn.id = 'import-images-button';
-    this.btnDiv.appendChild(this.importBtn);
+    let userID = sessionStorage.getItem("userID");
 
+    if(userID) {
     this.importBtn.addEventListener('click', () => {
       
       let getImages = getJsonData.getData('https://jsonplaceholder.typicode.com/photos');
@@ -77,11 +88,12 @@ class ImageScreen extends Screen {
             globalObjectArray.push(globalImportedPhotosArray[i]);
           }
         }
-        console.log(globalImportedPhotosArray);
-        console.log(globalObjectArray);
         this.displayImage();
       })
+      this.importBtn.disabled = true;
     })
+    
+  }
   }
   toggleMetaDataImages() {
     for(let i = 0;i<globalObjectArray.length;i++) {
@@ -103,5 +115,5 @@ class ImageScreen extends Screen {
       }
     }
   }
+
 }
-  
