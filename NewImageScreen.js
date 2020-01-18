@@ -105,6 +105,10 @@ class NewImageScreen extends Screen{
       globalObjectArray.push(globalImageObj);
 
       this.theForm.reset();
+
+      /*if (reader) {
+        this.fileDisplayArea.removeChild(this.img);
+      } */     
     });
 
     this.fileInput.addEventListener('change', (e) => {
@@ -116,9 +120,9 @@ class NewImageScreen extends Screen{
 
         reader.addEventListener('load', (e) =>{
           this.fileDisplayArea.innerHTML = '';
-          let img = new Image();
-          img.src = reader.result;
-          this.fileDisplayArea.appendChild(img);
+          this.img = new Image();
+          this.img.src = reader.result;
+          this.fileDisplayArea.appendChild(this.img);
         })
         reader.readAsDataURL(file);
       }
