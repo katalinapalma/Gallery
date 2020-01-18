@@ -87,7 +87,6 @@ class GalleryScreen extends Screen{
       }else{
         globalGalleryObj = {
           title: this.galleryName.value,
-          button: 'Delete',
         }
         this.createNewGallery();
         globalGalleryObjArray.push(globalGalleryObj);
@@ -135,7 +134,6 @@ class GalleryScreen extends Screen{
             globalGalleryObj = {
               title: jsonAlbums[i].title,
               id: jsonAlbums[i].id,
-              buttton: 'Delete',
             }
             globalGalleryObjArray.push(jsonAlbums[i]);
             this.createNewGallery();
