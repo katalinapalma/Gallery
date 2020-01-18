@@ -55,11 +55,11 @@ imageCardinit(){
      this.imgCard.appendChild(this.removeButton);
 
      this.removeButton.addEventListener('click', (e) => {
+       e.stopPropagation();
        let btnWrapper = document.getElementById('image-wrapper');
        let remCard = document.getElementById('imgCard'+ this.i);
        btnWrapper.removeChild(remCard);
-       image.splice(this.i, 1);
-       e.stopPropagation();
+       this.image.splice(this.i, 1);
      });
 
     this.imgCard.addEventListener('click', () => { //when user clicks on image, the image modal opens

@@ -9,11 +9,12 @@ class ImageScreen extends Screen {
       case 'Sidebar':
         this.ImportImagesBtn();
         this.displayImage();
+        this.toggleButton.addEventListener("click", this.toggleMetaDataImages);
         break;
       case 'Album':
         this.displayAlbum();
+        this.toggleButton.addEventListener("click", this.toggleMetaDataAlbums);
         break;
-      case 'Photos':
     }
   }
   createWrapper() {
@@ -26,9 +27,8 @@ class ImageScreen extends Screen {
     this.toggleButton = document.createElement("button");
     this.toggleButton.id = "toggle-button";
     this.toggleButton.innerText = "Toggle metadata";
-    
     document.getElementById("maincontent-h1").appendChild(this.toggleButton);
-    this.toggleButton.addEventListener("click", this.toggleMetaData);
+
   }
   displayImage() {
     for(let i = 0;i<globalObjectArray.length;i++) {
@@ -61,26 +61,40 @@ class ImageScreen extends Screen {
         
         
         for(let i = 0; i < jsonImages.length; i++) {
-          let items = jsonImages[i];
-          let albumID = items.albumId;
+
+          let albumID = jsonImages[i].albumId;
           
           if(albumID == userID) {
-            globalImportedPhotosArray.push(items);
+            globalImportedPhotosArray.push(jsonImages[i]);
             
             for(let y = 0;y < globalImportedPhotosArray.length;y++ ) {
-              globalImportedPhotosArray[y].name = items.title;
+              globalImportedPhotosArray[y].name = jsonImages[i].title;
               globalImportedPhotosArray[y].description = '';
-              globalImportedPhotosArray[y].gallery = items.albumId;
+              globalImportedPhotosArray[y].gallery = jsonImages[i].albumId;
               globalImportedPhotosArray[y].button = 'Detele';
+              
             } 
+            globalObjectArray.push(globalImportedPhotosArray[i]);
           }
         }
+        console.log(globalImportedPhotosArray);
+        console.log(globalObjectArray);
         this.displayImage();
       })
     })
   }
-  toggleMetaData() {
-    for(let i = 0;i<globalFilteredImageArray.length;i++) {
+  toggleMetaDataImages() {
+    for(let i = 0;i<globalObjectArray.length;i++) {
+      var x = document.getElementsByClassName("metaContainer")[i];
+      if (x.style.display === "none") {
+        x.style.display = "block";
+      } else {
+        x.style.display = "none";
+      }
+    }
+  }
+  toggleMetaDataAlbums() {
+    for(let i = 0;i<globalGalleryImageArray.length;i++) {
       var x = document.getElementsByClassName("metaContainer")[i];
       if (x.style.display === "none") {
         x.style.display = "block";
