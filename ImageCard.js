@@ -37,8 +37,8 @@ imageCardinit(){
      this.imgName.className = 'imgNameClass';
 
      //Setting text
-     this.imgName.innerText = this.image[this.i].name;
-     this.imgText.innerText = this.image[this.i].description;
+     this.imgName.innerHTML = this.image[this.i].name;
+     this.imgText.innerHTML = this.image[this.i].description;
      this.removeButton.innerText = this.image[this.i].button;
 
      //Setting image source
