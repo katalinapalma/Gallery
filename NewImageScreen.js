@@ -1,11 +1,19 @@
+/**
+ * @description - Class that contains the form  and functionality to upload images both locally and online
+ * @author Ante & Karwan
+ */
 class NewImageScreen extends Screen{
   constructor() {
     let content = "New Images";
     super(content);
     this.createForm();
     this.addEventListeners();
-
   }
+
+  /**
+   * @description - method that creates the form in the new Image screen
+   *  The form allows the user to input url, a name, a description, a gallery and post a local image
+   */
   createForm(){
     this.mainWrapper = document.getElementById('main-content-wrapper');
     this.formWrapper = document.createElement('div');
@@ -70,6 +78,11 @@ class NewImageScreen extends Screen{
     this.formWrapper.appendChild(this.theForm);
   }
 
+  /**
+   * @description - method that listens when the user submits the form
+   *  when submitted, we create an image object with its properties
+   * 
+   */
   addEventListeners(){
     let reader;
     let listOption = document.getElementById("dropdownList");
@@ -104,8 +117,7 @@ class NewImageScreen extends Screen{
       globalImageObj.setGallery();
       globalImageObj.filey();
       globalObjectArray.push(globalImageObj);
-      globalImportedAlbumsArray.push(globalImageObj); //Add new image to imported albums so user can find 
-                                                      //the new image when clicking on a user-created gallery
+      globalImportedAlbumsArray.push(globalImageObj); //Add new image to imported albums so user can find, the new image when clicking on a user-created gallery
       this.theForm.reset();
       if (this.fileDisplayArea.contains(this.img)) {
         this.fileDisplayArea.removeChild(this.img);
@@ -113,14 +125,14 @@ class NewImageScreen extends Screen{
       }  
     });
 
-    this.fileInput.addEventListener('change', (e) => {
+    this.fileInput.addEventListener('change', () => {
       let file = this.fileInput.files[0];
       let fileType = /image.*/;
 
       if (file.type.match(fileType)) {
         reader = new FileReader();
 
-        reader.addEventListener('load', (e) =>{
+        reader.addEventListener('load', () =>{
           this.fileDisplayArea.innerHTML = '';
           this.img = new Image();
           this.img.src = reader.result;
@@ -132,8 +144,6 @@ class NewImageScreen extends Screen{
         this.fileDisplayArea.innerHTML = 'File not supported';
       }
     });
-    
   }
-  
 }
 

@@ -1,3 +1,8 @@
+/**
+ * @description - Class that contains the functionality and heart of the application
+ * contains the global variables, login functionality 
+ * @author Karwan, Katalina & Ante
+ */
 class App {
   constructor(content){
     this.content = content;
@@ -7,6 +12,9 @@ class App {
     ScreenHandler.changeScreen();
   }
 
+  /**
+   * @description - method that creates the UI for the whole application
+   */
   initElement(){
     //Header Div
     this.headerDiv = document.createElement('div');
@@ -49,22 +57,25 @@ class App {
     document.body.appendChild(this.wrapperDiv);
 
     //Sidebar
-    this.sidebarDiv = document.createElement('div'); //create sidebar div
+    this.sidebarDiv = document.createElement('div');
     this.sidebarDiv.setAttribute('id', 'sidebar');
     document.getElementById('wrapper').appendChild(this.sidebarDiv);
       
-    this.sidebarButtonDiv = document.createElement('div'); //create div for h2
+    this.sidebarButtonDiv = document.createElement('div'); 
     this.sidebarDiv.appendChild(this.sidebarButtonDiv);
     this.sidebarButtonDiv.setAttribute('id', 'sidebar-button-div');
     
     //Main content
-    this.mainContentDiv = document.createElement('div'); //create maincontent div
-    this.mainContentDiv.setAttribute('id', 'main-content'); //setting id to div
+    this.mainContentDiv = document.createElement('div'); 
+    this.mainContentDiv.setAttribute('id', 'main-content'); 
     document.getElementById('wrapper').appendChild(this.mainContentDiv);
   }
 
+  /**
+  * @description - Method that creates the navigation buttons and login button
+  *        Event that listens for a click, when clicked it changes screens
+  */
   initButtons(){
-    
     this.sidebarRef = document.getElementById("sidebar-button-div");
 
     //Log in button
@@ -91,12 +102,12 @@ class App {
     this.galleryButton.innerText = 'Gallery';
     this.sidebarRef.appendChild(this.galleryButton);
 
+    //Eventlisteners for navigating pages
     this.newImagesButton.addEventListener('click', () => {
       ScreenHandler.changeScreen('New Image');
     })
 
     this.imagesButton.addEventListener('click', () => {
-      //globalFilteredImageArray = globalObjectArray; // (Error) Makes all 5000 photos display after importing galleries
       ScreenHandler.changeScreen('Images', 'Sidebar');
     })
     this.galleryButton.addEventListener(  'click', () => {
@@ -104,7 +115,11 @@ class App {
     })
   }
 
-
+/**
+ * @description - Method that creates the modal for the login
+ * Has eventlisteners that listens for when the user opens/closes the modals 
+ * and also to validate the name/password
+ */
   createLoginWindow() {
 
     //Outer modal
@@ -122,8 +137,6 @@ class App {
     this.spanCloseButton.className = 'close'; 
     this.spanCloseButton.innerText = 'X'; 
     this.modalContent.appendChild(this.spanCloseButton); 
-
-
 
     this.logInForm = document.createElement('form'); 
     this.logInForm.id = 'logInForm'; 
@@ -143,23 +156,19 @@ class App {
     this.logInPassword.id = 'password';  
     this.passwordError = document.createElement('div'); 
     this.passwordError.id = 'pswError';
-        
 
     //Login button
     this.formLoginButton = document.createElement('button'); 
     this.formLoginButton.innerText = 'Log in';
     this.formLoginButton.id =  'login';
 
+    //Login validation message
     this.loginSuccessful = document.createElement('div'); 
     this.loginSuccessful.id = 'loginSuccessMsg';
     this.loginFailMsg = document.createElement('div'); 
     this.loginFailMsg.id = 'loginFail';
 
-  
-
-
-
-
+    // Append on screen
     this.modalContent.appendChild(this.logInForm);
     this.logInForm.appendChild(this.loginNameLabel);
     this.logInForm.appendChild(this.logInEmail);
@@ -171,29 +180,33 @@ class App {
     this.logInForm.appendChild(this.loginSuccessful);
     this.logInForm.appendChild(this.loginFailMsg);
 
-
-    this.loginButton.addEventListener('click', (e) => { //when user clicks on log in button, the modal opens
+    //when user clicks on log in button, the modal opens
+    this.loginButton.addEventListener('click', (e) => { 
       this.loginModal.style.display = 'block';
     })
-    
-    this.spanCloseButton.addEventListener('click', (e) => { //when user clicks on x, modal closes
+
+    //when user clicks on x, modal closes
+    this.spanCloseButton.addEventListener('click', (e) => { 
       this.loginModal.style.display = 'none';
     })
 
-    window.addEventListener('click', (e) => { //user can click anywhere on window to close modal
+    //user can click anywhere on window to close modal
+    window.addEventListener('click', (e) => { 
       if(e.target === this.loginModal) {
         this.loginModal.style.display = 'none';
       }
     })
     
+    //when user clicks 'log in' we validate
     this.formLoginButton.addEventListener('click', (e) => {
       this.validateLogin();
       e.preventDefault();
     })
-
   }
+
   /**
-   * @desc Checks if input email and password matches database
+   * @description Checks if input email and password matches database
+   * Checks if input email and password matches the regex requirements
    * 
    */
   validateLogin() {
@@ -202,6 +215,7 @@ class App {
     let specialChar = /\W/g;
     let emailRegExp = /@/g;
     let dotReq = /\./g;
+
     // getting the IDs for the inputfields and the texts
     let emailErrorRef = document.getElementById('emailError');
     let passWordErrorRef = document.getElementById('pswError');
@@ -251,39 +265,42 @@ class App {
 
     // Get users from JSON placeholder and check if login data entered matches the database
     // If it does = login succesful
-
     let getUsers = getJsonData.getData('https://jsonplaceholder.typicode.com/users');
     getUsers.then((users) => {
 
     for(let i = 0; i<users.length;i++) {
-      if(this.logInEmail.value.toLowerCase() == users[i].email.toLowerCase() && this.logInPassword.value == users[i].address.suite) {
-        document.getElementById('loginSuccessMsg').innerHTML = 'Login Successful';
-        document.getElementById('loginFail').innerHTML = ''; 
-        sessionStorage.setItem("userID", users[i].id);
-        this.indicateUserLoggedIn(); 
-        break;
-      }      
-      else if (this.logInEmail.value != users[i].email) {
-        document.getElementById('loginFail').innerHTML = '*User does not exist*';
-        document.getElementById('loginSuccessMsg').innerHTML = '';
-        passWordErrorRef.innerHTML = '';
+        if(this.logInEmail.value.toLowerCase() == users[i].email.toLowerCase() && this.logInPassword.value == users[i].address.suite) {
+          document.getElementById('loginSuccessMsg').innerHTML = 'Login Successful';
+          document.getElementById('loginFail').innerHTML = ''; 
+          sessionStorage.setItem("userID", users[i].id);
+          this.indicateUserLoggedIn(); 
+          break;
+        }      
+        else if (this.logInEmail.value != users[i].email) {
+          document.getElementById('loginFail').innerHTML = '*User does not exist*';
+          document.getElementById('loginSuccessMsg').innerHTML = '';
+          passWordErrorRef.innerHTML = '';
+        }
+        else if (this.logInPassword.value != users[i].address.suite){
+          passWordErrorRef.innerHTML = '*Password is incorrect*';
+          document.getElementById('loginSuccessMsg').innerHTML = '';
+          document.getElementById('loginFail').innerHTML = '';
+          break;
+        }
       }
-      else if (this.logInPassword.value != users[i].address.suite){
-        passWordErrorRef.innerHTML = '*Password is incorrect*';
-        document.getElementById('loginSuccessMsg').innerHTML = '';
-        document.getElementById('loginFail').innerHTML = '';
-        break;
-      }
-    }
     })
   }
 
+  /**
+   * @description - Method that shows which user is logged in
+   */
   indicateUserLoggedIn() {
     let loginBar = document.getElementById("login-header");
     loginBar.innerText = this.logInEmail.value.toLowerCase();
     sessionStorage.setItem("userEmail", this.logInEmail.value);
   }
-  
+ 
+// waits for the DOM to load before running app
 }
 document.addEventListener('DOMContentLoaded', function(){
   new App();
@@ -292,6 +309,8 @@ document.addEventListener('DOMContentLoaded', function(){
 // Global variables
 var globalImageObj = {};
 var globalGalleryObj = {};
+
+//Global Arrays
 var globalGalleryObjArray = [];
 var globalObjectArray = [];
 var globalImportedPhotosArray = [];

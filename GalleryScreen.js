@@ -1,89 +1,112 @@
+/**
+ * @description - Class that contains the UI for the gallery screen
+ * contains functionality that creates new galleries and imports albums
+ * @author Katalina, Ante & Karwan
+ */
 class GalleryScreen extends Screen{
   constructor() {
     let content = "";
     super(content);
     this.GalleryUI();
+    this.galleryEventListeners();
     this.initModal();
     this.initImportButton();
   }
 
+  /**
+   * @description - Method that creatas the Gallery screen UI
+   *  
+   */
   GalleryUI() {
-    this.mainContent = document.getElementById('main-content-wrapper'); //get the parent for the gallery div
+    this.mainContent = document.getElementById('main-content-wrapper'); 
 
-    this.galleryContainer = document.createElement('div'); //creates div container to Gallery screen
-    this.mainContent.appendChild(this.galleryContainer); //appends child
-    this.galleryContainer.id = 'galleryContainer'; //gives div an id
+    this.galleryContainer = document.createElement('div'); 
+    this.mainContent.appendChild(this.galleryContainer); 
+    this.galleryContainer.id = 'galleryContainer'; 
     
-    this.gallerySectionLeft = document.createElement('section'); //creates left div to Gallery screen
-    this.galleryContainer.appendChild(this.gallerySectionLeft); //appends child to div container
-    this.gallerySectionLeft.id = 'gallerySectionLeft'; //gives div an id
+    this.gallerySectionLeft = document.createElement('section'); 
+    this.galleryContainer.appendChild(this.gallerySectionLeft); 
+    this.gallerySectionLeft.id = 'gallerySectionLeft';
 
-    this.gallerySectionLeft.addEventListener('click', (e) => { //adds event listener to buttons for galleries
-      if(e.target !== e.currentTarget) {
-        let clickedBtn = e.target.innerText;
-        
-        globalGalleryImageArray = globalImportedAlbumsArray.filter((imageObject) => {
-          return imageObject.gallery === clickedBtn;
-        }); 
-        
-        ScreenHandler.changeScreen('Images', 'Album');
-      }
-    })
-
-    this.gallerySectionRight = document.createElement('section'); //creates right div to Gallery screen
-    this.galleryContainer.appendChild(this.gallerySectionRight); //appends child to div container
-    this.gallerySectionRight.id = 'gallerySectionRight'; //gives div an id
+    this.gallerySectionRight = document.createElement('section'); 
+    this.galleryContainer.appendChild(this.gallerySectionRight); 
+    this.gallerySectionRight.id = 'gallerySectionRight'; 
 
     // creates button for right section in gallery
-    this.galleryBtn3 = document.createElement('button');
-    this.gallerySectionRight.appendChild(this.galleryBtn3);
-    this.galleryBtn3.id = 'gallery-button3';
-    this.galleryBtn3.innerText = 'Create Gallery';
+    this.createGalleryButton = document.createElement('button');
+    this.gallerySectionRight.appendChild(this.createGalleryButton);
+    this.createGalleryButton.id = 'create-gallery-button';
+    this.createGalleryButton.innerText = 'Create Gallery';
 
+    // create a new button everytime the user creates a new gallery
     for (let i = 0;i<globalGalleryObjArray.length;i++){
-
       this.galleryBtn = document.createElement('button');
       this.galleryBtn.className = 'gallery-buttons';
       this.galleryBtn.id = 'gallery' + i;
       this.galleryBtn.innerText =  globalGalleryObjArray[i].title;
       this.gallerySectionLeft.appendChild(this.galleryBtn);
     }
+    this.galleryEventListeners(this.gallerySectionLeft);
   }
 
+  /**
+   * @description - Listens when the user clicks on a new gallery/imported albums,
+   *  opens the image screen with images that belongs to that gallery/album
+   */
+  galleryEventListeners(){
+    this.gallerySectionLeft.addEventListener('click', (e) => { 
+      if(e.target !== e.currentTarget) {
+        let clickedBtn = e.target.innerText;
+        
+        globalGalleryImageArray = globalImportedAlbumsArray.filter((imageObject) => {
+          return imageObject.gallery === clickedBtn;
+        }); 
+        ScreenHandler.changeScreen('Images', 'Album');
+      }
+    })
+  }
+
+  /**
+   * @description - Method that creates the Create gallery modal
+   * and creates the new galleries 
+   */
   initModal(){
     this.mainContent = document.getElementById('main-content-wrapper');
-    this.galleryButton = document.getElementById('gallery-button3');
+    this.galleryButton = document.getElementById('create-gallery-button');
 
-    this.galleryModal = document.createElement('div'); //creates a new div for gallery modal
-    this.galleryModal.className = 'modal'; // classname for the modal
-    this.galleryModal.id = 'galleryModal'; //gives gallery modal div an id 
-    this.mainContent.appendChild(this.galleryModal); //puts the gallery modal div under the wrapper
+    this.galleryModal = document.createElement('div'); 
+    this.galleryModal.className = 'modal'; 
+    this.galleryModal.id = 'galleryModal'; 
+    this.mainContent.appendChild(this.galleryModal);
 
     //Modal for gallery modal button
-    this.modalContent = document.createElement('div'); //creates div for gallery modal content
-    this.modalContent.className = 'modal-content-gallery'; //gives the gallery modal div a class name
+    this.modalContent = document.createElement('div'); 
+    this.modalContent.className = 'modal-content-gallery'; 
     this.galleryModal.appendChild(this.modalContent);
 
-    this.galleryForm = document.createElement('form'); //creates gallery modal form 
-    this.galleryName = document.createElement('input'); //input for name
-    this.galleryName.type = 'text'; // type of text
-    this.galleryName.placeholder = 'Gallery name...'; //a placeholder
-    this.createButtonGallery = document.createElement('button'); //gallery modal button
-    this.createButtonGallery.innerText = 'Create'; // text for the modal button
+    this.galleryForm = document.createElement('form'); 
+    this.galleryName = document.createElement('input'); 
+    this.galleryName.type = 'text'; 
+    this.galleryName.placeholder = 'Gallery name...';
+
+    this.createButton = document.createElement('button');
+    this.createButton.innerText = 'Create'; 
 
     this.modalContent.appendChild(this.galleryForm);
     this.galleryForm.appendChild(this.galleryName);
-    this.galleryForm.appendChild(this.createButtonGallery);
+    this.galleryForm.appendChild(this.createButton);
 
-    this.galleryButton.addEventListener('click', () => { //when user clicks on gallery modal button, the modal opens
+    //when user clicks on gallery modal button, the modal opens
+    this.galleryButton.addEventListener('click', () => { 
       this.galleryModal.style.display = 'block';
     })
-    
-    this.createButtonGallery.addEventListener('click', (e) => { // when the user creates a new gallery, a new object is created
+
+    // when the user creates a new gallery, a new object is created
+    this.createButton.addEventListener('click', (e) => { 
       e.preventDefault();
 
       if (this.galleryName.value == 0) {
-        console.log('tomt');
+        alert('Please name your gallery');
       }else{
         globalGalleryObj = {
           title: this.galleryName.value,
@@ -93,14 +116,18 @@ class GalleryScreen extends Screen{
       }
       this.galleryForm.reset();
     })
-    
-    window.addEventListener('click', (e) => { //user can click anywhere on window to close modal
+
+    //user can click anywhere on window to close modal
+    window.addEventListener('click', (e) => { 
       if(e.target === this.galleryModal) {
         this.galleryModal.style.display = 'none';
       }
     })
   }
 
+  /**
+   * @description - Method that creates a new gallery button to the left section
+   */
   createNewGallery(){
     // creates buttons to left section in gallery, depending on what the user names the gallery.
     if (globalGalleryObj.title == 0) {
@@ -113,6 +140,11 @@ class GalleryScreen extends Screen{
         this.gallerySectionLeft.appendChild(this.galleryBtn);
       }
   }
+
+/**
+ * @description - Method that fetches albums and photos from jsonplaceholder
+ * and matches albums to logged in user
+ */
   initImportButton() {
     this.importButton = document.createElement("button");
     this.importButton.id = "import-button";
@@ -120,17 +152,13 @@ class GalleryScreen extends Screen{
     this.gallerySectionRight.appendChild(this.importButton);
 
     this.importButton.addEventListener("click", () => {
-
-
       let userID = sessionStorage.getItem("userID");
 
       let getAlbums = getJsonData.getData('https://jsonplaceholder.typicode.com/albums');
       getAlbums.then((jsonAlbums) => {
-        console.log(jsonAlbums);
         for(let i = 0; i < jsonAlbums.length; i++) {
 
           if(jsonAlbums[i].userId == userID) {
-
             globalGalleryObj = {
               title: jsonAlbums[i].title,
               id: jsonAlbums[i].id,
@@ -142,17 +170,9 @@ class GalleryScreen extends Screen{
 
         let getPhotos = getJsonData.getData('https://jsonplaceholder.typicode.com/photos');
         getPhotos.then((jsonPhotos) => {
-
-
-          //Go through all photos
           for(let i = 0; i < jsonPhotos.length; i++) {
-
-            //For every photo, go through all albums
             for(let y = 0; y < jsonAlbums.length; y++) {
-
-              // When ID's match, save info and push to array
               if(jsonPhotos[i].albumId == jsonAlbums[y].id) {
-
                 globalImageObj = {
                   url: jsonPhotos[i].url,
                   name: "",
@@ -160,34 +180,12 @@ class GalleryScreen extends Screen{
                   gallery: jsonAlbums[y].title,
                   button: 'Delete',
                 }
-                globalImportedAlbumsArray.push(globalImageObj);
-                
+                globalImportedAlbumsArray.push(globalImageObj);                
               }
             }
-            
           }
-          
-
         })
-        })
-    });
-
-
-      
-    }
-    
-    
-    // let galleryArraySame = globalGalleryObjArray.map();
-
-    /*globalGalleryObjArray.forEach((element) =>{
-      let n = element.name.includes(this.galleryName.value);
-      if(n) {
-        alert('Gallery already exist!');
-      }else{
-        this.galleryBtn = document.createElement('button');
-        this.galleryBtn.className = 'gallery-buttons';
-        this.galleryBtn.innerText =  globalGalleryObj.name;
-        this.gallerySectionLeft.appendChild(this.galleryBtn);
-      }
-    })*/
+      })
+    }); 
+  }
 }
