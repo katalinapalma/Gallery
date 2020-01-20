@@ -1,3 +1,8 @@
+/**
+ * @description - Class that creates and contains the imagescreen structure
+ * contains functionality to import images and to toggle between metadatas
+ * @author Katalina & Ante
+ */
 class ImageScreen extends Screen {
   constructor(mode) {
     let content = "Images";
@@ -8,7 +13,7 @@ class ImageScreen extends Screen {
     
     switch(mode) {
       case 'Sidebar':
-        this.ImportImagesBtn();
+        this.importImgsEventListener();
         this.displayImage();
         this.toggleButton.addEventListener("click", this.toggleMetaDataImages);
         break;
@@ -18,6 +23,10 @@ class ImageScreen extends Screen {
         break;
     }
   }
+
+  /**
+   * @description - method that creates the image wrapper
+   */
   createWrapper() {
     this.imgWrapper = document.createElement("div");
     this.imgWrapper.id = "image-wrapper";
@@ -25,6 +34,10 @@ class ImageScreen extends Screen {
     this.mainContentWrapper = document.getElementById("main-content-wrapper");
     this.mainContentWrapper.appendChild(this.imgWrapper);
   }
+
+  /**
+   * @description - method that creates the import images button & toggle metadata button
+   */
   displayButtons() {
       // creates btn div
       this.btnDiv = document.createElement('div');
@@ -33,10 +46,10 @@ class ImageScreen extends Screen {
       this.mainContentWrapper.appendChild(this.btnDiv);
   
       // creates import images button
-      this.importBtn = document.createElement('button');
-      this.importBtn.innerText = 'Import images';
-      this.importBtn.id = 'import-images-button';
-      this.btnDiv.appendChild(this.importBtn);
+      this.importImgsButton = document.createElement('button');
+      this.importImgsButton.innerText = 'Import images';
+      this.importImgsButton.id = 'import-images-button';
+      this.btnDiv.appendChild(this.importImgsButton);
   
       // creates toggle meta data button
       this.toggleButton = document.createElement("button");
@@ -44,15 +57,21 @@ class ImageScreen extends Screen {
       this.toggleButton.innerText = "Toggle metadata";
       this.btnDiv.appendChild(this.toggleButton);
       this.toggleButton.addEventListener("click", this.toggleMetaData);    
-    
-
   }
+
+  /**
+   * @description - method that displays the cards with images
+   */
   displayImage() {
     for(let i = 0;i<globalObjectArray.length;i++) {
       let imageCards = new ImageCard(i, globalObjectArray);
       globalCardsArray.push(imageCards);
     }
   }
+
+  /**
+   * @description - Method that displays the images from imported albums
+   */
   displayAlbum() {
     for(let i = 0;i<globalGalleryImageArray.length;i++) {
       let imageCards = new ImageCard(i, globalGalleryImageArray);
@@ -60,43 +79,45 @@ class ImageScreen extends Screen {
     }
   }
 
-  ImportImagesBtn() {
+  /**
+   * @description - method that fetches images from JSONplaceHolder & import images based on the logged in user 
+   */
+  importImgsEventListener() {
     let userID = sessionStorage.getItem("userID");
+
     if(userID && globalObjectArray.length == 0) {
-    this.importBtn.addEventListener('click', () => {
-      
-      let getImages = getJsonData.getData('https://jsonplaceholder.typicode.com/photos');
-      getImages.then((jsonImages) => {
-
-        let userID = sessionStorage.getItem("userID");
+      this.importImgsButton.addEventListener('click', () => {
         
-        
-        for(let i = 0; i < jsonImages.length; i++) {
-
-          let albumID = jsonImages[i].albumId;
+        let getImages = getJsonData.getData('https://jsonplaceholder.typicode.com/photos');
+        getImages.then((jsonImages) => { 
           
-          if(albumID == userID) {
-            globalImportedPhotosArray.push(jsonImages[i]);
+          for(let i = 0; i < jsonImages.length; i++) {
+
+            let albumID = jsonImages[i].albumId;
             
-            for(let y = 0;y < globalImportedPhotosArray.length;y++ ) {
-              globalImportedPhotosArray[y].name = jsonImages[i].title;
-              globalImportedPhotosArray[y].description = '';
-              globalImportedPhotosArray[y].gallery = jsonImages[i].albumId;
-              globalImportedPhotosArray[y].button = 'Delete';
+            if(albumID == userID) {
+              globalImportedPhotosArray.push(jsonImages[i]);
               
-            } 
-            globalObjectArray.push(globalImportedPhotosArray[i]);
+              for(let y = 0;y < globalImportedPhotosArray.length;y++ ) {
+                globalImportedPhotosArray[y].name = jsonImages[i].title;
+                globalImportedPhotosArray[y].description = '';
+                globalImportedPhotosArray[y].gallery = jsonImages[i].albumId;
+                globalImportedPhotosArray[y].button = 'Delete';
+                
+              } 
+              globalObjectArray.push(globalImportedPhotosArray[i]);
+            }
           }
-        }
-        
-        this.displayImage();
+          this.displayImage();
+        })
+        this.importImgsButton.disabled = true;
       })
-      
-      this.importBtn.disabled = true;
-    })
-    
+    }
   }
-  }
+
+  /**
+   * @description - method that toggles the metadata on every card
+   */
   toggleMetaDataImages() {
     for(let i = 0;i<globalObjectArray.length;i++) {
       var x = document.getElementsByClassName("metaContainer")[i];
@@ -107,6 +128,10 @@ class ImageScreen extends Screen {
       }
     }
   }
+
+  /**
+   * @description - method that toggles the metadata on every album card
+   */
   toggleMetaDataAlbums() {
     for(let i = 0;i<globalGalleryImageArray.length;i++) {
       var x = document.getElementsByClassName("metaContainer")[i];
@@ -117,5 +142,4 @@ class ImageScreen extends Screen {
       }
     }
   }
-
 }

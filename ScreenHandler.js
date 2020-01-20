@@ -1,3 +1,8 @@
+/**
+ * @description - Handles the screen depending on which screen is active
+ * When changing screens we remove the active screen to the current screen
+ * @author Ante, Katalina & Karwan
+ */
 var ScreenHandler = {
   activeScreen: null,
   changeScreen: function(screenType, mode){

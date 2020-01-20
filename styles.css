@@ -1,4 +1,5 @@
-* {
+
+*{
   margin: 0px;
   padding: 0px;
 }
@@ -26,17 +27,19 @@ html, body {
   text-align: center;
   font-weight: bold;
 }
+
 #login-div {
   position: absolute;
   display: inline-block;
   width: 30%;
-  
 }
+
 #login-header {
   font-size: 13px;
   color: rgb(0, 0, 0);
   margin-left: 7%; 
 }
+
 #user-icon {
   width: 37px;
   height: 37px;
@@ -62,8 +65,7 @@ html, body {
   height: 100vh;
   width: 200px;
   background-color: #E8833A;
-  flex-direction: column;
-  
+  flex-direction: column;  
 }
 
 #sidebar-button-div {
@@ -103,6 +105,7 @@ html, body {
   font-size: 25px;
 }
 
+/* Form wrapper in new image screen */
 #formWrapper{
   border-radius: 5px;
   background-color: rgb(96, 118, 138);
@@ -185,7 +188,6 @@ html, body {
   margin-left: 35%;
 }
 
-
 /* image-wrapper */
 #image-wrapper {
   text-align: center;
@@ -239,21 +241,21 @@ img {
 
 /* Log in modal and image modal*/
 .modal, #image-modal, #galleryModal {
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
+  display: none; 
+  position: fixed; 
+  z-index: 1;
   left: 0;
   top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
+  width: 100%; 
+  height: 100%; 
   overflow: auto; /*Enable scroll if needed*/
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  background-color: rgb(0,0,0); 
+  background-color: rgba(0,0,0,0.4); 
 }
 
 .modal-content, .imageRefModal {
   background-color: #F7EAE1;
-  margin: 15% auto; /* 15% from the top and centered */
+  margin: 15% auto; 
   padding: 20px;
   width: 30%;
   border-radius: 5px
@@ -316,6 +318,7 @@ img {
   cursor: pointer;
 }
 
+/* Login */
 #login {
   width: 100%;
   padding: 8px 0px;
@@ -380,6 +383,8 @@ img {
   from {transform:scale(0)} 
   to {transform:scale(1)}
 }
+
+/* meta data */
 .imgMetaName{
   font-size: 45px;
   text-transform: uppercase;
@@ -387,62 +392,14 @@ img {
   color: #fff;
   margin-top: 500px;
 }
+
 .imgMetaText{
   font-size: 24px;
   font-weight: bold;
   color: #fff;
 }
-#newNameInput{
-  padding: 20px;
-  width: 200px;
-  display: block;
-  position: absolute;
-  margin-left: 44%;
-}
-#newTextInput{
-  display: block;
-  position: absolute;
-  margin-left: 44%;
-  margin-top: 70px;
-  width: 242px;
-  resize: none;
-}
 
-.modalSubmit{
-  position: absolute;
-  margin-top: 120px;
-  margin-left: -1%;
-  padding: 10px;
-  width: 100px;
-  background-color:#4CAF50;
-  color: white;
-  border: none;
-  border-radius: 2%;
-  font-size: 16px;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-.modalSubmit:hover {
-  background-color: green;
-  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
-
-}
-
-
-.imgMetaName{
-  font-size: 45px;
-  text-transform: uppercase;
-  font-weight: bold;
-  color: #fff;
-  margin-top: 500px;
-}
-.imgMetaText{
-  font-size: 24px;
-  font-weight: bold;
-  color: #fff;
-}
-#newNameInput{
+#newNameInput {
   background-color: white;
   color: black;
   padding: 15px;
@@ -451,6 +408,7 @@ img {
   position: absolute;
   margin-left: 44.8%;
 }
+
 #newTextInput{
   display: block;
   position: absolute;
@@ -481,7 +439,6 @@ img {
 .modalSubmit:hover {
   background-color: green;
   box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
-
 }
 
 .imgNameClass{
@@ -502,7 +459,6 @@ img {
 #styleButtonWrapper{
   position: absolute;
   width: 20%;
-
   margin-left: 35%;
   margin-top: 615px;
 }
@@ -516,6 +472,7 @@ img {
   color: white;
   transition: 0.3s;
 }
+
 .bold:hover{
   background-color: rgb(61, 58, 58);
   transform: translateY(5px);
@@ -530,11 +487,12 @@ img {
   color: white;
   transition: 0.3s;
 }
+
 .Underline:hover{
   background-color: rgb(61, 58, 58);
   transform: translateY(5px);
-
 }
+
 .fontSize{
   text-transform: uppercase;
   padding: 10px;
@@ -543,38 +501,43 @@ img {
   color: white;
   transition: 0.3s;
 }
+
 .fontSize:hover{
   background-color: rgb(61, 58, 58);
   transform: translateY(5px);
 }
 
-#file-input {
-  width: 21%;
+#fileInput {
+  width: 30%;
+  padding: 10px;
   margin-left: 2%;
 }
+
 #file-display {
   margin-top: -2%;
   width: 25%;
   margin-left: 20%;
 }
 
+/* Validation styling for login */
 #emailError{
   color: rgb(194, 10, 10);
   font-weight: bold;
   text-align: center;
-
 }
+
 #pswError{
   color: rgb(194, 10, 10);
   font-weight: bold;
   text-align: center;
-
 }
+
 #loginSuccessMsg{
   font-weight: bold;
   text-align: center;
   color: green;
 }
+
 #loginFail{
   font-weight: bold;
   text-align: center;
@@ -621,14 +584,16 @@ img {
   padding: 20px; 
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2), 0 2px 20px 0 rgba(0, 0, 0, 0.19);
   border-bottom: 4px solid transparent;
+  transition: 0.3s;
 }
 
 .gallery-buttons:hover {
-  border-bottom: 4px solid #e8833a;
+  background-color:  #e8833a;
+  cursor: pointer;
 }
 
 /* create gallery button */
-#gallery-button3 {
+#create-gallery-button {
   float: right;
   background-color:#e8833a;
   font-size: 25px;
@@ -658,7 +623,7 @@ img {
   background-color: #7ae77f;
 }
 
-#gallery-button3:hover {
+#create-gallery-button:hover {
   background-color: #F7C325;
 }
 

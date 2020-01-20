@@ -1,3 +1,9 @@
+/**
+ * @description - Class that creates the image cards
+ * contains functionality to remove images from the screen/object
+ * contains functionality to get the image modal from another class
+ * @author Karwan, Katalina & Ante
+ */
 class ImageCard {
     constructor(i, image){
         this.i = i;
@@ -5,6 +11,10 @@ class ImageCard {
         this.imageCardinit();
     }
 
+    /**
+     * @description - Method that creates the "cards" for the images
+     * The user can also edit meta data + style it
+     */
 imageCardinit(){
     this.imgWrapps = document.getElementById('image-wrapper');
     this.mainContentWrapper = document.getElementById("main-content-wrapper");
@@ -42,7 +52,6 @@ imageCardinit(){
      this.removeButton.innerText = this.image[this.i].button;
 
      //Setting image source
-
      this.imgElement.src = this.image[this.i].url;
      
      // Append everything
@@ -62,7 +71,8 @@ imageCardinit(){
        this.image.splice(this.i, 1);
      });
 
-    this.imgCard.addEventListener('click', () => { //when user clicks on image, the image modal opens
+    //when user clicks on image, the image modal opens
+    this.imgCard.addEventListener('click', () => { 
       let image = new ImageModal(this.image[this.i].url,
         this.image[this.i].description, 
         this.image[this.i].name)
@@ -70,6 +80,7 @@ imageCardinit(){
          //removes the name and text on the modal
           image.imageMetaName.innerText = '';
           image.imageMetaText.innerText = '';
+
         //creates a form in the modal so the user can type the name or text
           this.inputNewName = document.createElement('div');
           this.inputNewText = document.createElement('div');
@@ -86,15 +97,12 @@ imageCardinit(){
           
           image.boldButton.addEventListener('click', (e) => {
             e.stopPropagation();
-            console.log('bold');
-            
             document.execCommand('bold');
           })
 
           image.underLineButton.addEventListener('click', (e) =>{
             e.stopPropagation();
             document.execCommand('underline');
-
           })
 
           image.sizeButton.addEventListener('click', (e) =>{
