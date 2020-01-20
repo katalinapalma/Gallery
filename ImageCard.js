@@ -12,9 +12,9 @@ imageCardinit(){
 
      // Creating img elements
      this.imgName = document.createElement("p");
+     this.imgText = document.createElement("p");
      this.imgCard = document.createElement('div');
      this.metaDataContainer = document.createElement('div');
-     this.imgText = document.createElement("p");
      this.removeButton = document.createElement('button');
      this.imgElement = document.createElement("img");
 
@@ -99,7 +99,7 @@ imageCardinit(){
 
           image.sizeButton.addEventListener('click', (e) =>{
             e.stopPropagation();
-            document.execCommand('fontSize','false', '10');            
+            document.execCommand('fontSize','false', '7');            
           })
 
          image.myForm.addEventListener('submit', (e) => {
