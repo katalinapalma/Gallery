@@ -157,7 +157,6 @@ class GalleryScreen extends Screen{
       let getAlbums = getJsonData.getData('https://jsonplaceholder.typicode.com/albums');
       getAlbums.then((jsonAlbums) => {
         for(let i = 0; i < jsonAlbums.length; i++) {
-
           if(jsonAlbums[i].userId == userID) {
             globalGalleryObj = {
               title: jsonAlbums[i].title,
@@ -168,19 +167,19 @@ class GalleryScreen extends Screen{
           }
         }
 
-        let getPhotos = getJsonData.getData('https://jsonplaceholder.typicode.com/photos');
-        getPhotos.then((jsonPhotos) => {
-          for(let i = 0; i < jsonPhotos.length; i++) {
-            for(let y = 0; y < jsonAlbums.length; y++) {
-              if(jsonPhotos[i].albumId == jsonAlbums[y].id) {
-                globalImageObj = {
-                  url: jsonPhotos[i].url,
-                  name: "",
-                  description: jsonPhotos[i].albumId,
-                  gallery: jsonAlbums[y].title,
-                  button: 'Delete',
-                }
-                globalImportedAlbumsArray.push(globalImageObj);                
+      let getPhotos = getJsonData.getData('https://jsonplaceholder.typicode.com/photos');
+      getPhotos.then((jsonPhotos) => {
+        for(let i = 0; i < jsonPhotos.length; i++) {
+          for(let y = 0; y < jsonAlbums.length; y++) {
+            if(jsonPhotos[i].albumId == jsonAlbums[y].id) {
+              globalImageObj = {
+                url: jsonPhotos[i].url,
+                name: "",
+                description: jsonPhotos[i].albumId,
+                gallery: jsonAlbums[y].title,
+                button: 'Delete',
+              }
+              globalImportedAlbumsArray.push(globalImageObj);                
               }
             }
           }
