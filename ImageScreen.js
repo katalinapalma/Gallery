@@ -39,24 +39,24 @@ class ImageScreen extends Screen {
    * @description - method that creates the import images button & toggle metadata button
    */
   displayButtons() {
-      // creates btn div
-      this.btnDiv = document.createElement('div');
-      this.btnDiv.id = 'btndiv';
-      this.mainContentWrapper = document.getElementById("main-content-wrapper");
-      this.mainContentWrapper.appendChild(this.btnDiv);
-  
-      // creates import images button
-      this.importImgsButton = document.createElement('button');
-      this.importImgsButton.innerText = 'Import images';
-      this.importImgsButton.id = 'import-images-button';
-      this.btnDiv.appendChild(this.importImgsButton);
-  
-      // creates toggle meta data button
-      this.toggleButton = document.createElement("button");
-      this.toggleButton.id = "toggle-button";
-      this.toggleButton.innerText = "Toggle metadata";
-      this.btnDiv.appendChild(this.toggleButton);
-      this.toggleButton.addEventListener("click", this.toggleMetaData);    
+    // creates btn div
+    this.btnDiv = document.createElement('div');
+    this.btnDiv.id = 'btndiv';
+    this.mainContentWrapper = document.getElementById("main-content-wrapper");
+    this.mainContentWrapper.appendChild(this.btnDiv);
+
+    // creates import images button
+    this.importImgsButton = document.createElement('button');
+    this.importImgsButton.innerText = 'Import images';
+    this.importImgsButton.id = 'import-images-button';
+    this.btnDiv.appendChild(this.importImgsButton);
+
+    // creates toggle meta data button
+    this.toggleButton = document.createElement("button");
+    this.toggleButton.id = "toggle-button";
+    this.toggleButton.innerText = "Toggle metadata";
+    this.btnDiv.appendChild(this.toggleButton);
+    this.toggleButton.addEventListener("click", this.toggleMetaData);    
   }
 
   /**
@@ -90,7 +90,6 @@ class ImageScreen extends Screen {
         
         let getImages = getJsonData.getData('https://jsonplaceholder.typicode.com/photos');
         getImages.then((jsonImages) => { 
-          
           for(let i = 0; i < jsonImages.length; i++) {
 
             let albumID = jsonImages[i].albumId;
@@ -102,8 +101,7 @@ class ImageScreen extends Screen {
                 globalImportedPhotosArray[y].name = jsonImages[i].title;
                 globalImportedPhotosArray[y].description = '';
                 globalImportedPhotosArray[y].gallery = jsonImages[i].albumId;
-                globalImportedPhotosArray[y].button = 'Delete';
-                
+                globalImportedPhotosArray[y].button = 'Delete'; 
               } 
               globalObjectArray.push(globalImportedPhotosArray[i]);
             }
